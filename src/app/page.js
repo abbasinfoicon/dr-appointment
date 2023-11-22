@@ -1,95 +1,514 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client"
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false, });
+
+import { SlideshowLightbox } from 'lightbox.js-react';
+import CountUp from 'react-countup';
+import Testimonial from "./components/Testimonial";
+
+const options = {
+  loop: true,
+  margin: 0,
+  autoplaySpeed: 5000,
+  autoplay: 8000,
+  items: 1,
+  animateIn: 'fadeIn',
+  animateOut: 'fadeOut',
+  nav: true,
+  dots: false,
+  navText: ["<i class='arow-left'></i>", "<i class='arow-right'></i>"],
+}
+
+const options2 = {
+  loop: true,
+  margin: 30,
+  autoplaySpeed: 2000,
+  autoplay: 3000,
+  nav: true,
+  dots: false,
+  navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+  responsive: {
+    0: { items: 1 },
+    480: { items: 2 },
+    991: { items: 2 },
+    1000: { items: 3 }
+  }
+}
 
 export default function Home() {
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Import and initialize magnific-popup
+      const $ = require("jquery");
+      require("magnific-popup");
+
+      $(document).ready(function () {
+        $('.popup-youtube').magnificPopup({
+          type: 'iframe',
+        });
+      });
+    }
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="page-content">
+      <OwlCarousel className="main-slider" id="home" {...options}>
+        <div className="item">
+          <div className="mainSlider">
+            <img className='img-fluid' src="assets/images/main-slider/slide6.jpg" />
+            <div className="mainSlider-text">
+              <h3>Welcome to Dr. Appointment</h3>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
+              <a href="#" className="site-button">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div className="item">
+          <div className="mainSlider">
+            <img className='img-fluid' src="assets/images/main-slider/slide7.jpg" />
+            <div className="mainSlider-text">
+              <h3>Welcome to Dr. Appointment</h3>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
+              <a href="#" className="site-button">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div className="item">
+          <div className="mainSlider">
+            <img className='img-fluid' src="assets/images/main-slider/slide8.jpg" />
+            <div className="mainSlider-text">
+              <h3>Welcome to Dr. Appointment</h3>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
+              <a href="#" className="site-button">Read More</a>
+            </div>
+          </div>
+        </div>
+      </OwlCarousel>
+
+      <div className="section-full content-inner bg-white video-section">
+        <div className="container">
+          <div className="section-content">
+            <div className="row d-flex">
+              <div className="col-lg-6 col-md-6 align-self-center m-b30">
+                <h2 className="m-b15">Health Care with <br /><span className="text-primary">Carezone Hospital Center</span></h2>
+                <p className="m-b15">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has.</p>
+                <p className="m-b30">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+                <img src="assets/images/sign.png" width="200" alt="" />
+                <h4 className="m-b0">Jone Doe</h4>
+                <span className="font-14">HOSPITAL DIRECTOR</span>
+              </div>
+              <div className="col-lg-6 col-md-6 m-b30">
+                <div className="video-bx">
+                  <img src="assets/images/pic1.jpg" alt="" />
+                  <div className="video-play-icon">
+                    <a href="https://www.youtube.com/watch?v=q5sURR9fvvk" className="popup-youtube video bg-primary"><i className="fa fa-play"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="section-full content-inner doctor-stats-bx bg__img">
+        <div className="container">
+          <div className="section-head text-center ">
+            <h3 className="h3 text-uppercase">About <span className="text-primary">Dr. Appointment</span></h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+          </div>
+          <div className="row text-center">
+            <div className="col-lg-3 col-md-6 col-sm-6 col-6">
+              <div className="counter-style-1 m-b30">
+                <div className="text-primary">
+                  <i className="icon flaticon-bar-chart"></i>
+                  <CountUp start={0} end={7652} duration={2.75}>
+                    {({ countUpRef, start }) => (
+                      <span className="counter" ref={countUpRef} />
+                    )}
+                  </CountUp>
+                </div>
+                <span className="counter-text">Completed Projects</span>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-6 col-6">
+              <div className="counter-style-1 m-b30">
+                <div className="text-primary">
+                  <i className="icon flaticon-social"></i>
+                  <CountUp start={0} end={4562} duration={2.75}>
+                    {({ countUpRef, start }) => (
+                      <span className="counter" ref={countUpRef} />
+                    )}
+                  </CountUp>
+                </div>
+                <span className="counter-text">Happy Clients</span>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-6 col-6">
+              <div className="counter-style-1 m-b30">
+                <div className="text-primary">
+                  <i className="icon flaticon-file"></i>
+                  <CountUp start={0} end={3569} duration={2.75}>
+                    {({ countUpRef, start }) => (
+                      <span className="counter" ref={countUpRef} />
+                    )}
+                  </CountUp>
+                </div>
+                <span className="counter-text">Questions Answered</span>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-6 col-6">
+              <div className="counter-style-1 m-b30">
+                <div className="text-primary">
+                  <i className="icon flaticon-pencil"></i>
+                  <CountUp start={0} end={2089} duration={2.75}>
+                    {({ countUpRef, start }) => (
+                      <span className="counter" ref={countUpRef} />
+                    )}
+                  </CountUp>
+                </div>
+                <span className="counter-text">Ordered Coffee's</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className="section-full bg-white content-inner" id="services">
+        <div className="container">
+          <div className="section-head text-center ">
+            <h3 className="h3 text-uppercase">Our Best <span className="text-primary">Services</span></h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+          </div>
+          <div className="section-content ">
+            <div className="row">
+              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic1.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 border-1">
+                    <h4 className="dez-title m-t0"><a href="#">Dental Fillings</a></h4>
+                    <div className="dez-separator bg-primary"></div>
+                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
+                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic2.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 border-1">
+                    <h4 className="dez-title m-t0"><a href="#">Orthodontics</a></h4>
+                    <div className="dez-separator bg-primary"></div>
+                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
+                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic3.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 border-1">
+                    <h4 className="dez-title m-t0"><a href="#">Tooth Extraction</a></h4>
+                    <div className="dez-separator bg-primary"></div>
+                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
+                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic4.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 border-1">
+                    <h4 className="dez-title m-t0"><a href="#">Root Canal Treatment</a></h4>
+                    <div className="dez-separator bg-primary"></div>
+                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
+                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic5.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 border-1">
+                    <h4 className="dez-title m-t0"><a href="#">Teeth Whitening</a></h4>
+                    <div className="dez-separator bg-primary"></div>
+                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
+                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic6.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 border-1">
+                    <h4 className="dez-title m-t0"><a href="#">Routine Dental Exam</a></h4>
+                    <div className="dez-separator bg-primary"></div>
+                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
+                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
+
+      <div className="section-full bg-img-fix overlay-primary-dark content-inner-1 dez-support" style={{ backgroundImage: 'url(assets/images/background/bg5.jpg)' }}>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 text-center text-white ">
+              <h2 className="m-b15 m-t0">We provide 24/7 customer support.</h2>
+              <h3 className="m-t0 m-b20">Please feel free to contact us at (01) 234 5678 for emergency case.</h3>
+              <a href="#" className="site-button white radius-sm">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="section-full content-inner bg-white">
+        <div className="container">
+          <div className="section-content">
+            <div className="row">
+              <div className="col-lg-5 align-self-end m-b30">
+                <div className="dez-thum d-sm-none d-lg-block"><img src="assets/images/worker.png" alt="" /></div>
+              </div>
+              <div className="col-lg-7 m-b30">
+                <h3 className="h3 text-uppercase">Make An <span className="text-primary"> Appointment</span></h3>
+                <p className="m-b10"><strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown...</strong></p>
+                <p className="m-b30">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+                <div className="clearfix bg-primary radius-sm text-white p-a30 about-appoint">
+                  <div className="dzFormMsg"></div>
+                  <form method="post" className="dzForm" action="/">
+                    <input type="hidden" value="Contact" name="dzToDo" />
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <div className="input-group">
+                            <input name="dzName" type="text" required className="form-control" placeholder="Your Name" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <div className="input-group">
+                            <input name="dzEmail" type="email" className="form-control" required placeholder="Your Email Id" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <div className="input-group">
+                            <input name="dzOther[Phone]" type="text" required className="form-control" placeholder="Phone" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="form-group">
+                          <div className="input-group">
+                            <input name="dzOther[Subject]" type="text" required className="form-control" placeholder="Subject" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <div className="input-group">
+                            <textarea name="dzMessage" rows="4" className="form-control" required placeholder="Your Message..."></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-lg-12">
+                        <div className="form-group">
+                          <div className="input-group">
+                            <div className="g-recaptcha" data-sitekey="6LefsVUUAAAAADBPsLZzsNnETChealv6PYGzv3ZN" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
+                            <input className="form-control d-none" style={{ display: 'none' }} data-recaptcha="true" required data-error="Please complete the Captcha" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-12">
+                        <button name="submit" type="submit" value="Submit" className="site-button white outline"> <span>Make An Appointment</span> </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="section-full content-inner bg-gray">
+        <div className="container">
+          <div className="section-head text-center ">
+            <h3 className="h3 text-uppercase">Meet Our  <span className="text-primary">Doctors</span></h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+          </div>
+          <div className="section-content text-center ">
+            <div className="row">
+              <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-team/pic13.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 bg-white">
+                    <h4 className="dez-title m-t0 m-b15"><a href="#">Nashid Martines</a></h4>
+                    <ul className="dez-social-icon border dez-social-icon-lg">
+                      <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
+                      <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
+                      <li><a href="#" className="fa fa-linkedin link-btn"></a></li>
+                      <li><a href="#" className="fa fa-pinterest-p pin-btn"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-team/pic14.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 bg-white">
+                    <h4 className="dez-title m-t0 m-b15"><a href="#">Nashid Martines</a></h4>
+                    <ul className="dez-social-icon border dez-social-icon-lg">
+                      <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
+                      <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
+                      <li><a href="#" className="fa fa-linkedin link-btn"></a></li>
+                      <li><a href="#" className="fa fa-pinterest-p pin-btn"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-team/pic15.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 bg-white">
+                    <h4 className="dez-title m-t0 m-b15"><a href="#">Nashid Martines</a></h4>
+                    <ul className="dez-social-icon border dez-social-icon-lg">
+                      <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
+                      <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
+                      <li><a href="#" className="fa fa-linkedin link-btn"></a></li>
+                      <li><a href="#" className="fa fa-pinterest-p pin-btn"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
+                <div className="dez-box">
+                  <div className="dez-media"> <a href="#"><img src="assets/images/our-team/pic16.jpg" alt="" /></a> </div>
+                  <div className="dez-info p-a30 bg-white">
+                    <h4 className="dez-title m-t0 m-b15"><a href="#">Nashid Martines</a></h4>
+                    <ul className="dez-social-icon border dez-social-icon-lg">
+                      <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
+                      <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
+                      <li><a href="#" className="fa fa-linkedin link-btn"></a></li>
+                      <li><a href="#" className="fa fa-pinterest-p pin-btn"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="section-full content-inner gallery-projects">
+        <div className="section-head  text-center text-black">
+          <h3 className="h3 text-uppercase">Our <span className="text-primary">Gallery</span></h3>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+        </div>
+
+        <div className="clearfix">
+          <SlideshowLightbox className="slide__gallery">
+            <img className="lightbox_img" src="assets/images/our-work/work/pic1.jpg" />
+            <img className="lightbox_img" src="assets/images/our-work/work/pic2.jpg" />
+            <img className="lightbox_img" src="assets/images/our-work/work/pic3.jpg" />
+            <img className="lightbox_img" src="assets/images/our-work/work/pic4.jpg" />
+            <img className="lightbox_img" src="assets/images/our-work/work/pic5.jpg" />
+            <img className="lightbox_img" src="assets/images/our-work/work/pic6.jpg" />
+            <img className="lightbox_img" src="assets/images/our-work/work/pic7.jpg" />
+            <img className="lightbox_img" src="assets/images/our-work/work/pic8.jpg" />
+          </SlideshowLightbox>
+        </div>
+      </div>
+
+      <div className="section-full content-inner-1 bg-gray">
+        <div className="container">
+          <div className="section-head text-center">
+            <h3 className="h3 text-uppercase">Latest blog  <span className="text-primary">post</span></h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+          </div>
+          <div className="section-content ">
+            <OwlCarousel className="testimonial-one blog-carousel owl-btn-1 primary owl-btn-center-lr" {...options2}>
+              <div className="item">
+                <div className="dez-box">
+                  <div className="dez-media">
+                    <a href="#"><img src="assets/images/blog/latest-blog/blog/pic1.jpg" alt="" /></a>
+                  </div>
+                  <div className="dez-info p-t20">
+                    <div className="dez-post-meta">
+                      <ul>
+                        <li className=""> <i className="fa fa-calendar"></i><strong>10 Aug</strong> <span> 2020</span> </li>
+                        <li className="post-author"><i className="fa fa-user"></i>By <a href="#">Jone</a> </li>
+                        <li className="post-comment"><i className="fa fa-comments"></i> <a href="#">0</a> </li>
+                      </ul>
+                    </div>
+                    <h4 className="dez-title m-t15"><a href="#">Provide qualtiy productivity..</a></h4>
+                    <a href="#" className="site-button">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <div className="item">
+                <div className="dez-box">
+                  <div className="dez-media">
+                    <a href="#"><img src="assets/images/blog/latest-blog/blog/pic2.jpg" alt="" /></a>
+                  </div>
+                  <div className="dez-info p-t20">
+                    <div className="dez-post-meta">
+                      <ul>
+                        <li className=""> <i className="fa fa-calendar"></i><strong>10 Aug</strong> <span> 2020</span> </li>
+                        <li className="post-author"><i className="fa fa-user"></i>By <a href="#">Jone</a> </li>
+                        <li className="post-comment"><i className="fa fa-comments"></i> <a href="#">0</a> </li>
+                      </ul>
+                    </div>
+                    <h4 className="dez-title m-t15"><a href="#">Provide qualtiy productivity..</a></h4>
+                    <a href="#" className="site-button">Read More</a>
+                  </div>
+                </div>
+              </div>
+              <div className="item">
+                <div className="dez-box">
+                  <div className="dez-media">
+                    <a href="#"><img src="assets/images/blog/latest-blog/blog/pic3.jpg" alt="" /></a>
+                  </div>
+                  <div className="dez-info p-t20">
+                    <div className="dez-post-meta">
+                      <ul>
+                        <li className=""> <i className="fa fa-calendar"></i><strong>10 Aug</strong> <span> 2020</span> </li>
+                        <li className="post-author"><i className="fa fa-user"></i>By <a href="#">Jone</a> </li>
+                        <li className="post-comment"><i className="fa fa-comments"></i> <a href="#">0</a> </li>
+                      </ul>
+                    </div>
+                    <h4 className="dez-title m-t15"><a href="#">Provide qualtiy productivity..</a></h4>
+                    <a href="#" className="site-button">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </OwlCarousel>
+          </div>
+        </div >
+      </div >
+
+      <div className="section-full content-inner-1 bg-white">
+        <div className="container">
+          <div className="section-head text-center ">
+            <h3 className="h3 text-uppercase">What <span className="text-primary"> Patients Says</span></h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+          </div>
+          <div className="section-content owl-dots-black-full btn-black">
+            <Testimonial />
+          </div>
+        </div>
+      </div>
+    </div >
   )
 }
