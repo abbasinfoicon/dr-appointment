@@ -12,10 +12,10 @@ const Footer = () => {
                                 <div className="logo-footer"><img src="/assets/images/footer-logo.png" alt="" /></div>
                                 <p className="m-t30 m-b20"><strong>Dr.Appointment</strong>  Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus.  cons ectetur elit. Vestibulum nec odios Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec.</p>
                                 <ul className="dez-social-icon border dez-social-icon-lg">
-                                    <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
-                                    <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
-                                    <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
-                                    <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
+                                    <li><Link href="https://www.facebook.com/" className="fa fa-facebook fb-btn" target='_blank'></Link></li>
+                                    <li><Link href="https://twitter.com/" className="fa fa-twitter tw-btn" target='_blank'></Link></li>
+                                    <li><Link href="https://in.linkedin.com/" className="fa fa-linkedin link-btn" target='_blank'></Link></li>
+                                    <li><Link href="https://www.instagram.com/" className="fa fa-instagram pin-btn" target='_blank'></Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -96,7 +96,7 @@ const Footer = () => {
                             <span>Copyright © 2023 Dr.Appointment</span>
                         </div>
                         <div className="col-lg-4 col-md-4 text-center">
-                            <span> Design With <i className="fa fa-heart heart"></i> By Infoicon </span>
+                            <span> Design With <i className="fa fa-heart heart"></i> By <Link href="https://www.infoicontechnologies.com/" target='_blank'>Infoicon</Link> </span>
                         </div>
                         <div className="col-lg-4 col-md-4 text-right">
                             <ul className="footer-info-list text-right">

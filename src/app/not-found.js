@@ -1,10 +1,11 @@
 import React from 'react'
-import Banner from '../components/Banner'
+import Banner from './components/Banner'
+import Link from 'next/link'
 
 const Custom404 = () => {
     return (
         <>
-            <Banner title="About us" />
+            <Banner title="Page not found" />
 
             <div className="container pb-5">
                 <div className="section-content">
@@ -14,7 +15,7 @@ const Custom404 = () => {
                                 <form method="post">
                                     <strong>4<i className="fa fa-frown-o text-primary"></i>4</strong>
                                     <h5 className="m-b20 text-uppercase">Page not found</h5>
-                                    <a href="#" className="site-button "><span>Go to home</span></a>
+                                    <Link href="/" className="site-button "><span>Go to home</span></Link>
                                 </form>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import dynamic from "next/dynamic";
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
     ssr: false,
@@ -20,23 +21,35 @@ const options = {
     }
 }
 
-const Testimonial = async () => {
-    const res = await fetch('https://dummyjson.com/quotes');
+const Testimonial = () => {
+    const [testimonial, setTestimonial] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch('https://dummyjson.com/quotes');
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
-    }
+                if (!res.ok) {
+                    throw new Error('Failed to fetch data')
+                }
 
-    const data = await res.json();
+                const data = await res.json();
+                setTestimonial(data.quotes);
 
-    if (!data) {
-        return <p>Loading...</p>;
-    }
+                if (!data) {
+                    return <p>Loading...</p>;
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <OwlCarousel className="testimonial-three1 owl-theme owl-btn-3 primary owl-btn-center-lr owl-dots-white-full btn-white" {...options}>
             {
-                data.quotes.map((item) => {
+                testimonial.map((item) => {
                     return (
                         <div className="item" key={item.id}>
                             <div className="testimonial-2 testimonial-bg">

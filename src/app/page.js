@@ -1,11 +1,12 @@
-"use client"
+'use client'
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false, });
 
 import { SlideshowLightbox } from 'lightbox.js-react';
 import CountUp from 'react-countup';
 import Testimonial from "./components/Testimonial";
+import Link from "next/link";
 
 const options = {
   loop: true,
@@ -37,6 +38,7 @@ const options2 = {
 }
 
 export default function Home() {
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -50,7 +52,25 @@ export default function Home() {
         });
       });
     }
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch('https://dummyjson.com/posts');
+        if (!res.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await res.json();
+        setPosts(data.posts); // Assuming the actual array is under the 'posts' property
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
+
+
+  console.log(posts)
 
   return (
     <div className="page-content">
@@ -187,9 +207,9 @@ export default function Home() {
             <div className="row">
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic1.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic1.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Dental Fillings</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Dental Fillings</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
                     <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
@@ -198,9 +218,9 @@ export default function Home() {
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic2.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic2.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Orthodontics</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Orthodontics</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
                     <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
@@ -209,9 +229,9 @@ export default function Home() {
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic3.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic3.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Tooth Extraction</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Tooth Extraction</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
                     <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
@@ -220,9 +240,9 @@ export default function Home() {
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic4.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic4.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Root Canal Treatment</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Root Canal Treatment</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
                     <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
@@ -231,9 +251,9 @@ export default function Home() {
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic5.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic5.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Teeth Whitening</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Teeth Whitening</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
                     <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
@@ -242,9 +262,9 @@ export default function Home() {
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-services/service/pic6.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic6.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Routine Dental Exam</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Routine Dental Exam</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
                     <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
@@ -349,9 +369,9 @@ export default function Home() {
             <div className="row">
               <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-team/pic13.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-team/pic13.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><a href="#">Nashid Martines</a></h4>
+                    <h4 className="dez-title m-t0 m-b15"><Link href="/specialities/slug">Nashid Martines</Link></h4>
                     <ul className="dez-social-icon border dez-social-icon-lg">
                       <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
                       <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
@@ -364,9 +384,9 @@ export default function Home() {
 
               <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-team/pic14.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-team/pic14.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><a href="#">Nashid Martines</a></h4>
+                    <h4 className="dez-title m-t0 m-b15"><Link href="/specialities/slug">Nashid Martines</Link></h4>
                     <ul className="dez-social-icon border dez-social-icon-lg">
                       <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
                       <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
@@ -379,9 +399,9 @@ export default function Home() {
 
               <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-team/pic15.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-team/pic15.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><a href="#">Nashid Martines</a></h4>
+                    <h4 className="dez-title m-t0 m-b15"><Link href="/specialities/slug">Nashid Martines</Link></h4>
                     <ul className="dez-social-icon border dez-social-icon-lg">
                       <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
                       <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
@@ -394,9 +414,9 @@ export default function Home() {
 
               <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="assets/images/our-team/pic16.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-team/pic16.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><a href="#">Nashid Martines</a></h4>
+                    <h4 className="dez-title m-t0 m-b15"><Link href="/specialities/slug">Nashid Martines</Link></h4>
                     <ul className="dez-social-icon border dez-social-icon-lg">
                       <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
                       <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
@@ -438,62 +458,34 @@ export default function Home() {
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
           </div>
           <div className="section-content ">
-            <OwlCarousel className="testimonial-one blog-carousel owl-btn-1 primary owl-btn-center-lr" {...options2}>
-              <div className="item">
-                <div className="dez-box">
-                  <div className="dez-media">
-                    <a href="#"><img src="assets/images/blog/latest-blog/blog/pic1.jpg" alt="" /></a>
-                  </div>
-                  <div className="dez-info p-t20">
-                    <div className="dez-post-meta">
-                      <ul>
-                        <li className=""> <i className="fa fa-calendar"></i><strong>10 Aug</strong> <span> 2020</span> </li>
-                        <li className="post-author"><i className="fa fa-user"></i>By <a href="#">Jone</a> </li>
-                        <li className="post-comment"><i className="fa fa-comments"></i> <a href="#">0</a> </li>
-                      </ul>
-                    </div>
-                    <h4 className="dez-title m-t15"><a href="#">Provide qualtiy productivity..</a></h4>
-                    <a href="#" className="site-button">Read More</a>
-                  </div>
-                </div>
-              </div>
-              <div className="item">
-                <div className="dez-box">
-                  <div className="dez-media">
-                    <a href="#"><img src="assets/images/blog/latest-blog/blog/pic2.jpg" alt="" /></a>
-                  </div>
-                  <div className="dez-info p-t20">
-                    <div className="dez-post-meta">
-                      <ul>
-                        <li className=""> <i className="fa fa-calendar"></i><strong>10 Aug</strong> <span> 2020</span> </li>
-                        <li className="post-author"><i className="fa fa-user"></i>By <a href="#">Jone</a> </li>
-                        <li className="post-comment"><i className="fa fa-comments"></i> <a href="#">0</a> </li>
-                      </ul>
-                    </div>
-                    <h4 className="dez-title m-t15"><a href="#">Provide qualtiy productivity..</a></h4>
-                    <a href="#" className="site-button">Read More</a>
-                  </div>
-                </div>
-              </div>
-              <div className="item">
-                <div className="dez-box">
-                  <div className="dez-media">
-                    <a href="#"><img src="assets/images/blog/latest-blog/blog/pic3.jpg" alt="" /></a>
-                  </div>
-                  <div className="dez-info p-t20">
-                    <div className="dez-post-meta">
-                      <ul>
-                        <li className=""> <i className="fa fa-calendar"></i><strong>10 Aug</strong> <span> 2020</span> </li>
-                        <li className="post-author"><i className="fa fa-user"></i>By <a href="#">Jone</a> </li>
-                        <li className="post-comment"><i className="fa fa-comments"></i> <a href="#">0</a> </li>
-                      </ul>
-                    </div>
-                    <h4 className="dez-title m-t15"><a href="#">Provide qualtiy productivity..</a></h4>
-                    <a href="#" className="site-button">Read More</a>
-                  </div>
-                </div>
-              </div>
-            </OwlCarousel>
+            {
+              posts && <OwlCarousel className="testimonial-one blog-carousel owl-btn-1 primary owl-btn-center-lr" {...options2}>
+                {
+                  posts.map((item) => {
+                    return (
+                      <div className="item" key={item.id}>
+                        <div className="dez-box">
+                          <div className="dez-media">
+                            <Link href={`/blog/${item.id}`}><img src="assets/images/blog/latest-blog/blog/pic1.jpg" alt="" /></Link>
+                          </div>
+                          <div className="dez-info p-t20">
+                            <div className="dez-post-meta">
+                              <ul>
+                                <li className=""> <i className="fa fa-calendar"></i><strong>10 Aug</strong> <span> 2020</span> </li>
+                                <li className="post-author"><i className="fa fa-user"></i>By <Link href="#">Jone</Link> </li>
+                                <li className="post-comment"><i className="fa fa-comments"></i> <Link href="#">{item.userId}</Link> </li>
+                              </ul>
+                            </div>
+                            <h4 className="dez-title m-t15"><Link href={`/blog/${item.id}`}>{item.title}</Link></h4>
+                            <Link href={`/blog/${item.id}`} className="site-button">Read More</Link>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </OwlCarousel>
+            }
           </div>
         </div >
       </div >

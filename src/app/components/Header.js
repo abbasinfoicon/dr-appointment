@@ -1,7 +1,29 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react'
 
 const Header = () => {
+    const [open, setOpen] = useState(false);
+    const [menu, setMenu] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        window.onscroll = function () { myFunction() };
+
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.scrollY > sticky) {
+                header.classList.add("is-fixed");
+            } else {
+                header.classList.remove("is-fixed");
+            }
+        }
+    }, [])
+
+
     return (
         <header className="site-header header header-style-2 mo-left">
             <div className="top-bar">
@@ -16,21 +38,23 @@ const Header = () => {
                         </div>
                         <div className="dez-topbar-right">
                             <ul className="social-line text-center pull-right">
-                                <li><Link href="/" className="fa fa-facebook"></Link></li>
-                                <li><Link href="/" className="fa fa-twitter"></Link></li>
-                                <li><Link href="/" className="fa fa-linkedin"></Link></li>
-                                <li><Link href="/" className="fa fa-google-plus"></Link></li>
+                                <li><Link href="https://www.facebook.com/" className="fa fa-facebook" target='_blank'></Link></li>
+                                <li><Link href="https://twitter.com/" className="fa fa-twitter" target='_blank'></Link></li>
+                                <li><Link href="https://in.linkedin.com/" className="fa fa-linkedin" target='_blank'></Link></li>
+                                <li><Link href="https://www.instagram.com/" className="fa fa-instagram" target='_blank'></Link></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="sticky-header  main-bar-wraper navbar-expand-lg">
+            <div className="sticky-header  main-bar-wraper navbar-expand-lg" id='myHeader'>
                 <div className="main-bar clearfix ">
                     <div className="container clearfix">
-                        <div className="logo-header mostion"><Link href="/"><img src="/assets/images/logo.png" width="193" height="89" alt="" /></Link></div>
-                        <button className="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <div className="logo-header mostion">
+                            <Link href="/"><img src="/assets/images/logo.png" width="193" height="89" alt="" /></Link>
+                        </div>
+                        <button className={`navbar-toggler collapsed navicon justify-content-end ${menu ? "open" : ""}`} type="button" onClick={() => setMenu(!menu)}>
                             <span></span>
                             <span></span>
                             <span></span>
@@ -38,22 +62,23 @@ const Header = () => {
 
                         <div className="extra-nav">
                             <div className="extra-cell">
-                                <button id="quik-search-btn" type="button" className="site-button"><i className="fa fa-search"></i></button>
+                                <button id="quik-search-btn" type="button" className="site-button" onClick={() => setOpen(!open)}><i className="fa fa-search"></i></button>
                             </div>
                         </div>
 
-                        <div className="dez-quik-search bg-primary ">
+                        <div className={`dez-quik-search bg-primary ${open ? "open" : ""}`}>
                             <form action="#">
                                 <input name="search" defaultValue="" type="text" className="form-control" placeholder="Type to search" />
-                                <span id="quik-search-remove"><i className="fa fa-remove"></i></span>
+                                <span id="quik-search-remove" onClick={() => setOpen(!open)}><i className="fa fa-remove"></i></span>
                             </form>
                         </div>
 
-                        <div className="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
+                        <div className={`header-nav navbar-collapse collapse justify-content-end ${menu ? "show" : ""}`}>
+                            <div class="logo-header mostion"><Link href="/"><img src="assets/images/logo.png" width="193" height="89" alt=""/></Link></div>
                             <ul className="nav navbar-nav">
-                                <li><Link href="/">Home</Link></li>
-                                <li><Link href="/about">About</Link></li>
-                                <li><Link href="/specialities">Specialities <i className="fa fa-chevron-down"></i></Link>
+                                <li className={pathname == '/' ? 'active' : ''}><Link href="/">Home</Link></li>
+                                <li className={pathname == '/about' ? 'active' : ''}><Link href="/about">About</Link></li>
+                                <li className={pathname == '/specialities' ? 'active' : ''}><Link href="/specialities">Specialities <i className="fa fa-chevron-down"></i></Link>
                                     <ul className="sub-menu">
                                         <li><Link href="/specialities/slug">Emegency Care</Link></li>
                                         <li><Link href="/specialities/slug">Operation Theater</Link></li>
@@ -63,10 +88,10 @@ const Header = () => {
                                         <li><Link href="/specialities/slug">Pharmacy Servicea</Link></li>
                                     </ul>
                                 </li>
-                                <li><Link href="/facilities">Facilities</Link></li>
-                                <li><Link href="/blog">Blog</Link></li>
-                                <li><Link href="/gallery">Gallery</Link></li>
-                                <li><Link href="/contact">Contact</Link></li>
+                                <li className={pathname == '/facilities' ? 'active' : ''}><Link href="/facilities">Facilities</Link></li>
+                                <li className={pathname == '/blog' ? 'active' : ''} i><Link href="/blog">Blog</Link></li>
+                                <li className={pathname == '/gallery' ? 'active' : ''}><Link href="/gallery">Gallery</Link></li>
+                                <li className={pathname == '/contact' ? 'active' : ''}><Link href="/contact">Contact</Link></li>
                             </ul>
                         </div>
                     </div>

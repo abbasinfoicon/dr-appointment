@@ -3108,7 +3108,7 @@ blockquote:before {
     }
 
     .navbar-nav {
-        height: 100%
+        height: auto
     }
 
     .mo-left .header-nav.show {
@@ -7572,7 +7572,8 @@ a {
 .btn-black .testimonial-bg {
     color: #002939;
 }
-.btn-black .owl-dots-white-full.owl-theme .owl-dots .owl-dot span{
+
+.btn-black .owl-dots-white-full.owl-theme .owl-dots .owl-dot span {
     background-color: #002939;
 }
 
@@ -10324,20 +10325,63 @@ ol.commentlist li .star-rating {
     transition-delay: 1s;
 }
 
+@media (max-width: 767px) {
+    .mainSlider-text {
+        width: 100%;
+        padding: 0 16px;
+    }
+}
+
+.header-nav .mostion {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .header-nav .mostion {
+        display: block;
+    }
+}
+
 .owl-item.active .mainSlider-text {
     scale: 1;
     opacity: 1;
 }
 
 .mainSlider-text h3 {
-    font-size: 60px;
+    font-size: 3.75rem;
     color: #fff;
     margin-bottom: 45px;
+}
+
+@media (max-width: 991px) {
+    .mainSlider-text h3 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .mainSlider-text h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .mainSlider-text h3 {
+        font-size: 1.25rem;
+        margin-bottom: 15px;
+    }
 }
 
 .mainSlider {
     position: relative;
     width: 100vw;
+}
+
+.mainSlider img {
+    min-height: 450px;
+    object-fit: cover;
 }
 
 .arow-left,
@@ -10397,6 +10441,12 @@ ol.commentlist li .star-rating {
 
 .main-slider .owl-nav button.owl-next {
     right: 30px;
+}
+
+@media (max-width: 767px) {
+    .main-slider .owl-nav {
+        display: none;
+    }
 }
 
 .scroll-to-top {
@@ -13661,4 +13711,31 @@ footer .newsletter .input-group-btn .site-button {
     .covid-newsletter .icon-bx-wraper {
         margin-bottom: 20px
     }
+}
+
+li.previous[disabled],
+li.previous[disabled] a,
+li.next[disabled],
+li.next[disabled] a {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    background: transparent;
+}
+
+button,
+button:focus {
+    outline: none !important;
+}
+
+.dez-quik-search {
+    width: 0%;
+    left: auto;
+    right: 0px;
+    transition: .5s;
+}
+
+.dez-quik-search.open {
+    width: 100%;
+    left: 0px;
 }
