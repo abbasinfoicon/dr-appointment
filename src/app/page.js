@@ -70,8 +70,6 @@ export default function Home() {
   }, []);
 
 
-  console.log(posts)
-
   return (
     <div className="page-content">
       <OwlCarousel className="main-slider" id="home" {...options}>

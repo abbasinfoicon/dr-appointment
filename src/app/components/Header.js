@@ -74,7 +74,7 @@ const Header = () => {
                         </div>
 
                         <div className={`header-nav navbar-collapse collapse justify-content-end ${menu ? "show" : ""}`}>
-                            <div class="logo-header mostion"><Link href="/"><img src="assets/images/logo.png" width="193" height="89" alt=""/></Link></div>
+                            <div className="logo-header mostion"><Link href="/"><img src="assets/images/logo.png" width="193" height="89" alt=""/></Link></div>
                             <ul className="nav navbar-nav">
                                 <li className={pathname == '/' ? 'active' : ''}><Link href="/">Home</Link></li>
                                 <li className={pathname == '/about' ? 'active' : ''}><Link href="/about">About</Link></li>
@@ -89,7 +89,7 @@ const Header = () => {
                                     </ul>
                                 </li>
                                 <li className={pathname == '/facilities' ? 'active' : ''}><Link href="/facilities">Facilities</Link></li>
-                                <li className={pathname == '/blog' ? 'active' : ''} i><Link href="/blog">Blog</Link></li>
+                                <li className={pathname == '/blog' ? 'active' : ''}><Link href="/blog">Blog</Link></li>
                                 <li className={pathname == '/gallery' ? 'active' : ''}><Link href="/gallery">Gallery</Link></li>
                                 <li className={pathname == '/contact' ? 'active' : ''}><Link href="/contact">Contact</Link></li>
                             </ul>

@@ -2,14 +2,8 @@
 import React, { useEffect } from 'react'
 import Banner from '@/app/components/Banner';
 import { SlideshowLightbox } from 'lightbox.js-react';
-var $ = require("jquery");
 
 const Gallery = () => {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.$ = window.jQuery = require('jquery');
-    }
-  }, []);
 
   return (
     <>
