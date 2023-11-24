@@ -21,8 +21,9 @@ const Header = () => {
                 header.classList.remove("is-fixed");
             }
         }
-    }, [])
-
+    }, []);
+    const isSpecialitiesPage = pathname.startsWith('/specialities');
+    const isBlogPage = pathname.startsWith('/blog');
 
     return (
         <header className="site-header header header-style-2 mo-left">
@@ -74,22 +75,22 @@ const Header = () => {
                         </div>
 
                         <div className={`header-nav navbar-collapse collapse justify-content-end ${menu ? "show" : ""}`}>
-                            <div className="logo-header mostion"><Link href="/"><img src="assets/images/logo.png" width="193" height="89" alt=""/></Link></div>
+                            <div className="logo-header mostion"><Link href="/"><img src="assets/images/logo.png" width="193" height="89" alt="" /></Link></div>
                             <ul className="nav navbar-nav">
                                 <li className={pathname == '/' ? 'active' : ''}><Link href="/">Home</Link></li>
                                 <li className={pathname == '/about' ? 'active' : ''}><Link href="/about">About</Link></li>
-                                <li className={pathname == '/specialities' ? 'active' : ''}><Link href="/specialities">Specialities <i className="fa fa-chevron-down"></i></Link>
+                                <li className={isSpecialitiesPage ? 'active' : ''}><Link href="/specialities">Specialities <i className="fa fa-chevron-down"></i></Link>
                                     <ul className="sub-menu">
-                                        <li><Link href="/specialities/slug">Emegency Care</Link></li>
-                                        <li><Link href="/specialities/slug">Operation Theater</Link></li>
-                                        <li><Link href="/specialities/slug">Medical Checkup</Link></li>
-                                        <li><Link href="/specialities/slug">Ddiagnostic Center</Link></li>
-                                        <li><Link href="/specialities/slug">Outdoor Checkup</Link></li>
-                                        <li><Link href="/specialities/slug">Pharmacy Servicea</Link></li>
+                                        <li><Link href="/specialities/emegency-care">Emegency Care</Link></li>
+                                        <li><Link href="/specialities/operation-theater">Operation Theater</Link></li>
+                                        <li><Link href="/specialities/medical-checkup">Medical Checkup</Link></li>
+                                        <li><Link href="/specialities/ddiagnostic-center">Ddiagnostic Center</Link></li>
+                                        <li><Link href="/specialities/outdoor-checkup">Outdoor Checkup</Link></li>
+                                        <li><Link href="/specialities/pharmacy-servicea">Pharmacy Servicea</Link></li>
                                     </ul>
                                 </li>
                                 <li className={pathname == '/facilities' ? 'active' : ''}><Link href="/facilities">Facilities</Link></li>
-                                <li className={pathname == '/blog' ? 'active' : ''}><Link href="/blog">Blog</Link></li>
+                                <li className={isBlogPage ? 'active' : ''}><Link href="/blog">Blog</Link></li>
                                 <li className={pathname == '/gallery' ? 'active' : ''}><Link href="/gallery">Gallery</Link></li>
                                 <li className={pathname == '/contact' ? 'active' : ''}><Link href="/contact">Contact</Link></li>
                             </ul>

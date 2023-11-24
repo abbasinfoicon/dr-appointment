@@ -13842,3 +13842,6 @@ pre {
 .rating-stars ul>li.star.selected>i.fa {
     color: #FF912C;
 }
+.dez-bnr-inr-entry h1, .breadcrumb-row ul li {
+    text-transform: capitalize;
+}

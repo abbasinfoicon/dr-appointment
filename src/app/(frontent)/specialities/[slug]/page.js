@@ -1,17 +1,21 @@
+'use client'
 import React from 'react'
 import Banner from '@/app/components/Banner';
+import { usePathname } from 'next/navigation';
 
 const SpecialitiesDetails = () => {
+    const pathname = usePathname();
+    const specialitySlug = pathname.replace(/^\/specialities\//, '');
     return (
         <>
-            <Banner title="Specialities Details" img="bnr1.jpg" />
+            <Banner title={specialitySlug} img="bnr1.jpg" />
 
             <div className="content-area">
                 <div className="container">
                     <div className="row portfolio-detail">
                         <div className="col-md-12">
                             <img src="/assets/images/details.jpg" className="m-b30" alt="" />
-                            <h2 className="m-b10 font-weight-700 ">Project Description</h2>
+                            <h2 className="m-b10 font-weight-700 ">{specialitySlug}</h2>
                             <p className="m-b50">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,</p>
 
                             <div className="row m-b30">
