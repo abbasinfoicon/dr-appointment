@@ -457,7 +457,7 @@ export default function Home() {
           </div>
           <div className="section-content ">
             {
-              posts && <OwlCarousel className="testimonial-one blog-carousel owl-btn-1 primary owl-btn-center-lr" {...options2}>
+              posts.length && <OwlCarousel className="testimonial-one blog-carousel owl-btn-1 primary owl-btn-center-lr" {...options2}>
                 {
                   posts.map((item) => {
                     return (

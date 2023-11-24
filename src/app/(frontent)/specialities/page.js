@@ -1,5 +1,6 @@
 import React from 'react'
 import Banner from '@/app/components/Banner';
+import Link from 'next/link';
 
 const Specialities = () => {
   return (
@@ -16,67 +17,67 @@ const Specialities = () => {
             <div className="row">
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="/assets/images/our-services/service/pic1.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic1.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Dental Fillings</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Dental Fillings</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="/assets/images/our-services/service/pic2.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic2.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Orthodontics</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Orthodontics</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="/assets/images/our-services/service/pic3.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic3.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Tooth Extraction</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Tooth Extraction</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="/assets/images/our-services/service/pic4.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic4.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Root Canal Treatment</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Root Canal Treatment</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="/assets/images/our-services/service/pic5.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic5.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Teeth Whitening</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Teeth Whitening</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <a href="#"><img src="/assets/images/our-services/service/pic6.jpg" alt="" /></a> </div>
+                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic6.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><a href="#">Routine Dental Exam</a></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Routine Dental Exam</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>

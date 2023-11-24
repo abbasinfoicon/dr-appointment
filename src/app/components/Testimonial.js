@@ -47,7 +47,7 @@ const Testimonial = () => {
     }, []);
 
     return (
-        <OwlCarousel className="testimonial-three1 owl-theme owl-btn-3 primary owl-btn-center-lr owl-dots-white-full btn-white" {...options}>
+        testimonial.length && <OwlCarousel className="testimonial-three1 owl-theme owl-btn-3 primary owl-btn-center-lr owl-dots-white-full btn-white" {...options}>
             {
                 testimonial.map((item) => {
                     return (
