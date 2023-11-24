@@ -10,6 +10,7 @@ const page = () => {
         <>
             <Banner title={`Dr. ${doctorSlug}`} img="bnr1.jpg" />
 
+        
             <section className="team_details content-inner">
                 <div className="container">
                     <div className="row">
