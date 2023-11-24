@@ -7,6 +7,7 @@ import { SlideshowLightbox } from 'lightbox.js-react';
 import CountUp from 'react-countup';
 import Testimonial from "./components/Testimonial";
 import Link from "next/link";
+import Appointment from "./components/Appointment";
 
 const options = {
   loop: true,
@@ -79,7 +80,7 @@ export default function Home() {
             <div className="mainSlider-text">
               <h3>Welcome to Dr. Appointment</h3>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
-              <a href="#" className="site-button">Read More</a>
+              <Link href="#" className="site-button">Read More</Link>
             </div>
           </div>
         </div>
@@ -90,7 +91,7 @@ export default function Home() {
             <div className="mainSlider-text">
               <h3>Welcome to Dr. Appointment</h3>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
-              <a href="#" className="site-button">Read More</a>
+              <Link href="#" className="site-button">Read More</Link>
             </div>
           </div>
         </div>
@@ -101,7 +102,7 @@ export default function Home() {
             <div className="mainSlider-text">
               <h3>Welcome to Dr. Appointment</h3>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
-              <a href="#" className="site-button">Read More</a>
+              <Link href="#" className="site-button">Read More</Link>
             </div>
           </div>
         </div>
@@ -123,7 +124,7 @@ export default function Home() {
                 <div className="video-bx">
                   <img src="assets/images/pic1.jpg" alt="" />
                   <div className="video-play-icon">
-                    <a href="https://www.youtube.com/watch?v=q5sURR9fvvk" className="popup-youtube video bg-primary"><i className="fa fa-play"></i></a>
+                    <Link href="https://www.youtube.com/watch?v=q5sURR9fvvk" className="popup-youtube video bg-primary"><i className="fa fa-play"></i></Link>
                   </div>
                 </div>
               </div>
@@ -205,67 +206,67 @@ export default function Home() {
             <div className="row">
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic1.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/specialities/lental-lillings"><img src="assets/images/our-services/service/pic1.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Dental Fillings</Link></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/lental-lillings">Dental Fillings</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/lental-lilling" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic2.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/specialities/orthodontics"><img src="assets/images/our-services/service/pic2.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Orthodontics</Link></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/orthodontics">Orthodontics</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/orthodontics" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic3.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/specialities/tooth-extraction"><img src="assets/images/our-services/service/pic3.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Tooth Extraction</Link></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/tooth-extraction">Tooth Extraction</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/tooth-extraction" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic4.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/specialities/root-canal-treatment"><img src="assets/images/our-services/service/pic4.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Root Canal Treatment</Link></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/root-canal-treatment">Root Canal Treatment</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/root-canal-treatment" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic5.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/specialities/teeth-whitening"><img src="assets/images/our-services/service/pic5.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Teeth Whitening</Link></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/teeth-whitening">Teeth Whitening</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/teeth-whitening" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-services/service/pic6.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/specialities/routine-dental-exam"><img src="assets/images/our-services/service/pic6.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Routine Dental Exam</Link></h4>
+                    <h4 className="dez-title m-t0"><Link href="/specialities/routine-dental-exam">Routine Dental Exam</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <a href="#" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></a>
+                    <Link href="/specialities/routine-dental-exam" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
@@ -280,7 +281,7 @@ export default function Home() {
             <div className="col-lg-12 text-center text-white ">
               <h2 className="m-b15 m-t0">We provide 24/7 customer support.</h2>
               <h3 className="m-t0 m-b20">Please feel free to contact us at (01) 234 5678 for emergency case.</h3>
-              <a href="#" className="site-button white radius-sm">Read More</a>
+              <Link href="#" className="site-button white radius-sm">Read More</Link>
             </div>
           </div>
         </div>
@@ -299,57 +300,9 @@ export default function Home() {
                 <p className="m-b30">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                 <div className="clearfix bg-primary radius-sm text-white p-a30 about-appoint">
                   <div className="dzFormMsg"></div>
-                  <form method="post" className="dzForm" action="/">
-                    <input type="hidden" value="Contact" name="dzToDo" />
-                    <div className="row">
-                      <div className="col-md-6">
-                        <div className="form-group">
-                          <div className="input-group">
-                            <input name="dzName" type="text" required className="form-control" placeholder="Your Name" />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-group">
-                          <div className="input-group">
-                            <input name="dzEmail" type="email" className="form-control" required placeholder="Your Email Id" />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-group">
-                          <div className="input-group">
-                            <input name="dzOther[Phone]" type="text" required className="form-control" placeholder="Phone" />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-group">
-                          <div className="input-group">
-                            <input name="dzOther[Subject]" type="text" required className="form-control" placeholder="Subject" />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-12">
-                        <div className="form-group">
-                          <div className="input-group">
-                            <textarea name="dzMessage" rows="4" className="form-control" required placeholder="Your Message..."></textarea>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="form-group">
-                          <div className="input-group">
-                            <div className="g-recaptcha" data-sitekey="6LefsVUUAAAAADBPsLZzsNnETChealv6PYGzv3ZN" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-                            <input className="form-control d-none" style={{ display: 'none' }} data-recaptcha="true" required data-error="Please complete the Captcha" />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-12">
-                        <button name="submit" type="submit" value="Submit" className="site-button white outline"> <span>Make An Appointment</span> </button>
-                      </div>
-                    </div>
-                  </form>
+
+                  <Appointment />
+
                 </div>
               </div>
             </div>
@@ -367,14 +320,20 @@ export default function Home() {
             <div className="row">
               <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-team/pic13.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/doctor/jon-miller"><img src="assets/images/our-team/pic13.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><Link href="/specialities/slug">Nashid Martines</Link></h4>
+                    <h4 className="dez-title m-t0 m-b15"><Link href="/doctor/jon-miller">Dr. Jon Miller</Link></h4>
+
+                    <div className="specialitie">
+                      <p><i className="fa fa-user-md" aria-hidden="true"></i> Cardiology</p>
+                      <p><i className="fa fa-graduation-cap" aria-hidden="true"></i> MBBS, FCPS, FRCS</p>
+                    </div>
+
                     <ul className="dez-social-icon border dez-social-icon-lg">
-                      <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
-                      <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
-                      <li><a href="#" className="fa fa-linkedin link-btn"></a></li>
-                      <li><a href="#" className="fa fa-pinterest-p pin-btn"></a></li>
+                      <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
                     </ul>
                   </div>
                 </div>
@@ -382,14 +341,18 @@ export default function Home() {
 
               <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-team/pic14.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/doctor/andy-miller"><img src="assets/images/our-team/pic14.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><Link href="/specialities/slug">Nashid Martines</Link></h4>
+                    <h4 className="dez-title m-t0 m-b15"><Link href="/doctor/andy-miller">Dr. Andy Miller</Link></h4>
+                    <div className="specialitie">
+                      <p><i className="fa fa-user-md" aria-hidden="true"></i> Neurology</p>
+                      <p><i className="fa fa-graduation-cap" aria-hidden="true"></i> MBBS, FCPS, FRCS</p>
+                    </div>
                     <ul className="dez-social-icon border dez-social-icon-lg">
-                      <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
-                      <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
-                      <li><a href="#" className="fa fa-linkedin link-btn"></a></li>
-                      <li><a href="#" className="fa fa-pinterest-p pin-btn"></a></li>
+                      <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
                     </ul>
                   </div>
                 </div>
@@ -397,14 +360,18 @@ export default function Home() {
 
               <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-team/pic15.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/doctor/nashid-martines"><img src="assets/images/our-team/pic15.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><Link href="/specialities/slug">Nashid Martines</Link></h4>
+                    <h4 className="dez-title m-t0 m-b15"><Link href="/doctor/nashid-martines">Dr. Nashid Martines</Link></h4>
+                    <div className="specialitie">
+                      <p><i className="fa fa-user-md" aria-hidden="true"></i> Ophthalmology</p>
+                      <p><i className="fa fa-graduation-cap" aria-hidden="true"></i> MBBS, FCPS, FRCS</p>
+                    </div>
                     <ul className="dez-social-icon border dez-social-icon-lg">
-                      <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
-                      <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
-                      <li><a href="#" className="fa fa-linkedin link-btn"></a></li>
-                      <li><a href="#" className="fa fa-pinterest-p pin-btn"></a></li>
+                      <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
                     </ul>
                   </div>
                 </div>
@@ -412,17 +379,25 @@ export default function Home() {
 
               <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
                 <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="assets/images/our-team/pic16.jpg" alt="" /></Link> </div>
+                  <div className="dez-media"> <Link href="/doctor/martines-nashid"><img src="assets/images/our-team/pic16.jpg" alt="" /></Link> </div>
                   <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><Link href="/specialities/slug">Nashid Martines</Link></h4>
+                    <h4 className="dez-title m-t0 m-b15"><Link href="/doctor/martines-nashid">Dr. Martines Nashid</Link></h4>
+                    <div className="specialitie">
+                      <p><i className="fa fa-user-md" aria-hidden="true"></i> Pediatric</p>
+                      <p><i className="fa fa-graduation-cap" aria-hidden="true"></i> MBBS, FCPS, FRCS</p>
+                    </div>
                     <ul className="dez-social-icon border dez-social-icon-lg">
-                      <li><a href="#" className="fa fa-facebook fb-btn"></a></li>
-                      <li><a href="#" className="fa fa-twitter tw-btn"></a></li>
-                      <li><a href="#" className="fa fa-linkedin link-btn"></a></li>
-                      <li><a href="#" className="fa fa-pinterest-p pin-btn"></a></li>
+                      <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
+                      <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
                     </ul>
                   </div>
                 </div>
+              </div>
+
+              <div className="col-md-12 text-center">
+                <Link className="site-button" href="/doctor">View More</Link>
               </div>
             </div>
           </div>

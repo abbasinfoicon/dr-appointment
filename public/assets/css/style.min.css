@@ -13842,6 +13842,345 @@ pre {
 .rating-stars ul>li.star.selected>i.fa {
     color: #FF912C;
 }
-.dez-bnr-inr-entry h1, .breadcrumb-row ul li {
+
+.dez-bnr-inr-entry h1,
+.breadcrumb-row ul li {
     text-transform: capitalize;
 }
+
+.specialitie {
+    margin-bottom: 24px;
+}
+
+.specialitie p {
+    margin: 0;
+    color: #012938;
+}
+
+/* ===========================
+  TEAM DETAILS START
+=============================*/
+.team_details_img {
+    height: 362px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.team_details_img img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.team_dtls_img img {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.team_details_img_text {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+.team_details_img_text h3 {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: var(--main);
+    margin-bottom: 20px;
+}
+
+.team_details_img_text p,
+.team_details_img_text a {
+    font-size: var(--boxShadow);
+    color: #002939;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.team_details .rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: #FFC422;
+    font-size: 18px;
+}
+
+.team_details .rating i {
+}
+
+.biography {
+    border: 1px solid #5e5b5b17;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    margin-top: 50px;
+}
+
+.biography h3 {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: capitalize;
+    padding: 20px 25px;
+    border-bottom: 1px solid #5e5b5b17;
+    color: #002939;
+}
+
+.biography_text {
+    padding: 25px;
+}
+
+.biography_text h4 {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #002939;
+}
+
+.comment_area {
+    border: 1px solid #5e5b5b17;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.comment_area h2 {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.single_comment {
+    border-top: 1px solid #5e5b5b17;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    padding-top: 25px;
+}
+
+.comment_img {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 20px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.comment_text {
+    width: 87%;
+}
+
+.comment_text h4 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comment_text h4 span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.comment_text h4 span i {
+    margin-right: 5px;
+}
+
+.comment_text p {
+    margin-bottom: 13px;
+}
+
+.comment_text .rating {
+    color: #FFC422;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.comment_text a {
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    text-transform: capitalize;
+    padding: 7px 20px;
+    border-radius: 30px;
+    background: var(--main);
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.comment_text a i {
+    margin-right: 5px;
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
+}
+
+.comment_text a:hover {
+    background: var(--maindark);
+}
+
+.commant_reply {
+    margin-left: 90px;
+}
+
+.commant_reply .comment_text {
+    width: 84%;
+}
+
+.comment_text .review_icon {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.review_icon_noncolor {
+    color: #5c728e3d !important;
+}
+
+.comment_input_area {
+    border: 1px solid #5e5b5b17;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.comment_input_area input {
+    margin-bottom: 20px;
+}
+
+.comment_input_area button {
+    margin-top: 15px;
+}
+
+.comment_input_area h2 {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+}
+
+.comment_input_area p {
+    color: #FFC422;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.comment_input_area p i {
+    cursor: pointer;
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
+}
+
+.comment_input_area p i:hover {
+    color: #002939;
+}
+
+.team_details_form {
+    background: var(--main);
+    border-radius: 10px;
+    padding: 35px 25px;
+    margin-bottom: 30px;
+}
+
+.team_details_form h5 {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #fff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.team_details_form input, .team_details_form select {
+    border: none;
+    margin-bottom: 20px;
+}
+
+.team_details_form button {
+    background: #fff;
+    color: var(--main);
+    padding: 12px 20px;
+}
+
+.team_details_form .select2-container {
+    margin-bottom: 20px;
+}
+
+.team_details_timeing {
+    border: 1px solid #5e5b5b17;
+    border-radius: 10px;
+    padding: 30px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.team_details_timeing h5 {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: capitalize;
+    border-bottom: 2px solid #5e5b5b17;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.team_details_timeing h5::after {
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: var(--main);
+}
+
+.team_details_timeing p {
+    color: #002939;
+    padding: 12px 0px;
+    border-bottom: 1px solid #5e5b5b17;
+    margin: 0;
+}
+
+.team_details_timeing .last_date {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* ===========================
+    TEAM DETAILS END
+  =============================*/
