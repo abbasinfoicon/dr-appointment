@@ -1,7 +1,26 @@
-import React from 'react'
+'use client'
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react'
 
-const Sidebar = ({apiData}) => {
-    console.log("currentPosts -", apiData)
+const Sidebar = () => {
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch('https://dummyjson.com/posts');
+                if (!res.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const data = await res.json();
+                setPosts(data.posts); // Assuming the actual array is under the 'posts' property
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <aside className="side-bar">
             <div className="widget">
@@ -21,14 +40,14 @@ const Sidebar = ({apiData}) => {
                 <h4 className="widget-title">Recent Posts</h4>
                 <div className="widget-post-bx">
                     {
-                        apiData.length ?
-                            apiData.slice(0, 4).map((item) => {
+                        posts && posts.length ?
+                            posts.slice(0, 4).map((item) => {
                                 return (
                                     <div className="widget-post clearfix" key={item.id}>
                                         <div className="dez-post-media"> <img src="/assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt="" /> </div>
                                         <div className="dez-post-info">
                                             <div className="dez-post-header">
-                                                <h6 className="post-title"><a href="#">{item.title}</a></h6>
+                                                <h6 className="post-title"><Link href={`/blog/${item.id}`}>{item.title}</Link></h6>
                                             </div>
                                             <div className="dez-post-meta">
                                                 <ul>

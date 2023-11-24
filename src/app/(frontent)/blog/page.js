@@ -117,7 +117,7 @@ const Blog = () => {
             </div>
 
             <div className="col-lg-3">
-              <Sidebar apiData={posts} />
+              <Sidebar />
             </div>
           </div>
         </div>

@@ -143,8 +143,8 @@ export default function Home() {
               <div className="counter-style-1 m-b30">
                 <div className="text-primary">
                   <i className="icon flaticon-bar-chart"></i>
-                  <CountUp start={0} end={7652} duration={2.75}>
-                    {({ countUpRef, start }) => (
+                  <CountUp start={0} end={7652} delay={2.75}>
+                    {({ countUpRef }) => (
                       <span className="counter" ref={countUpRef} />
                     )}
                   </CountUp>
@@ -157,7 +157,7 @@ export default function Home() {
                 <div className="text-primary">
                   <i className="icon flaticon-social"></i>
                   <CountUp start={0} end={4562} duration={2.75}>
-                    {({ countUpRef, start }) => (
+                    {({ countUpRef }) => (
                       <span className="counter" ref={countUpRef} />
                     )}
                   </CountUp>
@@ -170,7 +170,7 @@ export default function Home() {
                 <div className="text-primary">
                   <i className="icon flaticon-file"></i>
                   <CountUp start={0} end={3569} duration={2.75}>
-                    {({ countUpRef, start }) => (
+                    {({ countUpRef }) => (
                       <span className="counter" ref={countUpRef} />
                     )}
                   </CountUp>
@@ -183,7 +183,7 @@ export default function Home() {
                 <div className="text-primary">
                   <i className="icon flaticon-pencil"></i>
                   <CountUp start={0} end={2089} duration={2.75}>
-                    {({ countUpRef, start }) => (
+                    {({ countUpRef }) => (
                       <span className="counter" ref={countUpRef} />
                     )}
                   </CountUp>
