@@ -19,10 +19,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="stylesheet" type="text/css" href="/assets/css/plugins.min.css" />
-        <link rel="stylesheet" type="text/css" href="/assets/plugins/fontawesome/css/font-awesome.min.css" />
-        <link rel="stylesheet" type="text/css" href="/assets/plugins/flaticon/flaticon.css" />
-        <link rel="stylesheet" type="text/css" href="/assets/plugins/themify/themify-icons.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/flaticon.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/themify-icons.css" />
         <link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
       </head>
 

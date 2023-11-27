@@ -24,12 +24,12 @@ const Footer = () => {
                                 <h4 className="m-b15 text-uppercase">Our services</h4>
                                 <div className="dez-separator bg-primary"></div>
                                 <ul>
-                                    <li><Link href="/specialities/slug">Emegency Care</Link></li>
-                                    <li><Link href="/specialities/slug">Operation Theater</Link></li>
-                                    <li><Link href="/specialities/slug">Medical Checkup</Link></li>
-                                    <li><Link href="/specialities/slug">Ddiagnostic Center</Link></li>
-                                    <li><Link href="/specialities/slug">Outdoor Checkup</Link></li>
-                                    <li><Link href="/specialities/slug">Pharmacy Servicea</Link></li>
+                                    <li><Link href="/specialities/emegency-care">Emegency Care</Link></li>
+                                    <li><Link href="/specialities/operation-theater">Operation Theater</Link></li>
+                                    <li><Link href="/specialities/medical-checkup">Medical Checkup</Link></li>
+                                    <li><Link href="/specialities/ddiagnostic-center">Ddiagnostic Center</Link></li>
+                                    <li><Link href="/specialities/outdoor-checkup">Outdoor Checkup</Link></li>
+                                    <li><Link href="/specialities/pharmacy-servicea">Pharmacy Servicea</Link></li>
                                 </ul>
                             </div>
                         </div>

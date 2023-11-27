@@ -43,6 +43,7 @@ const Header = () => {
                                 <li><Link href="https://twitter.com/" className="fa fa-twitter" target='_blank'></Link></li>
                                 <li><Link href="https://in.linkedin.com/" className="fa fa-linkedin" target='_blank'></Link></li>
                                 <li><Link href="https://www.instagram.com/" className="fa fa-instagram" target='_blank'></Link></li>
+                                <li><Link href="/login"><i className="fa fa-sign-in"></i> Login</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -76,7 +77,7 @@ const Header = () => {
 
                         <div className={`header-nav navbar-collapse collapse justify-content-end ${menu ? "show" : ""}`}>
                             <div className="logo-header mostion"><Link href="/"><img src="assets/images/logo.png" width="193" height="89" alt="" /></Link></div>
-                            <ul className="nav navbar-nav">
+                            <ul className="nav navbar-nav align-items-center">
                                 <li className={pathname == '/' ? 'active' : ''}><Link href="/">Home</Link></li>
                                 <li className={pathname == '/about' ? 'active' : ''}><Link href="/about">About</Link></li>
                                 <li className={isSpecialitiesPage ? 'active' : ''}><Link href="/specialities">Specialities <i className="fa fa-chevron-down"></i></Link>
@@ -93,6 +94,7 @@ const Header = () => {
                                 <li className={isBlogPage ? 'active' : ''}><Link href="/blog">Blog</Link></li>
                                 <li className={pathname == '/gallery' ? 'active' : ''}><Link href="/gallery">Gallery</Link></li>
                                 <li className={pathname == '/contact' ? 'active' : ''}><Link href="/contact">Contact</Link></li>
+                                <li className="btn btn-appointment"><Link href="/appointment">Appointment</Link></li>
                             </ul>
                         </div>
                     </div>
