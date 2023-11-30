@@ -10,7 +10,6 @@ const page = () => {
         <>
             <Banner title={`Dr. ${doctorSlug}`} img="bnr1.jpg" />
 
-        
             <section className="team_details content-inner">
                 <div className="container">
                     <div className="row">
@@ -166,7 +165,7 @@ const page = () => {
                                         <textarea rows="4" placeholder="Write A Comment..." className='form-control'></textarea>
                                     </div>
                                     <div className="col-xl-12">
-                                        <a class="site-button" href="/doctor">Submit Now</a>
+                                        <a className="site-button" href="/doctor">Submit Now</a>
                                     </div>
                                 </div>
                             </form>
@@ -213,7 +212,7 @@ const page = () => {
                                             </select>
                                         </div>
                                         <div className="col-xl-12 text-center">
-                                            <button type="submit" value="Submit" class="site-button white outline" name="submit"> <span>Make An Appointment</span> </button>
+                                            <button type="submit" value="Submit" className="site-button white outline" name="submit"> <span>Make An Appointment</span> </button>
                                         </div>
                                     </div>
                                 </form>

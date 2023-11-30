@@ -1,9 +1,12 @@
+'use client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 import React from 'react'
 
 const Footer = () => {
+    const pathname = usePathname();
     return (
-        <footer className="site-footer">
+        <footer className={pathname.startsWith('/dashboard') ? 'd-none' : 'site-footer'}>
             <div className="footer-top text-white footer-image overlay-black-dark bg-img-fix" style={{ backgroundImage: 'url(assets/images/background/bg3.jpg)', backgroundAttachment: 'fixed' }}>
                 <div className="container">
                     <div className="row">

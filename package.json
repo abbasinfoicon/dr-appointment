@@ -9,14 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "jquery": "^3.7.1",
     "lightbox.js-react": "^0.9.6",
     "magnific-popup": "^1.1.0",
     "next": "14.0.3",
+    "next-auth": "^4.24.5",
     "react": "^18",
+    "react-cookie": "^6.1.1",
     "react-countup": "^6.5.0",
     "react-dom": "^18",
     "react-owl-carousel": "^2.3.3",
-    "react-scroll-to-top": "^3.0.0"
+    "react-scroll-to-top": "^3.0.0",
+    "react-toastify": "^9.1.3"
   }
 }

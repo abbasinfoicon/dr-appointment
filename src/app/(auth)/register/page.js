@@ -1,46 +1,112 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import bcrypt from 'bcryptjs'
+import { toast } from 'react-toastify';
 
 const page = () => {
+    const router = useRouter()
+    const [data, setData] = useState({ first_name: "", last_name: "", gender: "", phone_no: "", address: "", city: "", state: "", email: "", password: "" });
+
+    const handleChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value });
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+
+        const { gender, email, password } = data;
+
+        try {
+            const res = await fetch("http://50.116.13.170:8000/user/register/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", // Set the correct Content-Type header
+                },
+                body: JSON.stringify(data),
+            })
+
+            const result = await res.json();
+
+            if (!gender || !email || !password) {
+                toast.error("All (*) fields Required!!!");
+            }
+
+            if (password.length < 8) {
+                toast.error(result.Error);
+            }
+
+            if (result.status === 400 || result.status === 409 || result.status === 500 || result.status === 415) {
+                toast.error(result.Error);
+            }
+
+            if (result.status === 201 || res.ok) {
+                setData({ first_name: "", last_name: "", gender: "", phone_no: "", address: "", city: "", state: "", email: "", password: "" });
+                toast.success(result.Message);
+                router.push("/login");
+            }
+
+        } catch (error) {
+            console.error("Register not added !!!", error)
+        }
+    }
+
     return (
         <div className="page-content dez-login p-t50 overlay-black-dark bg-img-fix" style={{ backgroundImage: 'url(assets/images/background/bg3.jpg)' }}>
             <div className="login-form relative z-index999 ">
                 <div id="register" className="text-center">
-                    <form className="p-a30 dez-form text-center">
+                    <form className="p-a30 dez-form text-center" onSubmit={handleSubmit}>
                         <h3 className="form-title m-t0">Sign Up</h3>
                         <div className="dez-separator-outer m-b5">
                             <div className="dez-separator bg-primary style-liner"></div>
                         </div>
                         <p>Enter your personal details below: </p>
+
                         <div className="form-group">
-                            <input name="dzName" required="" className="form-control" placeholder="Full Name" type="text" />
+                            <input name="first_name" value={data.first_name} onChange={handleChange} required="" className="form-control" placeholder="First Name" type="text" />
                         </div>
                         <div className="form-group">
-                            <input name="dzName" required="" className="form-control" placeholder="Email Id" type="text" />
+                            <input name="last_name" value={data.last_name} onChange={handleChange} required="" className="form-control" placeholder="Last Name" type="text" />
                         </div>
                         <div className="form-group">
-                            <input name="dzName" required="" className="form-control" placeholder="Address" type="text" />
+                            <select className='form-control' name="gender" value={data.gender} onChange={handleChange}>
+                                <option>Select Gender *</option>
+                                <option defaultValue="male">Male</option>
+                                <option defaultValue="female">Female</option>
+                                <option defaultValue="other">Other</option>
+                            </select>
                         </div>
                         <div className="form-group">
-                            <input name="dzName" required="" className="form-control" placeholder="City/Town" type="text" />
+                            <input name="phone_no" value={data.phone_no} onChange={handleChange} required="" className="form-control" placeholder="Phone Number" type="number" />
                         </div>
+                        <div className="form-group">
+                            <input name="address" value={data.address} onChange={handleChange} required="" className="form-control" placeholder="Address" type="text" />
+                        </div>
+                        <div className="form-group">
+                            <input name="city" value={data.city} onChange={handleChange} required="" className="form-control" placeholder="City/Town" type="text" />
+                        </div>
+                        <div className="form-group">
+                            <input name="state" value={data.state} onChange={handleChange} required="" className="form-control" placeholder="State" type="text" />
+                        </div>
+
                         <label className="text-left m-b20">Enter your account details below: </label>
+
                         <div className="form-group">
-                            <input name="dzName" required="" className="form-control" placeholder="User Name" type="text" />
+                            <input name="email" value={data.email} onChange={handleChange} required="" className="form-control" placeholder="Email Id *" type="text" />
                         </div>
                         <div className="form-group">
-                            <input name="dzName" required="" className="form-control" placeholder="Password" type="text" />
+                            <input name="password" value={data.password} onChange={handleChange} required="" className="form-control" placeholder="Password *" type="password" />
                         </div>
-                        <div className="">
-                            <input name="dzName" required="" className="form-control" placeholder="Re-type Your Password" type="text" />
-                        </div>
+
                         <label className="m-b30 pass-check">
                             <input id="checkAgree" type="checkbox" />
                             <label className="terms-text" htmlFor='checkAgree'>I agree to the <Link href="/terms-of-service">Terms of Service</Link> & <Link href="/privacy-policy">Privacy Policy </Link></label>
                         </label>
                         <div className="form-group text-left ">
                             <Link className="site-button outline gray" href="/login">Back</Link>
-                            <button className="site-button pull-right">Submit</button>
+                            <button className="site-button pull-right" type='submit'>Submit</button>
                         </div>
                     </form>
                 </div>

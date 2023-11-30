@@ -80,7 +80,7 @@ export default function Home() {
             <div className="mainSlider-text">
               <h3>Welcome to Dr. Appointment</h3>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
-              <Link href="#" className="site-button">Read More</Link>
+              <Link href="/about" className="site-button">Read More</Link>
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@ export default function Home() {
             <div className="mainSlider-text">
               <h3>Welcome to Dr. Appointment</h3>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
-              <Link href="#" className="site-button">Read More</Link>
+              <Link href="/about" className="site-button">Read More</Link>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function Home() {
             <div className="mainSlider-text">
               <h3>Welcome to Dr. Appointment</h3>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
-              <Link href="#" className="site-button">Read More</Link>
+              <Link href="/about" className="site-button">Read More</Link>
             </div>
           </div>
         </div>
@@ -211,7 +211,7 @@ export default function Home() {
                     <h4 className="dez-title m-t0"><Link href="/specialities/lental-lillings">Dental Fillings</Link></h4>
                     <div className="dez-separator bg-primary"></div>
                     <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <Link href="/specialities/lental-lilling" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
+                    <Link href="/specialities/lental-lillings" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
                   </div>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function Home() {
             <div className="col-lg-12 text-center text-white ">
               <h2 className="m-b15 m-t0">We provide 24/7 customer support.</h2>
               <h3 className="m-t0 m-b20">Please feel free to contact us at (01) 234 5678 for emergency case.</h3>
-              <Link href="#" className="site-button white radius-sm">Read More</Link>
+              <Link href="/contact" className="site-button white radius-sm">Read More</Link>
             </div>
           </div>
         </div>

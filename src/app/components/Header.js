@@ -2,6 +2,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import LoginLogout from './LoginLogout';
+import dynamic from "next/dynamic";
 
 const Header = () => {
     const [open, setOpen] = useState(false);
@@ -22,11 +24,12 @@ const Header = () => {
             }
         }
     }, []);
+
     const isSpecialitiesPage = pathname.startsWith('/specialities');
     const isBlogPage = pathname.startsWith('/blog');
 
     return (
-        <header className="site-header header header-style-2 mo-left">
+        <header className={pathname.startsWith('/dashboard') ? 'd-none' : 'site-header header header-style-2 mo-left'}>
             <div className="top-bar">
                 <div className="container">
                     <div className="row d-flex justify-content-between">
@@ -43,7 +46,8 @@ const Header = () => {
                                 <li><Link href="https://twitter.com/" className="fa fa-twitter" target='_blank'></Link></li>
                                 <li><Link href="https://in.linkedin.com/" className="fa fa-linkedin" target='_blank'></Link></li>
                                 <li><Link href="https://www.instagram.com/" className="fa fa-instagram" target='_blank'></Link></li>
-                                <li><Link href="/login"><i className="fa fa-sign-in"></i> Login</Link></li>
+
+                                <LoginLogout />
                             </ul>
                         </div>
                     </div>
@@ -78,8 +82,8 @@ const Header = () => {
                         <div className={`header-nav navbar-collapse collapse justify-content-end ${menu ? "show" : ""}`}>
                             <div className="logo-header mostion"><Link href="/"><img src="assets/images/logo.png" width="193" height="89" alt="" /></Link></div>
                             <ul className="nav navbar-nav align-items-center">
-                                <li className={pathname == '/' ? 'active' : ''}><Link href="/">Home</Link></li>
-                                <li className={pathname == '/about' ? 'active' : ''}><Link href="/about">About</Link></li>
+                                <li className={pathname === '/' ? 'active' : ''}><Link href="/">Home</Link></li>
+                                <li className={pathname === '/about' ? 'active' : ''}><Link href="/about">About</Link></li>
                                 <li className={isSpecialitiesPage ? 'active' : ''}><Link href="/specialities">Specialities <i className="fa fa-chevron-down"></i></Link>
                                     <ul className="sub-menu">
                                         <li><Link href="/specialities/emegency-care">Emegency Care</Link></li>
@@ -90,10 +94,10 @@ const Header = () => {
                                         <li><Link href="/specialities/pharmacy-servicea">Pharmacy Servicea</Link></li>
                                     </ul>
                                 </li>
-                                <li className={pathname == '/facilities' ? 'active' : ''}><Link href="/facilities">Facilities</Link></li>
+                                <li className={pathname === '/facilities' ? 'active' : ''}><Link href="/facilities">Facilities</Link></li>
                                 <li className={isBlogPage ? 'active' : ''}><Link href="/blog">Blog</Link></li>
-                                <li className={pathname == '/gallery' ? 'active' : ''}><Link href="/gallery">Gallery</Link></li>
-                                <li className={pathname == '/contact' ? 'active' : ''}><Link href="/contact">Contact</Link></li>
+                                <li className={pathname === '/gallery' ? 'active' : ''}><Link href="/gallery">Gallery</Link></li>
+                                <li className={pathname === '/contact' ? 'active' : ''}><Link href="/contact">Contact</Link></li>
                                 <li className="btn btn-appointment"><Link href="/appointment">Appointment</Link></li>
                             </ul>
                         </div>
@@ -105,4 +109,5 @@ const Header = () => {
     )
 }
 
-export default Header
+
+export default dynamic(() => Promise.resolve(Header), { ssr: false })

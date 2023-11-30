@@ -3524,7 +3524,8 @@ blockquote:before {
     margin: -62px auto 0
 }
 
-.header-style-2 .social-line li a {
+.header-style-2 .social-line li a,
+.header-style-2 .social-line li button {
     color: #ababab;
     border: 1px solid #e3e3e3;
     border-width: 0 1px;
@@ -11307,7 +11308,7 @@ a.bg-primary:hover {
     background-color: #292929;
     bottom: 0;
     display: table;
-    height: 100%;
+    height: 100vh;
     left: 0;
     position: absolute;
     right: 0;
@@ -12004,6 +12005,7 @@ footer .footer-bottom .fa-heart {
 
 .header-style-1 .top-bar .fa,
 .header-style-2 .social-line li a,
+.header-style-2 .social-line li button,
 .header-style-3 .social-line li a,
 .header-style-4 .social-line li a,
 .top-bar {
@@ -14275,7 +14277,13 @@ pre {
     display: none !important;
 }
 
-.dashboard_menu li a {
+.dashboard_menu li button {
+    display: block;
+    width: 100%;
+}
+
+.dashboard_menu li a,
+.dashboard_menu li button {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14297,17 +14305,20 @@ pre {
     -o-transition: all linear .3s;
 }
 
-.dashboard_menu li:last-child a {
+.dashboard_menu li:last-child a,
+.dashboard_menu li:last-child button {
     margin-bottom: 0;
     background: #2ac28e;
     color: #fff;
 }
 
-.dashboard_menu li:last-child a::after {
+.dashboard_menu li:last-child a::after,
+.dashboard_menu li:last-child button::after {
     color: #fff;
 }
 
-.dashboard_menu li a::after {
+.dashboard_menu li a::after,
+.dashboard_menu li button::after {
     position: absolute;
     content: "\f105";
     font: normal normal normal 14px/1 FontAwesome;
@@ -14324,13 +14335,17 @@ pre {
 }
 
 .dashboard_menu li a:hover,
-.dashboard_menu li a.active {
+.dashboard_menu li a.active,
+.dashboard_menu li button:hover,
+.dashboard_menu li button.active {
     background: var(--main);
     color: #fff;
 }
 
 .dashboard_menu li a:hover::after,
-.dashboard_menu li a.active::after {
+.dashboard_menu li a.active::after,
+.dashboard_menu li button:hover::after,
+.dashboard_menu li button.active::after {
     color: #fff;
 }
 
@@ -15199,7 +15214,8 @@ button {
     border: 1px solid var(--main);
 }
 
-.btn.btn-appointment a:hover {
+.btn.btn-appointment a:hover,
+.btn.btn-appointment a:focus {
     color: var(--main) !important;
 }
 
@@ -15213,3 +15229,17 @@ button {
         max-width: 1440px;
     }
 }
+
+.with-eye {
+    position: relative;
+}
+
+.with-eye i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+
