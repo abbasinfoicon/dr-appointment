@@ -54,7 +54,7 @@ const page = () => {
     }
 
     return (
-        <div className="page-content dez-login p-t50 overlay-black-dark bg-img-fix" style={{ backgroundImage: 'url(assets/images/background/bg3.jpg)' }}>
+        <div className="page-content dez-login p-t50 overlay-black-dark bg-img-fix" style={{ backgroundImage: 'url(/assets/images/background/bg3.jpg)' }}>
             <div className="login-form relative z-index999 ">
                 <div id="register" className="text-center">
                     <form className="p-a30 dez-form text-center" onSubmit={handleSubmit}>

@@ -80,7 +80,7 @@ const Header = () => {
                         </div>
 
                         <div className={`header-nav navbar-collapse collapse justify-content-end ${menu ? "show" : ""}`}>
-                            <div className="logo-header mostion"><Link href="/"><img src="assets/images/logo.png" width="193" height="89" alt="" /></Link></div>
+                            <div className="logo-header mostion"><Link href="/"><img src="/assets/images/logo.png" width="193" height="89" alt="" /></Link></div>
                             <ul className="nav navbar-nav align-items-center">
                                 <li className={pathname === '/' ? 'active' : ''}><Link href="/">Home</Link></li>
                                 <li className={pathname === '/about' ? 'active' : ''}><Link href="/about">About</Link></li>

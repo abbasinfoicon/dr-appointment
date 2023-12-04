@@ -7,7 +7,7 @@ const Footer = () => {
     const pathname = usePathname();
     return (
         <footer className={pathname.startsWith('/dashboard') ? 'd-none' : 'site-footer'}>
-            <div className="footer-top text-white footer-image overlay-black-dark bg-img-fix" style={{ backgroundImage: 'url(assets/images/background/bg3.jpg)', backgroundAttachment: 'fixed' }}>
+            <div className="footer-top text-white footer-image overlay-black-dark bg-img-fix" style={{ backgroundImage: 'url(/assets/images/background/bg3.jpg)', backgroundAttachment: 'fixed' }}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-3 col-md-6 col-sm-6 footer-col-4">
