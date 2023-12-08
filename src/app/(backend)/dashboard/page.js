@@ -1,4 +1,8 @@
+"use client"
 import React from 'react'
+import VisitorActivityChart from '../components/VisitorActivityChart'
+import SimpleUserChart from '../components/SimpleUserChart'
+import PharmacyOrderChart from '../components/PharmacyOrderChart'
 
 const Dashboard = () => {
     return (
@@ -23,6 +27,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="col-xl-3 col-xxl-3 col-lg-3 col-md-6 col-sm-6">
                     <div className="widget-stat card">
                         <div className="card-body">
@@ -45,6 +50,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="col-xl-3 col-xxl-3 col-lg-3 col-md-6 col-sm-6">
                     <div className="widget-stat card">
                         <div className="card-body">
@@ -64,6 +70,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="col-xl-3 col-xxl-3 col-lg-3 col-md-6 col-sm-6">
                     <div className="widget-stat card">
                         <div className="card-body">
@@ -112,6 +119,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="col-xl-8 col-xxl-8 col-lg-8 col-md-12 col-sm-12">
                     <div id="user-activity" className="card">
                         <div className="card-header">
@@ -143,14 +151,15 @@ const Dashboard = () => {
                         </div>
 
                         <div className="card-body">
-                            <div className="tab-content mt-5" id="myTabContent">
+                            <div className="tab-content" id="myTabContent">
                                 <div className="tab-pane fade show active" id="user" role="tabpanel">
-                                    <canvas id="activity" className="chartjs"></canvas>
+                                    <VisitorActivityChart />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div className="col-xl-4 col-xxl-4 col-lg-4 col-md-12 col-sm-12">
                     <div className="card">
                         <div className="card-header">
@@ -251,6 +260,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="col-xl-4 col-xxl-4 col-lg-4 col-md-12 col-sm-12">
                     <div className="card">
                         <div className="card-header">
@@ -334,6 +344,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="col-xl-4 col-xxl-4 col-lg-4 col-md-12 col-sm-12">
                     <div className="card">
                         <div className="card-header">
@@ -353,48 +364,24 @@ const Dashboard = () => {
                         </div>
                         <div className="chart-wrapper">
                             <div className="mt-5 pt-2">
-                                <canvas id="chart_widget_9"></canvas>
+                                <PharmacyOrderChart />
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div className="col-xl-4 col-xxl-4 col-lg-4 col-md-12 col-sm-12">
                     <div className="card active_users">
                         <div className="card-header">
                             <h4 className="card-title">Active Users</h4>
                             <span id="counter"></span>
                         </div>
-                        <div className="card-body pt-0">
-                            <canvas id="activeUser"></canvas>
-                            <div className="list-group-flush mt-4">
-                                <div className="list-group-item bg-transparent d-flex justify-content-between px-0 py-1 font-weight-semi-bold border-top-0">
-                                    <p className="mb-0">Top Active Pages</p>
-                                    <p className="mb-0">Active Users</p>
-                                </div>
-                                <div className="list-group-item bg-transparent d-flex justify-content-between px-0 py-1">
-                                    <p className="mb-0">/bootstrap-themes/</p>
-                                    <p className="mb-0">3</p>
-                                </div>
-                                <div className="list-group-item bg-transparent d-flex justify-content-between px-0 py-1">
-                                    <p className="mb-0">/tags/html5/</p>
-                                    <p className="mb-0">3</p>
-                                </div>
-                                <div className="list-group-item bg-transparent d-xxl-flex justify-content-between px-0 py-1 d-none">
-                                    <p className="mb-0">/</p>
-                                    <p className="mb-0">2</p>
-                                </div>
-                                <div className="list-group-item bg-transparent d-xxl-flex justify-content-between px-0 py-1 d-none">
-                                    <p className="mb-0">/preview/falcon/dashboard/</p>
-                                    <p className="mb-0">2</p>
-                                </div>
-                                <div className="list-group-item bg-transparent d-flex justify-content-between px-0 py-1">
-                                    <p className="mb-0">/100-best-themes...all-time/</p>
-                                    <p className="mb-0">1</p>
-                                </div>
-                            </div>
+                        <div className="card-body pt-5">
+                            <SimpleUserChart />
                         </div>
                     </div>
                 </div>
+
                 <div className="col-xl-8 col-xxl-8 col-lg-8 col-md-12 col-sm-12">
                     <div className="card">
                         <div className="card-header">

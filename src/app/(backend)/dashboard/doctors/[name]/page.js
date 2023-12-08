@@ -44,14 +44,14 @@ const DoctorDetail = () => {
                 </div>
               </div>
 
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between"><span class="mb-0">Patient Gender</span> <strong class="text-muted">Male	</strong></li>
-                <li class="list-group-item d-flex justify-content-between"><span class="mb-0">Years Old</span> 		<strong class="text-muted">Age: 24	</strong></li>
-                <li class="list-group-item d-flex justify-content-between"><span class="mb-0">Blood Group</span> <strong class="text-muted">A+	</strong></li>
-                <li class="list-group-item d-flex justify-content-between"><span class="mb-0">Patient Height</span> <strong class="text-muted">1.5 M	</strong></li>
-                <li class="list-group-item d-flex justify-content-between"><span class="mb-0">Patient Weight</span> <strong class="text-muted">65 Kg	</strong></li>
-                <li class="list-group-item d-flex justify-content-between"><span class="mb-0">Patient DOB</span> <strong class="text-muted">14-07-1996	</strong></li>
-                <li class="list-group-item d-flex justify-content-between"><span class="mb-0">Blood Group</span> <strong class="text-muted">O+	</strong></li>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item d-flex justify-content-between"><span className="mb-0">Patient Gender</span> <strong className="text-muted">Male	</strong></li>
+                <li className="list-group-item d-flex justify-content-between"><span className="mb-0">Years Old</span> 		<strong className="text-muted">Age: 24	</strong></li>
+                <li className="list-group-item d-flex justify-content-between"><span className="mb-0">Blood Group</span> <strong className="text-muted">A+	</strong></li>
+                <li className="list-group-item d-flex justify-content-between"><span className="mb-0">Patient Height</span> <strong className="text-muted">1.5 M	</strong></li>
+                <li className="list-group-item d-flex justify-content-between"><span className="mb-0">Patient Weight</span> <strong className="text-muted">65 Kg	</strong></li>
+                <li className="list-group-item d-flex justify-content-between"><span className="mb-0">Patient DOB</span> <strong className="text-muted">14-07-1996	</strong></li>
+                <li className="list-group-item d-flex justify-content-between"><span className="mb-0">Blood Group</span> <strong className="text-muted">O+	</strong></li>
               </ul>
             </div>
             <div className="card-footer mt-0">
@@ -226,40 +226,42 @@ const DoctorDetail = () => {
               <h5 className="card-title">Messages</h5>
             </div>
             <div className="card-body">
-              <div className="media mb-3">
-                <img className="mr-3 rounded-circle" alt="image" width="50" src="/assets/images/patients/pic1.jpg" />
-                <div className="media-body">
-                  <h5>Jacob Tucker<small className="text-primary">April 29, 2018</small></h5>
-                  <p className="mb-2">I shared this on my fb wall a few months back, and I thought.</p>
-                  <Link href="#" className="btn btn-primary btn-sm d-inline-block px-3">Reply</Link>
-                  <Link href="#" className="btn btn-outline-danger btn-sm d-inline-block px-3">Delete</Link>
+              <div className="widget-timeline">
+                <div className="media mb-3">
+                  <img className="mr-3 rounded-circle" alt="image" width="50" src="/assets/images/patients/pic1.jpg" />
+                  <div className="media-body">
+                    <h5>Jacob Tucker<small className="text-primary">April 29, 2018</small></h5>
+                    <p className="mb-2">I shared this on my fb wall a few months back, and I thought.</p>
+                    <Link href="#" className="btn btn-primary btn-sm d-inline-block px-3">Reply</Link>
+                    <Link href="#" className="btn btn-outline-danger btn-sm d-inline-block px-3">Delete</Link>
+                  </div>
                 </div>
-              </div>
-              <div className="media mb-3">
-                <img className="mr-3 rounded-circle" alt="image" width="50" src="/assets/images/patients/pic2.jpg" />
-                <div className="media-body">
-                  <h5>Noah Baldon <small className="text-primary">April 28, 2018</small></h5>
-                  <p className="mb-2">I shared this on my fb wall a few months back, and I thought.</p>
-                  <Link href="#" className="btn btn-primary btn-sm d-inline-block px-3">Reply</Link>
-                  <Link href="#" className="btn btn-outline-danger btn-sm d-inline-block px-3">Delete</Link>
+                <div className="media mb-3">
+                  <img className="mr-3 rounded-circle" alt="image" width="50" src="/assets/images/patients/pic2.jpg" />
+                  <div className="media-body">
+                    <h5>Noah Baldon <small className="text-primary">April 28, 2018</small></h5>
+                    <p className="mb-2">I shared this on my fb wall a few months back, and I thought.</p>
+                    <Link href="#" className="btn btn-primary btn-sm d-inline-block px-3">Reply</Link>
+                    <Link href="#" className="btn btn-outline-danger btn-sm d-inline-block px-3">Delete</Link>
+                  </div>
                 </div>
-              </div>
-              <div className="media mb-3">
-                <img className="mr-3 rounded-circle" alt="image" width="50" src="/assets/images/patients/pic3.jpg" />
-                <div className="media-body">
-                  <h5>Muhammad Clay <small className="text-primary">March 24, 2020</small></h5>
-                  <p className="mb-2">I shared this on my fb wall a few months back, and I thought.</p>
-                  <Link href="#" className="btn btn-primary btn-sm d-inline-block px-3">Reply</Link>
-                  <Link href="#" className="btn btn-outline-danger btn-sm d-inline-block px-3">Delete</Link>
+                <div className="media mb-3">
+                  <img className="mr-3 rounded-circle" alt="image" width="50" src="/assets/images/patients/pic3.jpg" />
+                  <div className="media-body">
+                    <h5>Muhammad Clay <small className="text-primary">March 24, 2020</small></h5>
+                    <p className="mb-2">I shared this on my fb wall a few months back, and I thought.</p>
+                    <Link href="#" className="btn btn-primary btn-sm d-inline-block px-3">Reply</Link>
+                    <Link href="#" className="btn btn-outline-danger btn-sm d-inline-block px-3">Delete</Link>
+                  </div>
                 </div>
-              </div>
-              <div className="media">
-                <img className="mr-3 rounded-circle" alt="image" width="50" src="/assets/images/patients/pic4.jpg" />
-                <div className="media-body">
-                  <h5>William Logan <small className="text-primary">Dec 24, 2019</small></h5>
-                  <p className="mb-2">I shared this on my fb wall a few months back, and I thought.</p>
-                  <Link href="#" className="btn btn-primary btn-sm d-inline-block px-3">Reply</Link>
-                  <Link href="#" className="btn btn-outline-danger btn-sm d-inline-block px-3">Delete</Link>
+                <div className="media">
+                  <img className="mr-3 rounded-circle" alt="image" width="50" src="/assets/images/patients/pic4.jpg" />
+                  <div className="media-body">
+                    <h5>William Logan <small className="text-primary">Dec 24, 2019</small></h5>
+                    <p className="mb-2">I shared this on my fb wall a few months back, and I thought.</p>
+                    <Link href="#" className="btn btn-primary btn-sm d-inline-block px-3">Reply</Link>
+                    <Link href="#" className="btn btn-outline-danger btn-sm d-inline-block px-3">Delete</Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -272,108 +274,110 @@ const DoctorDetail = () => {
               <h4 className="card-title">Notifications</h4>
             </div>
             <div className="card-body">
-              <ul className="timeline">
-                <li>
-                  <div className="timeline-badge primary"></div>
-                  <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/1.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Dr sultads Send you Photo</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="timeline-badge warning"></div>
-                  <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/2.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Resport created successfully</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="timeline-badge danger"></div>
-                  <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/3.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Reminder : Treatment Time!</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="timeline-badge success"></div>
-                  <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/4.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Dr sultads Send you Photo</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="timeline-badge warning"></div>
-                  <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/1.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Resport created successfully</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="timeline-badge dark"></div>
-                  <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/2.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Reminder : Treatment Time!</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="timeline-badge info"></div>
-                  <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/3.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Dr sultads Send you Photo</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="timeline-badge danger"></div>
-                  <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/4.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Resport created successfully</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="timeline-badge success"></div>
-                  <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/1.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Reminder : Treatment Time!</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className="timeline-badge warning"></div>
-                  <a className="timeline-panel text-muted d-flex align-items-center" href="javascript:void(0);">
-                    <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/2.jpg" />
-                    <div className="col">
-                      <h5 className="mb-1">Dr sultads Send you Photo</h5>
-                      <small className="d-block">29 July 2020 - 02:26 PM</small>
-                    </div>
-                  </a>
-                </li>
-              </ul>
+              <div className="widget-timeline">
+                <ul className="timeline">
+                  <li>
+                    <div className="timeline-badge primary"></div>
+                    <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/1.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Dr sultads Send you Photo</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="timeline-badge warning"></div>
+                    <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/2.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Resport created successfully</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="timeline-badge danger"></div>
+                    <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/3.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Reminder : Treatment Time!</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="timeline-badge success"></div>
+                    <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/4.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Dr sultads Send you Photo</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="timeline-badge warning"></div>
+                    <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/1.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Resport created successfully</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="timeline-badge dark"></div>
+                    <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/2.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Reminder : Treatment Time!</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="timeline-badge info"></div>
+                    <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/3.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Dr sultads Send you Photo</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="timeline-badge danger"></div>
+                    <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/4.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Resport created successfully</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="timeline-badge success"></div>
+                    <a className="timeline-panel text-muted mb-3 d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/1.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Reminder : Treatment Time!</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div className="timeline-badge warning"></div>
+                    <a className="timeline-panel text-muted d-flex align-items-center" href="javascript:void(0);">
+                      <img className="rounded-circle" alt="image" width="50" src="/assets/images/avatar/2.jpg" />
+                      <div className="col">
+                        <h5 className="mb-1">Dr sultads Send you Photo</h5>
+                        <small className="d-block">29 July 2020 - 02:26 PM</small>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

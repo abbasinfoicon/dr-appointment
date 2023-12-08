@@ -17711,6 +17711,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 .widget-timeline {
   position: relative;
   height: 290px;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .widget-comments {

@@ -2,12 +2,17 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import bcrypt from 'bcryptjs'
 import { toast } from 'react-toastify';
+import FetchData from '@/app/components/FetchData';
 
 const page = () => {
-    const router = useRouter()
+    const router = useRouter();
+    const [rememberMe, setRememberMe] = useState(false);
     const [data, setData] = useState({ first_name: "", last_name: "", gender: "", phone_no: "", address: "", city: "", state: "", email: "", password: "" });
+
+    const handleRememberMeChange = () => {
+        setRememberMe(!rememberMe);
+    }
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -15,18 +20,20 @@ const page = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
+        if (rememberMe) {
+            document.cookie = `email=${data.email};path=/;expires=${new Date(2024, 0, 1).toUTCString()}`;
+            document.cookie = `password=${data.password};path=/;expires=${new Date(2024, 0, 1).toUTCString()}`;
+        } else {
+            document.cookie = "email=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+            document.cookie = "password=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        }
+
 
         const { gender, email, password } = data;
 
         try {
-            const res = await fetch("http://50.116.13.170:8000/user/register/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json", // Set the correct Content-Type header
-                },
-                body: JSON.stringify(data),
-            })
+            const res = await FetchData({ url: "register", body: data, method: "POST" });
 
             const result = await res.json();
 
@@ -101,7 +108,7 @@ const page = () => {
                         </div>
 
                         <label className="m-b30 pass-check">
-                            <input id="checkAgree" type="checkbox" />
+                            <input id="checkAgree" type="checkbox" checked={rememberMe} onChange={handleRememberMeChange} />
                             <label className="terms-text" htmlFor='checkAgree'>I agree to the <Link href="/terms-of-service">Terms of Service</Link> & <Link href="/privacy-policy">Privacy Policy </Link></label>
                         </label>
                         <div className="form-group text-left ">

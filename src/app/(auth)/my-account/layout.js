@@ -1,5 +1,6 @@
 'use client'
 import Banner from "@/app/components/Banner";
+import FetchData from "@/app/components/FetchData";
 import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
@@ -25,13 +26,8 @@ export default function DashboardLayout({ children }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('http://50.116.13.170:8000/user/details/', {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-
+                const res = await FetchData({ url: "details", method: "GET", authorization: `Bearer ${token}` });
+                
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');
                 }

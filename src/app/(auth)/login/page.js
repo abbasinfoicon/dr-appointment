@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { useCookies } from 'react-cookie';
+import FetchData from '@/app/components/FetchData';
 
 const Login = () => {
     const router = useRouter();
@@ -67,13 +68,8 @@ const Login = () => {
             toast.error("All fields Required!!!");
         } else {
             try {
-                const res = await fetch('http://50.116.13.170:8000/user/login/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                });
+
+                const res = await FetchData({ url: "login", body: data, method: "POST" });
 
                 const result = await res.json();
 

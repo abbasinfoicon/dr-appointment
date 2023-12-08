@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import Link from 'next/link';
+import FetchData from '@/app/components/FetchData';
 
 const MyAccount = () => {
     const [data, setData] = useState({});
@@ -11,13 +12,8 @@ const MyAccount = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('http://50.116.13.170:8000/user/details/', {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-
+                const res = await FetchData({ url: "details", method: "GET", authorization: `Bearer ${token}` });
+                
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');
                 }
