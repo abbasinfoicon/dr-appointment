@@ -33,7 +33,7 @@ const page = () => {
         const { gender, email, password } = data;
 
         try {
-            const res = await FetchData({ url: "register", body: data, method: "POST" });
+            const res = await FetchData({ url: "register", body: data, method: "POST", contentType: "application/json" });
 
             const result = await res.json();
 

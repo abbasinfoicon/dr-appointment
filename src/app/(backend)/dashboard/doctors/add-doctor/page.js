@@ -9,11 +9,11 @@ import { toast } from 'react-toastify';
 const AddDoctor = () => {
     const editor = useRef(null);
     const [data, setData] = useState({ first_name: "", last_name: "", gender: "", phone_no: "", address: "", city: "", state: "", email: "", password: "", roles: "" });
-    const [dataSec, setDataSec] = useState({ cur_id: "", specialization: "", qualifications: "", experience: "", license_no: "", consultation_fees_online: "" });
-    const [userId, setUserId] = useState('');
-    const [cookies, setCookie] = useCookies(['access_token']);
+    const [cookies, setCookie, removeCookies] = useCookies(['access_token']);
     const token = cookies.access_token;
     const cur_id = cookies.current_id;
+    const [userId, setUserId] = useState('');
+    const [dataSec, setDataSec] = useState({ user: cur_id || userId, specialization: "", image: "", qualifications: "", experience: "", license_no: "", consultation_fees_online: "" });
 
     const [content, setContent] = useState('');
     const config = {
@@ -30,12 +30,12 @@ const AddDoctor = () => {
         const { first_name, last_name, gender, phone_no, address, city, state, email, password, roles } = data;
 
         try {
-            const res = await FetchData({ url: "registration_by_admin", body: data, method: "POST", authorization: `Bearer ${token}` });
-            const result = await res.json();
-
             if (!first_name || !last_name || !email || !password || !phone_no) {
                 toast.error("All (*) fields Required!!!");
             }
+
+            const res = await FetchData({ url: "registration_by_admin", body: data, method: "POST", authorization: `Bearer ${token}`, contentType: "application/json" });
+            const result = await res.json();
 
             if (password.length < 8) {
                 toast.error(result.Error);
@@ -60,33 +60,59 @@ const AddDoctor = () => {
     }
 
     const handleChangeReg = (e) => {
-        setData({ ...dataSec, [e.target.name]: e.target.value });
+        if (e.target.id === 'image') {
+            setDataSec({ ...dataSec, [e.target.name]: e.target.files?.[0] });
+        } else {
+            setDataSec({ ...dataSec, [e.target.name]: e.target.value });
+        }
     }
 
     const handleSubmitReg = async (e) => {
         e.preventDefault();
 
-        const { cur_id, specialization, qualifications, experience, license_no, consultation_fees_online, } = dataSec;
+        const formData = new FormData();
+        formData.set('user', dataSec.user);
+        formData.set('specialization', dataSec.specialization);
+        formData.append('image', dataSec.image);
+        formData.set('qualifications', dataSec.qualifications);
+        formData.set('experience', dataSec.experience);
+        formData.set('license_no', dataSec.license_no);
+        formData.set('consultation_fees_online', dataSec.consultation_fees_online);
+        formData.set('brief_description', content);
+
+        const { license_no, specialization } = dataSec;
+
+        if (!license_no || !specialization) {
+            toast.error("All (*) fields Required!!!");
+        }
+
+        const resRegister = await fetch(`http://172.232.189.142:8000/user/doctor_registration/`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+        });
 
         try {
-            const resRegister = await FetchData({ url: "doctor_registration", body: dataSec, method: "POST", authorization: `Bearer ${token}` });
-            const resultReg = await resRegister.json();
+            const responseData = await resRegister.json();
+            console.log("ResponseData:", responseData);
 
-            if (!license_no || !specialization) {
-                toast.error("All (*) fields Required!!!");
+            if (responseData.status === 400 || responseData.status === 409 || responseData.status === 500 || responseData.status === 415) {
+                toast.error(responseData.error);
             }
 
-            if (resultReg.status === 400 || resultReg.status === 409 || resultReg.status === 500 || resultReg.status === 415) {
-                toast.error(resultReg.Error);
-            }
-
-            if (resultReg.status === 201 || resRegister.ok) {
+            if (responseData.status === 201 || responseData.ok || responseData.status === 200) {
+                removeCookies('current_id');
+                setUserId('');
                 setData({ cur_id: "", specialization: "", qualifications: "", experience: "", license_no: "", consultation_fees_online: "" });
-                toast.success(resultReg.Message);
+                toast.success(responseData.Message);
+            } else {
+                toast.error(responseData.user[0]);
             }
 
         } catch (error) {
-            console.error("Doctor not added !!!", error)
+            console.error("Doctor not added !!!", error);
         }
     }
 
@@ -195,7 +221,7 @@ const AddDoctor = () => {
                             </div>
                         </form>
 
-                        <form className={cur_id || userId ? 'second_form' : 'd-none'} onSubmit={handleSubmitReg}>
+                        <form className={cur_id || userId ? 'second_form' : 'd-none'} onSubmit={handleSubmitReg} encType='multipart/form-data'>
                             <div className="card-header">
                                 <h5 className="card-title">Doctor Qualification Info</h5>
                             </div>
@@ -205,13 +231,13 @@ const AddDoctor = () => {
                                     <div className="form-group">
                                         <label className="form-label">User ID</label>
                                         <div className="controls">
-                                            <input type="text" className="form-control" name='cur_id' defaultValue={cur_id || userId} placeholder='User ID' disabled />
+                                            <input type="number" className="form-control" name='user' defaultValue={cur_id || userId} onChange={handleChangeReg} placeholder='User ID' disabled />
                                         </div>
                                     </div>
 
                                     <div className="form-group">
                                         <label className="form-label" >Profile Image</label>
-                                        <input type="file" className="form-control" name='image' value={dataSec.image} onChange={handleChangeReg} />
+                                        <input type="file" id="image" className="form-control" name='image' onChange={handleChangeReg} accept="image/gif, image/jpeg, image/png" />
                                     </div>
 
                                     <div className="form-group">
@@ -243,7 +269,7 @@ const AddDoctor = () => {
                                         <div className="col-md-6 form-group">
                                             <label className="form-label">Experience</label>
                                             <div className="controls">
-                                                <input type="text" className="form-control" name='experience' value={dataSec.experience} onChange={handleChangeReg} placeholder='Enter Experience' />
+                                                <input type="number" className="form-control" name='experience' value={dataSec.experience} onChange={handleChangeReg} placeholder='Enter Experience' />
                                             </div>
                                         </div>
                                         <div className="col-md-6 form-group">
@@ -265,7 +291,7 @@ const AddDoctor = () => {
                                     <div className="row">
                                         <div className="col-md-6 form-group">
                                             <label className="form-label">Consultation Fees Online</label>
-                                            <input type="text" className="form-control" name='consultation_fees_online' value={dataSec.first_name} onChange={handleChangeReg} />
+                                            <input type="number" className="form-control" name='consultation_fees_online' value={dataSec.first_name} onChange={handleChangeReg} />
                                         </div>
                                     </div>
                                 </div>

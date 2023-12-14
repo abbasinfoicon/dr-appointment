@@ -1,15 +1,14 @@
 import React from 'react'
 
 const FetchData = async ({ url, method, body, authorization, contentType }) => {
-    const headers = {
-        "Content-Type": "application/json", // Set the correct Content-Type header
-    };
+    const headers = {};
 
     // Conditionally include the Authorization header if provided
     if (authorization) {
         headers.Authorization = authorization;
     }
 
+    // Conditionally set the Content-Type header if provided
     if (contentType) {
         headers['Content-Type'] = contentType;
     }

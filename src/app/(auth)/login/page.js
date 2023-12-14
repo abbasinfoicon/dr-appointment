@@ -69,7 +69,7 @@ const Login = () => {
         } else {
             try {
 
-                const res = await FetchData({ url: "login", body: data, method: "POST" });
+                const res = await FetchData({ url: "login", body: data, method: "POST", contentType: "application/json" });
 
                 const result = await res.json();
 

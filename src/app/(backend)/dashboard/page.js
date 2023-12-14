@@ -123,31 +123,7 @@ const Dashboard = () => {
                 <div className="col-xl-8 col-xxl-8 col-lg-8 col-md-12 col-sm-12">
                     <div id="user-activity" className="card">
                         <div className="card-header">
-                            <h4 className="card-title">Visitor Activity</h4>
-                            <div className="card-action">
-                                <ul className="nav nav-tabs" role="tablist">
-                                    <li className="nav-item">
-                                        <a className="nav-link active" data-toggle="tab" href="#user" role="tab">
-                                            Day
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#session" role="tab">
-                                            Week
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#bounce" role="tab">
-                                            Month
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#session-duration" role="tab">
-                                            Year
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <h4 className="card-title">Visitor Activity</h4>                            
                         </div>
 
                         <div className="card-body">
@@ -348,22 +324,10 @@ const Dashboard = () => {
                 <div className="col-xl-4 col-xxl-4 col-lg-4 col-md-12 col-sm-12">
                     <div className="card">
                         <div className="card-header">
-                            <h4 className="card-title">Pharmacy Orders</h4>
-                            <div className="card-action">
-                                <div className="dropdown custom-dropdown">
-                                    <div data-toggle="dropdown">
-                                        <i className="ti-more-alt"></i>
-                                    </div>
-                                    <div className="dropdown-menu dropdown-menu-right">
-                                        <a className="dropdown-item" href="#">Option 1</a>
-                                        <a className="dropdown-item" href="#">Option 2</a>
-                                        <a className="dropdown-item" href="#">Option 3</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <h4 className="card-title">Pharmacy Orders</h4>                            
                         </div>
                         <div className="chart-wrapper">
-                            <div className="mt-5 pt-2">
+                            <div className="mt-0 pt-0">
                                 <PharmacyOrderChart />
                             </div>
                         </div>
