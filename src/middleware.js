@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { useCookies } from 'react-cookie';
 
 export function middleware(req) {
     const path = req.nextUrl.pathname;
@@ -8,8 +9,13 @@ export function middleware(req) {
     const cookiesHeader = req.headers.get('cookie') || '';
     const tokenMatch = cookiesHeader.match(/access_token=([^;]*)/);
     const token = tokenMatch ? tokenMatch[1] : '';
+   
+    // const [cookies] = useCookies(['role']);
+
+    // const roleCookie = cookies['role'];
 
     if (pbPath && token) {
+     
         return NextResponse.redirect(new URL(path, req.nextUrl));
     }
     if (!pbPath && !token) {
