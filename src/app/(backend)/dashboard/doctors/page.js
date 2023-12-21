@@ -4,10 +4,15 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
 
+
+
+
 const Doctors = () => {
   const [data, setData] = useState({});
   const [cookies] = useCookies(['access_token']);
   const token = cookies.access_token;
+
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +33,8 @@ const Doctors = () => {
     fetchData();
   }, [token]);
 
-  console.log("Dr Lists Data", data);
+
+  
 
   return (
     <div className="container-fluid">
@@ -65,17 +71,18 @@ const Doctors = () => {
 
       <div className="row">
         
+      {data.length && data.map((item) => (
         <div className="col-xl-4 col-lg-4 col-md-6">
           <div className="card">
             <div className="card-body">
               <div className="text-center">
                 <div className="profile-photo">
-                  <img src="/assets/images/avatar/1.jpg" width="100" className="img-fluid rounded-circle" alt="" />
+                  <img src={`${item?.image ==null? "/assets/images/avatar/1.jpg" : item?.image}`} width="100" className="img-fluid rounded-circle" alt="" />
                 </div>
-                <h3 className="mt-4 mb-1">Dr. Alexander</h3>
-                <p className="text-muted">Cardiologist</p>
+                <h3 className="mt-4 mb-1">Dr. {`${item?.user.first_name} ${item?.user.last_name}`}</h3>
+                <p className="text-muted">{item?.specialization}</p>
                 <div className="action">
-                  <Link className="btn btn-primary btn-rounded pl-3 pr-3" href="/dashboard/doctors/name"><i className="icon-eye"></i> View</Link>
+                  <Link className="btn btn-primary btn-rounded pl-3 pr-3" href={`/dashboard/doctors/${item?.user.id}`} ><i className="icon-eye"></i>View</Link>
                   <Link className="btn btn-info btn-rounded pl-3 pr-3 mx-2" href="/dashboard/doctors/name"><i className="icon-pencil"></i> Update</Link>
                   <Link className="btn btn-danger btn-rounded pl-3 pr-3" href="/dashboard/doctors/name"><i className="icon-trash"></i> Delete</Link>
                 </div>
@@ -84,10 +91,10 @@ const Doctors = () => {
             <div className="card-footer pt-0 pb-0 text-center">
               <div className="row">
                 <div className="col-4 pt-3 pb-3 border-right">
-                  <h3 className="mb-1">606</h3><span>Patient</span>
+                  <h3 className="mb-1">{item?.qualifications}</h3>
                 </div>
                 <div className="col-4 pt-3 pb-3 border-right">
-                  <h3 className="mb-1">45 yrs</h3><span>Doc age</span>
+                <h3 className="mb-1">{item?.experience}</h3>
                 </div>
                 <div className="col-4 pt-3 pb-3">
                   <h3 className="mb-1">546</h3><span>Points</span>
@@ -96,6 +103,7 @@ const Doctors = () => {
             </div>
           </div>
         </div>
+        ))}
 
         <div className="col-xl-12 text-center">
           <Link href="#" className="btn mb-3 pl-5 pr-5 btn-primary btn-lg">Load More</Link>
@@ -106,3 +114,9 @@ const Doctors = () => {
 }
 
 export default Doctors
+
+
+
+
+
+

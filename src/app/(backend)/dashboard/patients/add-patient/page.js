@@ -1,8 +1,12 @@
+'use client'
 import React from 'react'
+import Link from 'next/link'
 
 const AddPatient = () => {
     return (
-        <div>AddPatient</div>
+        <div>
+              <p>ADD PATIENTS</p>
+        </div>
     )
 }
 
