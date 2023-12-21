@@ -83,7 +83,7 @@ const Doctors = () => {
                 <p className="text-muted">{item?.specialization}</p>
                 <div className="action">
                   <Link className="btn btn-primary btn-rounded pl-3 pr-3" href={`/dashboard/doctors/${item?.user.id}`} ><i className="icon-eye"></i>View</Link>
-                  <Link className="btn btn-info btn-rounded pl-3 pr-3 mx-2" href="/dashboard/doctors/name"><i className="icon-pencil"></i> Update</Link>
+                  <Link className="btn btn-info btn-rounded pl-3 pr-3 mx-2" href="/dashboard/doctors/name"><i className="icon-pencil"></i> Edit </Link>
                   <Link className="btn btn-danger btn-rounded pl-3 pr-3" href="/dashboard/doctors/name"><i className="icon-trash"></i> Delete</Link>
                 </div>
               </div>
