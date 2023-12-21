@@ -14,6 +14,7 @@
     "jquery": "^3.7.1",
     "lightbox.js-react": "^0.9.6",
     "magnific-popup": "^1.1.0",
+    "material-react-table": "^2.0.6",
     "next": "14.0.3",
     "next-auth": "^4.24.5",
     "react": "^18",

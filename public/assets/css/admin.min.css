@@ -20653,7 +20653,7 @@ button:focus {
 .table thead th {
   border-bottom-width: 1px;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.5px;
   border-color: #eaeaea;
@@ -20779,7 +20779,8 @@ table.dataTable thead th {
   color: #fff;
 }
 
-table.dataTable tbody td {
+table.dataTable tbody td,
+table.dataTable thead th {
   padding: 15px 18px;
 }
 

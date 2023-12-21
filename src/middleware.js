@@ -13,6 +13,8 @@ export function middleware(req) {
         return NextResponse.redirect(new URL(path, req.nextUrl));
     }
     if (!pbPath && !token) {
+
+        
         return NextResponse.redirect(new URL('/login', req.nextUrl));
     }
 }
