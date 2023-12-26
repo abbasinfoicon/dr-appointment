@@ -15293,11 +15293,12 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 .photo-content .cover-photo {
-  background: url(../images/profile/cover.jpg);
-  background-size: cover;
+  background: url(../images/profile/cover.jpg) #e3e3e3;
+  background-size: contain;
   background-position: center;
-  min-height: 250px;
+  min-height: 590px;
   width: 100%;
+  background-repeat: no-repeat;
 }
 
 .photo-content .profile-photo {
@@ -15305,6 +15306,12 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   left: 100px;
   max-width: 150px;
   position: absolute;
+  height: 150px;
+}
+
+.photo-content .profile-photo img {
+    height: 100%;
+    object-fit: cover;
 }
 
 .profile-info {

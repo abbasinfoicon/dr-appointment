@@ -13,12 +13,17 @@ const Blog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('https://dummyjson.com/posts');
+        const res = await fetch(`http://172.232.189.142:8000/app/blogs/`, {
+          method: "GET",
+        });
+
         if (!res.ok) {
           throw new Error('Failed to fetch data');
         }
-        const data = await res.json();
-        setPosts(data.posts); // Assuming the actual array is under the 'posts' property
+
+        const result = await res.json();
+
+        setPosts(result.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -43,43 +48,34 @@ const Blog = () => {
               {
                 currentPosts.length ?
                   currentPosts.map((item) => (
-                    <div className="blog-post blog-lg date-style-2" key={item.id}>
-                      <div className="blog-post blog-lg date-style-2" key={item.id}>
-                        <div className="dez-post-media dez-img-effect zoom-slow">
-                          <Link href={`/blog/${item.id}`}><img src="/assets/images/blog/default/thum1.jpg" alt="" /></Link>
+                    <div className="blog-post blog-lg date-style-2" key={item.blog_id}>
+                      <div className="dez-post-media dez-img-effect zoom-slow">
+                        <Link href={`/blog/${item.blog_id}`}><img src={`http://172.232.189.142:8000/${item.blog_image}`} alt="" /></Link>
+                      </div>
+
+                      <div className="dez-post-info">
+                        <div className="dez-post-title ">
+                          <h3 className="post-title"><Link href={`/blog/${item.blog_id}`}>{item.blog_id}-{item.title}</Link></h3>
                         </div>
 
-                        <div className="dez-post-info">
-                          <div className="dez-post-title ">
-                            <h3 className="post-title"><Link href={`/blog/${item.id}`}>{item.id}-{item.title}</Link></h3>
-                          </div>
+                        <div className="dez-post-meta ">
+                          <ul>
+                            <li className="post-date">
+                              <i className="fa fa-calendar"></i>
+                              <strong>{new Date(item.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}</strong>
+                              <span> {new Date(item.created_at).getFullYear()}</span>
+                            </li>
+                            <li className="post-author"><i className="fa fa-user"></i>By <Link href="#">{item.created_by.first_name} {item.created_by.last_name}</Link> </li>
+                            <li className="post-comment"><i className="fa fa-comments"></i> <Link href="#">{item.blog_id} Comments</Link> </li>
+                          </ul>
+                        </div>
 
-                          <div className="dez-post-meta ">
-                            <ul>
-                              <li className="post-date"> <i className="fa fa-calendar"></i><strong>10 Aug</strong> <span> 2020</span> </li>
-                              <li className="post-author"><i className="fa fa-user"></i>By <Link href="#">demongo</Link> </li>
-                              <li className="post-comment"><i className="fa fa-comments"></i> <Link href="#">{item.userId} Comments</Link> </li>
-                            </ul>
-                          </div>
+                        <div className="dez-post-text">
+                          <p dangerouslySetInnerHTML={{ __html: item.description }}></p>
+                        </div>
 
-                          <div className="dez-post-text">
-                            <p>{item.body}</p>
-                          </div>
-
-                          <div className="dez-post-readmore">
-                            <Link href={`/blog/${item.id}`} title="READ MORE" rel="bookmark" className="site-button-link">READ MORE<i className="fa fa-angle-double-right"></i></Link>
-                          </div>
-
-                          <div className="dez-post-tags">
-                            <div className="post-tags">
-                              {
-                                item.tags.map((tag, i) => {
-                                  return (
-                                    <Link href="#" key={i}>{tag}</Link>)
-                                })
-                              }
-                            </div>
-                          </div>
+                        <div className="dez-post-readmore">
+                          <Link href={`/blog/${item.blog_id}`} title="READ MORE" rel="bookmark" className="site-button-link">READ MORE<i className="fa fa-angle-double-right"></i></Link>
                         </div>
                       </div>
                     </div>
@@ -117,7 +113,7 @@ const Blog = () => {
             </div>
 
             <div className="col-lg-3">
-              <Sidebar />
+              <Sidebar recent_post={posts} />
             </div>
           </div>
         </div>

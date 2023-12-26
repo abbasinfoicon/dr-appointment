@@ -37,6 +37,13 @@ const AddBlog = () => {
 
         const { title, subTitle } = data;
 
+        const maxLength = 99; // Adjust this value based on your database schema
+
+        if (title.length > maxLength || subTitle.length > maxLength) {
+            toast.error("Title or Sub Title is too long!");
+            return; // Stop the submission process
+        }
+
         if (!title || !content) {
             toast.error("All (*) fields Required!!!");
         }

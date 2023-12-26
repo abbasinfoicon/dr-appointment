@@ -93,28 +93,14 @@ const Blog = () => {
         </div>
       </div>
 
-      <div className="row page-titles mx-0 justify-content-between">
-        <div className="col-sm-3">
-          <div className="form-search">
-            <form action="" className="">
-              <input type="search" name="" id="" value={searchData} onChange={e => setSearchData(e.target.value)} className="form-control" placeholder='Search Blog...' />
-              <button className='search-btn'><i className="mdi mdi-magnify"></i></button>
-            </form>
-          </div>
-        </div>
-
-        <div className="col-sm-2">
-          <div className="add-new text-right">
-            <Link href="/dashboard/blog/add-blog" className="btn btn-outline-primary btn-lg btn-rounded mt-1 pl-5 pr-5 add-new">Add New</Link>
-          </div>
-        </div>
-      </div>
-
       <div className="row">
         <div className="col-12">
           <div className="card">
             <div className="card-header">
               <h4 className="card-title">Blogs Details Lists</h4>
+              <div className="add-new text-right">
+                <Link href="/dashboard/blog/add-blog" className="btn btn-outline-primary btn-lg btn-rounded mt-1 pl-5 pr-5 add-new">Add New</Link>
+              </div>
             </div>
             <div className="card-body d-none">
               <table id="example" className="table table-bordered table-hover table-striped table-borderd">

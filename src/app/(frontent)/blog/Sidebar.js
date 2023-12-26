@@ -1,25 +1,9 @@
 'use client'
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-const Sidebar = () => {
-    const [posts, setPosts] = useState([]);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await fetch('https://dummyjson.com/posts');
-                if (!res.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-                const data = await res.json();
-                setPosts(data.posts); // Assuming the actual array is under the 'posts' property
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
+const Sidebar = ({ recent_post }) => {
+    const reversedArray = recent_post.slice().reverse();
 
     return (
         <aside className="side-bar">
@@ -40,19 +24,19 @@ const Sidebar = () => {
                 <h4 className="widget-title">Recent Posts</h4>
                 <div className="widget-post-bx">
                     {
-                        posts && posts.length ?
-                            posts.slice(0, 4).map((item) => {
+                        recent_post && recent_post.length ?
+                            reversedArray.slice(0, 4).map((item) => {
                                 return (
-                                    <div className="widget-post clearfix" key={item.id}>
-                                        <div className="dez-post-media"> <img src="/assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt="" /> </div>
+                                    <div className="widget-post clearfix" key={item.blog_id}>
+                                        <div className="dez-post-media"> <img src={`http://172.232.189.142:8000/${item.blog_image}`} width="200" height="143" alt="" /> </div>
                                         <div className="dez-post-info">
                                             <div className="dez-post-header">
-                                                <h6 className="post-title"><Link href={`/blog/${item.id}`}>{item.title}</Link></h6>
+                                                <h6 className="post-title"><Link href={`/blog/${item.blog_id}`}>{item.blog_id}-{item.title}</Link></h6>
                                             </div>
                                             <div className="dez-post-meta">
                                                 <ul>
-                                                    <li className="post-author">By <a href="#">Admin</a></li>
-                                                    <li className="post-comment"><i className="fa fa-comments"></i> {item.userId}</li>
+                                                    <li className="post-author">By <a href="#">{item.created_by.first_name} {item.created_by.last_name}</a></li>
+                                                    <li className="post-comment"><i className="fa fa-comments"></i> {item.blog_id}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -67,46 +51,30 @@ const Sidebar = () => {
             <div className="widget widget_categories">
                 <h4 className="widget-title">Categories List</h4>
                 <ul>
-                    <li><a href="#">aciform</a> (1)</li>
-                    <li><a href="#">championship</a> (1) </li>
-                    <li><a href="#">chastening</a> (1) </li>
-                    <li><a href="#">clerkship</a> (1) </li>
-                    <li><a href="#">disinclination</a> (1) </li>
-                    <li><a href="#">disinfection</a> (1) </li>
-                    <li><a href="#">dispatch</a> (1) </li>
-                    <li><a href="#">echappee</a> (1) </li>
-                    <li><a href="#">Edge Case</a> (6) </li>
-                    <li><a href="#">enphagy</a> (1) </li>
+                    <li><a href="/specialities/emegency-care">Emegency Care</a> (1)</li>
+                    <li><a href="/specialities/operation-theater">Operation Theater</a> (1)</li>
+                    <li><a href="/specialities/medical-checkup">Medical Checkup</a> (1)</li>
+                    <li><a href="/specialities/ddiagnostic-center">Ddiagnostic Center</a> (1)</li>
+                    <li><a href="/specialities/outdoor-checkup">Outdoor Checkup</a> (1)</li>
+                    <li><a href="/specialities/pharmacy-servicea">Pharmacy Servicea</a> (1)</li>
                 </ul>
             </div>
 
             <div className="widget widget_gallery">
                 <h5 className="widget-title">Our services</h5>
                 <ul>
-                    <li><a href="#"><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
-                        <img src="/assets/images/gallery/small/pic2.jpg" alt="" /></div></a>
-                    </li>
-                    <li><a href="#"><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
-                        <img src="/assets/images/gallery/small/pic1.jpg" alt="" /></div></a>
-                    </li>
-                    <li><a href="#"><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
-                        <img src="/assets/images/gallery/small/pic5.jpg" alt="" /></div></a>
-                    </li>
-                    <li><a href="#"><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
-                        <img src="/assets/images/gallery/small/pic7.jpg" alt="" /></div></a>
-                    </li>
-                    <li><a href="#"><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
-                        <img src="/assets/images/gallery/small/pic8.jpg" alt="" /></div></a>
-                    </li>
-                    <li><a href="#"><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
-                        <img src="/assets/images/gallery/small/pic9.jpg" alt="" /></div></a>
-                    </li>
+                    {
+                        recent_post && recent_post.length ?
+                            reversedArray.slice(0, 9).map((item) => {
+                                return (
+                                    <li><a href={`/blog/${item.blog_id}`}><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
+                                        <img src={`http://172.232.189.142:8000/${item.blog_image}`} alt="" /></div></a>
+                                    </li>
+                                )
+                            })
+                            : <p>Loading...</p>
+                    }
                 </ul>
-            </div>
-
-            <div className="widget widget_tag_cloud">
-                <h4 className="tagcloud">Tags</h4>
-                <div className="tagcloud"> <a href="#">Design</a> <a href="#">User interface</a> <a href="#">SEO</a> <a href="#">WordPress</a> <a href="#">Development</a> <a href="#">Joomla</a> <a href="#">Design</a> <a href="#">User interface</a> <a href="#">SEO</a> <a href="#">WordPress</a> <a href="#">Development</a> <a href="#">Joomla</a> <a href="#">Design</a> <a href="#">User interface</a> <a href="#">SEO</a> <a href="#">WordPress</a> <a href="#">Development</a> <a href="#">Joomla</a> </div>
             </div>
         </aside>
     )
