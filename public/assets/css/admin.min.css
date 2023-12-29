@@ -15310,8 +15310,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 .photo-content .profile-photo img {
-    height: 100%;
-    object-fit: cover;
+  height: 100%;
+  object-fit: cover;
 }
 
 .profile-info {
@@ -17933,6 +17933,15 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   border-color: transparent;
 }
 
+.alert-custom {
+  min-width: 120px;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.7rem 0.75rem;
+}
+
 .alert-square {
   border-radius: 0px;
 }
@@ -17942,51 +17951,51 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 .alert-primary {
-  background: #aad2f7;
-  border-color: #aad2f7;
-  color: #3695eb;
+  color: #084298;
+  background-color: #cfe2ff;
+  border-color: #b6d4fe;
 }
 
 .alert-secondary {
-  background: #ae95dd;
-  border-color: #ae95dd;
-  color: #673BB7;
+  color: #41464b;
+  background-color: #e2e3e5;
+  border-color: #d3d6d8;
 }
 
 .alert-success {
-  background: #cdf1a6;
-  border-color: #cdf1a6;
-  color: #7ED321;
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
 }
 
 .alert-warning {
-  background: #ffd996;
-  border-color: #ffd996;
-  color: #FFAA16;
+  color: #664d03;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
 }
 
 .alert-danger {
-  background: #ff9696;
-  border-color: #ff9696;
-  color: #FF1616;
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
 }
 
 .alert-info {
-  background: #bef5e8;
-  border-color: #bef5e8;
-  color: #50E3C2;
+  color: #055160;
+  background-color: #cff4fc;
+  border-color: #b6effb;
 }
 
 .alert-dark {
-  background: #dedede;
-  border-color: #dedede;
-  color: #454545;
+  color: #141619;
+  background-color: #d3d3d4;
+  border-color: #bcbebf;
 }
 
 .alert-light {
-  background: #f8f9fa;
-  border-color: #f8f9fa;
-  color: #454545;
+  color: #636464;
+  background-color: #fefefe;
+  border-color: #fdfdfe;
 }
 
 .alert-alt.alert-primary {
@@ -25063,4 +25072,122 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .jodit-wysiwyg h6 {
   line-height: 1.4;
   margin: auto;
+}
+
+/* delete-popup */
+.modal-confirm {
+  color: #636363;
+  width: 400px;
+  top: 15%;
+}
+
+.modal-confirm .modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+.modal-confirm .modal-header {
+  border-bottom: none;
+  position: relative;
+  background: transparent;
+}
+
+.modal-confirm .modal-header h4 {
+  color: #000;
+  font-weight: bold;
+}
+
+.modal-confirm h4 {
+  text-align: center;
+  font-size: 26px;
+  margin: 30px 0 -10px;
+}
+
+.modal-confirm .close {
+  position: absolute;
+  top: -5px;
+  right: -2px;
+}
+
+.modal-confirm .modal-body {
+  color: #999;
+}
+
+.modal-confirm .modal-footer {
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 10px 15px 25px;
+}
+
+.modal-confirm .modal-footer a {
+  color: #999;
+}
+
+.modal-confirm .icon-box {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 9;
+  text-align: center;
+  /* border: 3px solid #f15e5e; */
+}
+
+.modal-confirm .icon-box i {
+  color: #f15e5e;
+  font-size: 80px;
+  display: inline-block;
+  margin-top: 0;
+}
+
+.modal-confirm .btn,
+.modal-confirm .btn:active {
+  color: #fff;
+  border-radius: 4px;
+  background: #60c7c1;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  min-width: 120px;
+  border: none;
+  min-height: 40px;
+  border-radius: 3px;
+  margin: 0 5px;
+}
+
+.modal-confirm .btn-secondary {
+  background: #c1c1c1;
+}
+
+.modal-confirm .btn-secondary:hover,
+.modal-confirm .btn-secondary:focus {
+  background: #a8a8a8;
+}
+
+.modal-confirm .btn-danger {
+  background: #f15e5e;
+}
+
+.modal-confirm .btn-danger:hover,
+.modal-confirm .btn-danger:focus {
+  background: #ee3535;
+}
+
+.trigger-btn {
+  display: inline-block;
+  margin: 100px auto;
+}
+
+.modal-backdrop {
+  display: none;
+}
+
+div#myModal.show,
+.modal-backdrop.show {
+  display: block;
 }

@@ -55,7 +55,7 @@ const Blog = () => {
 
                       <div className="dez-post-info">
                         <div className="dez-post-title ">
-                          <h3 className="post-title"><Link href={`/blog/${item.blog_id}`}>{item.blog_id}-{item.title}</Link></h3>
+                          <h3 className="post-title"><Link href={`/blog/${item.blog_id}`}>{item.title}</Link></h3>
                         </div>
 
                         <div className="dez-post-meta ">

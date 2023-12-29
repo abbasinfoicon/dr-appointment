@@ -15456,3 +15456,10 @@ button {
     justify-content: center;
     color: #000;
 }
+
+.blog-lg .dez-post-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

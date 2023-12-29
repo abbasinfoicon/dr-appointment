@@ -13,7 +13,7 @@ const BlogDetails = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(`https://dummyjson.com/posts/${id}`);
+                const res = await fetch(`http://172.232.189.142:8000/app/blog/${id}`);
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');
                 }
@@ -220,7 +220,7 @@ const BlogDetails = () => {
                         </div>
 
                         <div className="col-lg-3">
-                            <Sidebar />
+                            {/* <Sidebar recent_post={posts} /> */}
                         </div>
                     </div>
                 </div>

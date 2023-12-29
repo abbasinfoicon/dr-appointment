@@ -2,11 +2,13 @@
 import FetchData from '@/app/components/FetchData'
 import JoditEditor from 'jodit-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useRef, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify'
 
 const AddBlog = () => {
+    const router = useRouter();
     const editor = useRef(null);
     const [content, setContent] = useState('');
     const config = {
@@ -63,7 +65,8 @@ const AddBlog = () => {
                 toast.error(res.error);
             }
 
-            if (res.status === 201 || res.ok || res.status === 200) {
+            if (res.status === 201 || res.ok || res.status === 200) {                
+                router.push('/dashboard/blog');
                 setData({ title: "", subTitle: "", blog_image: null });
                 $('#image').val('');
                 setContent('');

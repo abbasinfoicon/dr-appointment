@@ -1,10 +1,14 @@
+"use client"
 import { useEffect, useMemo, useState } from 'react';
 import { MaterialReactTable, useMaterialReactTable, } from 'material-react-table';
 import { useCookies } from 'react-cookie';
 import Link from 'next/link';
+import DeleteModal from './DeleteModal';
 
 const BlogList = () => {
     const [data, setData] = useState([]);
+    const [deleteContent, setDeleteContent] = useState(false);
+    const [deleteId, setDeleteId] = useState('');
     const [loading, setLoading] = useState(true);
     const [cookies] = useCookies(['access_token']);
     const token = cookies.access_token;
@@ -35,15 +39,12 @@ const BlogList = () => {
         }
     };
 
-    const handleDelete = (row) => {
-        console.log('Deleting:', row.original.blog_id);
-    };
+    const handleDeletePopup = (row) => {
+        setDeleteContent(!deleteContent);
+        setDeleteId(row.original.blog_id);
+    }
 
-    const handleStatus = (row) => {
-        console.log('Status:', row.original.blog_id);
-    };
-
-    const handleCheckboxChange = (row) => {
+    const handleCheckboxChange = async (row) => {
         console.log('Checkbox changed for blog_id:', row.original.blog_id);
     };
 
@@ -99,7 +100,7 @@ const BlogList = () => {
                 header: 'Status',
                 size: 100,
                 Cell: ({ row }) => (
-                    <button className={`btn rounded ${row.original.approved === 'Pending' ? 'btn-warning' : row.original.approved === 'Unapproved' ? 'btn-danger' : 'btn-success'}`} onClick={() => handleStatus(row)}>{row.original.approved}</button>
+                    <span className={`alert-custom alert ${row.original.approved === 'Pending' ? 'alert-warning' : row.original.approved === 'Unapproved' ? 'alert-danger' : 'alert-success'}`} >{row.original.approved}</span>
                 ),
             },
             {
@@ -108,7 +109,7 @@ const BlogList = () => {
                 size: 100,
                 Cell: ({ row }) => (
                     <div className="custom_checkbox">
-                        <input id={`c${row.index}`} type="checkbox" className="switch" checked={row.original.availablity} onChange={() => handleCheckboxChange(row)} />
+                        <input id={`c${row.index}`} type="checkbox" className="switch" checked={row.original.availablity} onChange={() => handleCheckboxChange(row)} disabled={row.original.approved === 'Approved' ? false : true} />
                     </div>
                 ),
             },
@@ -120,7 +121,7 @@ const BlogList = () => {
                     <div>
                         <Link href={`blog/${row.original.blog_id}`} className='btn rounded btn-primary'><i className="icon-eye"></i></Link>
                         <Link href={`blog/edit/${row.original.blog_id}`} className='btn rounded btn-info mx-1'><i className="icon-pencil"></i></Link>
-                        <button className='btn rounded btn-danger' onClick={() => handleDelete(row)}><i className="icon-trash"></i></button>
+                        <button className='btn rounded btn-danger' onClick={() => handleDeletePopup(row)}><i className="icon-trash"></i></button>
                     </div>
                 ),
             },
@@ -156,7 +157,8 @@ const BlogList = () => {
         };
 
         fetchData();
-    }, [token]);
+
+    }, [token, deleteContent]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -169,6 +171,9 @@ const BlogList = () => {
             ) : (
                 <MaterialReactTable table={table} />
             )}
+
+
+            <DeleteModal did={deleteId} dc={deleteContent} setdc={setDeleteContent} />
         </>
     )
 };

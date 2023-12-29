@@ -1,19 +1,18 @@
 "use client"
 import JoditEditor from 'jodit-react'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify'
 
 const Edit = () => {
+    const router = useRouter();
     const params = useParams();
     const id = params.id
     const editor = useRef(null);
     const [content, setContent] = useState('');
-    const config = {
-        placeholder: 'Enter bio...'
-    }
+
     const [data, setData] = useState({ title: "", subTitle: "", blog_image: "", approved: "", availablity: "", description: "" });
     const [cookies, setCookie, removeCookies] = useCookies(['access_token']);
     const token = cookies.access_token;
@@ -35,6 +34,7 @@ const Edit = () => {
                 const postData = await res.json();
 
                 setData(postData.data);
+                setContent(postData.data.description);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -46,13 +46,18 @@ const Edit = () => {
     }, [id]);
 
     const handleInputChange = (e) => {
-        if (e.target.id === 'image') {
-            // Use append to add the file to FormData
-            setData({ ...data, [e.target.name]: e.target.files?.[0] });
+        const newData = { ...data };
+        const newFormData = new FormData();
+
+        if (e.target.id === 'image' && e.target.files?.[0]) {
+            newFormData.append('blog_image', e.target.files[0]);
+            newData.blog_image = e.target.files[0]; // Update the local state with the new image file
         } else {
-            setData({ ...data, [e.target.name]: e.target.value });
+            newData[e.target.name] = e.target.value;
         }
-    }
+
+        setData(newData);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -63,11 +68,14 @@ const Edit = () => {
         formData.set('approved', data.approved);
         formData.set('availablity', data.availablity);
         formData.set('description', content);
-        formData.append('blog_image', data.blog_image);
+
+        if (data.blog_image instanceof File) {
+            formData.append('blog_image', data.blog_image);
+        }
 
         try {
             const res = await fetch(`http://172.232.189.142:8000/app/update_blog/${id}/`, {
-                method: "POST",
+                method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -79,6 +87,7 @@ const Edit = () => {
             }
 
             toast.success("Blog updated successfully!");
+            router.push('/dashboard/blog');
         } catch (error) {
             console.error("Error updating blog:", error);
             toast.error("Failed to update blog");
@@ -137,9 +146,11 @@ const Edit = () => {
                                         </div>
                                         <div className="form-group">
                                             <label className="form-label">Availability</label>
-                                            <select name="availablity" className="form-control" value={data.availablity ? 'Show' : 'Hide'} onChange={handleInputChange}>
-                                                <option value="Show">Show</option>
-                                                <option value="Hide">Hide</option>
+                                            <select name="availablity" className="form-control" value={data.availablity} onChange={handleInputChange}>
+                                                <option value="false">Hide</option>
+                                                {
+                                                    data.approved === 'Approved' ? <option value="true">Show</option> : null
+                                                }
                                             </select>
                                         </div>
                                         <div className="form-group">
@@ -160,18 +171,19 @@ const Edit = () => {
                                     <label className="form-label">Brief</label>
                                     <JoditEditor
                                         ref={editor}
-                                        value={data.description}
-                                        config={config}
-                                        onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                                        onChange={newContent => { }}
+                                        value={content} // Use content state here             
+                                        onChange={newContent => {
+                                            setContent(newContent);
+                                        }}
                                     />
+
                                     {/* <textarea className="form-control" cols="5" name="description" value={data.description} </textarea> */}
                                     <small className="text-muted">Enter any size of text description here</small>
                                 </div>
 
                                 <div className="col-xs-12">
                                     <button type='submit' className="btn btn-primary">Update</button>
-                                    <button type="reset" className="btn">Cancel</button>
+                                    <Link className="btn" href='/dashboard/blog/'>Cancel</Link>
                                 </div>
                             </div>
                         </form>

@@ -2,11 +2,19 @@
 import Link from 'next/link'
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import DeleteModal from '../DeleteModal';
 
 const BlogDetail = () => {
   const params = useParams();
   const id = params.id
   const [data, setData] = useState(null);
+  const [deleteContent, setDeleteContent] = useState(false);
+  const [deleteId, setDeleteId] = useState('');
+
+  const handleDeletePopup = (delId) => {
+    setDeleteContent(!deleteContent);
+    setDeleteId(delId);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,11 +40,16 @@ const BlogDetail = () => {
     }
   }, [id]);
 
+  // Function to format the date string
+  const formatDateString = (dateString) => {
+    const options = { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+    return formattedDate;
+  };
+
   if (!data) {
     return <p>Loading...</p>;
   }
-
-  console.log("Blog Single data: ", data)
 
   return (
     <div className="container-fluid">
@@ -140,22 +153,25 @@ const BlogDetail = () => {
                   </div>
                   <div className="row mb-4">
                     <div className="col-3">
-                      <h5 className="f-w-500">created_at <span className="pull-right">:</span></h5>
+                      <h5 className="f-w-500">Create Time <span className="pull-right">:</span></h5>
                     </div>
-                    <div className="col-9"><span>{data.created_at}</span>
+                    <div className="col-9">
+                      <span>{formatDateString(data.created_at)}</span>
                     </div>
                   </div>
                 </div>
 
                 <Link href="/dashboard/blog" className='btn rounded btn-primary'><i className="icon-list"></i> All Lists</Link>
                 <Link href={`/dashboard/blog/edit/${data.blog_id}`} className='btn rounded btn-info mx-1'><i className="icon-pencil"></i> Update</Link>
-                <button className='btn rounded btn-danger'><i className="icon-trash"></i> Delete</button>
+                <button className='btn rounded btn-danger' onClick={() => handleDeletePopup(data.blog_id)}><i className="icon-trash"></i> Delete</button>
                 <Link href="/dashboard/blog/add-blog" className='btn rounded btn-primary mx-1'><i className="icon-plus"></i> Add New Blog</Link>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <DeleteModal did={deleteId} dc={deleteContent} setdc={setDeleteContent} />
     </div >
   )
 }
