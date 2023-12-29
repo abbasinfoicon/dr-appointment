@@ -42,7 +42,7 @@ export function middleware(req) {
   const cookies = parse(req.headers.get("cookie") || "");
   const userRole = cookies["role"] || null;
 
-  console.log("Role", userRole);
+  // console.log("Role", userRole);
 
   // Use the Cookies header from the request headers
   const cookiesHeader = req.headers.get("cookie") || "";
