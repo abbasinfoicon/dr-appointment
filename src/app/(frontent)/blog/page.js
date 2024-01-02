@@ -113,7 +113,7 @@ const Blog = () => {
             </div>
 
             <div className="col-lg-3">
-              <Sidebar recent_post={posts} />
+              <Sidebar />
             </div>
           </div>
         </div>

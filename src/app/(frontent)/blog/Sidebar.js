@@ -1,37 +1,53 @@
 'use client'
 import Link from 'next/link';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Search from './Search';
 
-const Sidebar = ({ recent_post }) => {
-    const reversedArray = recent_post.slice().reverse();
+const Sidebar = () => {
+    const [posts, setPosts] = useState([]);
+    const reversedArray = posts.slice().reverse();
+
+    const fetchData = async () => {
+        try {
+            const res = await fetch(`http://172.232.189.142:8000/app/blogs/`, {
+                method: "GET",
+            });
+
+            if (!res.ok) {
+                throw new Error('Failed to fetch data');
+            }
+
+            const result = await res.json();
+
+            setPosts(result.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <aside className="side-bar">
-            <div className="widget">
+            <div className="widget d-none">
                 <h4 className="widget-title">Search</h4>
-                <div className="search-bx">
-                    <form role="search" method="post">
-                        <div className="input-group">
-                            <input name="text" type="text" className="form-control" placeholder="Write your text" />
-                            <span className="input-group-btn">
-                                <button type="submit" className="site-button"><i className="fa fa-search"></i></button>
-                            </span> </div>
-                    </form>
-                </div>
+                <Search />
             </div>
 
             <div className="widget recent-posts-entry">
                 <h4 className="widget-title">Recent Posts</h4>
                 <div className="widget-post-bx">
                     {
-                        recent_post && recent_post.length ?
+                        posts && posts.length ?
                             reversedArray.slice(0, 4).map((item) => {
                                 return (
                                     <div className="widget-post clearfix" key={item.blog_id}>
                                         <div className="dez-post-media"> <img src={`http://172.232.189.142:8000/${item.blog_image}`} width="200" height="143" alt="" /> </div>
                                         <div className="dez-post-info">
                                             <div className="dez-post-header">
-                                                <h6 className="post-title"><Link href={`/blog/${item.blog_id}`}>{item.blog_id}-{item.title}</Link></h6>
+                                                <h6 className="post-title"><Link href={`/blog/${item.blog_id}`}>{item.title}</Link></h6>
                                             </div>
                                             <div className="dez-post-meta">
                                                 <ul>
@@ -64,10 +80,10 @@ const Sidebar = ({ recent_post }) => {
                 <h5 className="widget-title">Our services</h5>
                 <ul>
                     {
-                        recent_post && recent_post.length ?
+                        posts && posts.length ?
                             reversedArray.slice(0, 9).map((item) => {
                                 return (
-                                    <li><a href={`/blog/${item.blog_id}`}><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
+                                    <li key={item.blog_id}><a href={`/blog/${item.blog_id}`}><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
                                         <img src={`http://172.232.189.142:8000/${item.blog_image}`} alt="" /></div></a>
                                     </li>
                                 )

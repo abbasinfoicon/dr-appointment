@@ -98,7 +98,6 @@ const Sidebar = () => {
                         <ul className="mm-collapse">
                             <li><Link href="/dashboard/gallery">All Gallery</Link></li>
                             <li><Link href="/dashboard/gallery/add-img">Add Image</Link></li>
-                            <li><Link href="/dashboard/gallery/add-video">Add Video</Link></li>
                         </ul>
                     </li>
                     <li><Link className="has-arrow ai-icon" href="#">

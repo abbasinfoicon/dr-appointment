@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-const Banner = ({ img, title }) => {
+const Banner = ({ img, title, parents }) => {
     return (
         <>
             {
@@ -20,6 +20,7 @@ const Banner = ({ img, title }) => {
                     <div className="container">
                         <ul className="list-inline">
                             <li><Link href="/">Home</Link></li>
+                            {parents ? <li><Link href={`/${parents}`}>{parents}</Link></li> : null}
                             <li>{title}</li>
                         </ul>
                     </div>
