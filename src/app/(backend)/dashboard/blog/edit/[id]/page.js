@@ -1,4 +1,5 @@
 "use client"
+import FetchData from '@/app/components/FetchData'
 import JoditEditor from 'jodit-react'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
@@ -20,12 +21,7 @@ const Edit = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(`http://172.232.189.142:8000/app/update_blog/${id}/`, {
-                    method: "PATCH",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
+                const res = await FetchData({ url: `app/blog/${id}`, method: "POST" });
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');
@@ -74,13 +70,7 @@ const Edit = () => {
         }
 
         try {
-            const res = await fetch(`http://172.232.189.142:8000/app/update_blog/${id}/`, {
-                method: "PATCH",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData,
-            });
+            const res = await FetchData({ url: `app/update_blog/${id}`, method: "PATCH", formdata: formData, authorization: `Bearer ${token}` });
 
             if (!res.ok) {
                 throw new Error('Failed to update blog');

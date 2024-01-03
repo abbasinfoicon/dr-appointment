@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import DeleteModal from './DeleteModal';
+import FetchData from '@/app/components/FetchData';
 
 const Gallery = () => {
   const [data, setData] = useState([]);
@@ -15,9 +16,7 @@ const Gallery = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://172.232.189.142:8000/app/allGImages/`, {
-          method: "GET",
-        });
+        const res = await FetchData({ url: "app/allGImages", method: "GET" });
 
         if (!res.ok) {
           throw new Error('Failed to fetch data');
@@ -52,7 +51,6 @@ const Gallery = () => {
     setDeleteId(g_id);
   }
 
-  // Function to calculate the time difference
   const getTimeDifference = (timestamp) => {
     const currentDate = new Date();
     const createdAtDate = new Date(timestamp);
@@ -60,7 +58,15 @@ const Gallery = () => {
     const timeDifference = currentDate - createdAtDate;
     const minutes = Math.floor(timeDifference / (1000 * 60));
 
-    return `Last updated ${minutes} mins ago`;
+    if (minutes < 60) {
+      return `Last updated ${minutes} mins ago`;
+    } else if (minutes < 24 * 60) {
+      const hours = Math.floor(minutes / 60);
+      return `Last updated ${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+    } else {
+      const days = Math.floor(minutes / (24 * 60));
+      return `Last updated ${days} ${days === 1 ? 'day' : 'days'} ago`;
+    }
   };
 
   const showMore = () => {
@@ -125,7 +131,7 @@ const Gallery = () => {
                           <Link className="btn rounded btn-info mx-1" href={`/dashboard/gallery/edit/${item.g_id}`}><i className="icon-pencil"></i></Link>
                           <button className="btn rounded btn-danger" onClick={() => handleDeletePopup(item.g_id)}><i className="icon-trash"></i></button>
                         </div>
-                        <p className="card-text text-dark text-right"><small>{getTimeDifference(item.created_at)}</small></p>
+                        <p className="card-text text-dark text-right"><small>{getTimeDifference(item.updated_at)}</small></p>
                       </div>
                     </div>
                   </div>

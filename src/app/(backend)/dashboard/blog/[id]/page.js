@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import DeleteModal from '../DeleteModal';
+import FetchData from '@/app/components/FetchData';
 
 const BlogDetail = () => {
   const params = useParams();
@@ -19,9 +20,7 @@ const BlogDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://172.232.189.142:8000/app/blog/${id}/`, {
-          method: "POST",
-        });
+        const res = await FetchData({ url: `app/blog/${id}`, method: "POST" });
 
         if (!res.ok) {
           throw new Error('Failed to fetch data');

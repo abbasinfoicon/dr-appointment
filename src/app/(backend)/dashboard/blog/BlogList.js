@@ -4,6 +4,7 @@ import { MaterialReactTable, useMaterialReactTable, } from 'material-react-table
 import { useCookies } from 'react-cookie';
 import Link from 'next/link';
 import DeleteModal from './DeleteModal';
+import FetchData from '@/app/components/FetchData';
 
 const BlogList = () => {
     const [data, setData] = useState([]);
@@ -134,12 +135,7 @@ const BlogList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(`http://172.232.189.142:8000/app/all_blogs/`, {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                const res = await FetchData({ url: "app/all_blogs", method: "GET", authorization: `Bearer ${token}` });
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');

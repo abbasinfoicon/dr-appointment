@@ -1,4 +1,5 @@
 'use client'
+import FetchData from '@/app/components/FetchData'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
@@ -34,13 +35,7 @@ const AddGallery = () => {
         }
 
         try {
-            const res = await fetch(`http://172.232.189.142:8000/app/createGImage/`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData,
-            });
+            const res = await FetchData({ url: "app/createGImage", method: "POST", formdata: formData, authorization: `Bearer ${token}` });
 
             const result = await res.json();
 

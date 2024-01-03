@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
 import BlogList from './BlogList';
+import FetchData from '@/app/components/FetchData';
 
 const Blog = () => {
   const [data, setData] = useState([]);
@@ -12,13 +13,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://172.232.189.142:8000/app/all_blogs/`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-
+        const res = await FetchData({ url: "app/all_blogs", method: "GET", authorization: `Bearer ${token}` });      
 
         if (!res.ok) {
           throw new Error('Failed to fetch data');

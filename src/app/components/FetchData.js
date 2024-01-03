@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FetchData = async ({ url, method, body, authorization, contentType }) => {
+const FetchData = async ({ url, method, body, formdata, authorization, contentType }) => {
     const headers = {};
 
     // Conditionally include the Authorization header if provided
@@ -14,10 +14,10 @@ const FetchData = async ({ url, method, body, authorization, contentType }) => {
     }
 
     return (
-        await fetch(`http://172.232.189.142:8000/user/${url}/`, {
+        await fetch(`http://172.232.189.142:8000/${url}/`, {
             method: method,
             headers: headers,
-            body: body ? JSON.stringify(body) : null,
+            body: body ? JSON.stringify(body) : formdata ? formdata : null,
         })
     )
 }

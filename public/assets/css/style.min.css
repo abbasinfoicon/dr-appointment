@@ -10489,7 +10489,39 @@ ol.commentlist li .star-rating {
     gap: 10px;
 }
 
-.slide__gallery .lightbox_img {}
+.slide__gallery .lightbox_img {
+    width: 24%;
+    height: 420px;
+    object-fit: contain;
+    object-fit: cover;
+}
+
+@media (max-width: 1440px) {
+    .slide__gallery .lightbox_img {
+        width: 25%;
+        height: 320px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .slide__gallery .lightbox_img {
+        width: 32%;
+    }
+}
+
+@media (max-width: 992px) {
+    .slide__gallery .lightbox_img {
+        width: 34%;
+    }
+}
+
+@media (max-width: 768px) {
+    .slide__gallery .lightbox_img {
+        width: 98%;
+        height: auto;
+    }
+}
+
 
 /* ===================== 	Premery bg color ===================== */
 /* Hex */

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import Search from './Search';
+import FetchData from '@/app/components/FetchData';
 
 const Sidebar = () => {
     const [posts, setPosts] = useState([]);
@@ -9,9 +10,7 @@ const Sidebar = () => {
 
     const fetchData = async () => {
         try {
-            const res = await fetch(`http://172.232.189.142:8000/app/blogs/`, {
-                method: "GET",
-            });
+            const res = await FetchData({ url: "app/blogs", method: "GET" }); 
 
             if (!res.ok) {
                 throw new Error('Failed to fetch data');

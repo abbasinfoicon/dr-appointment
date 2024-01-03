@@ -12,7 +12,7 @@ const MyAccount = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await FetchData({ url: "details", method: "GET", authorization: `Bearer ${token}`, contentType: "application/json" });
+                const res = await FetchData({ url: "user/details", method: "GET", authorization: `Bearer ${token}`, contentType: "application/json" });
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');

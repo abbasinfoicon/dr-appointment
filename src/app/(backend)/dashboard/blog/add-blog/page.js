@@ -51,13 +51,7 @@ const AddBlog = () => {
         }
 
         try {
-            const res = await fetch(`http://172.232.189.142:8000/app/createBlog/`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData,
-            });
+            const res = await FetchData({ url: "app/createBlog", method: "POST", formdata: formData, authorization: `Bearer ${token}` });
 
             const result = await res.json();
 
@@ -65,7 +59,7 @@ const AddBlog = () => {
                 toast.error(res.error);
             }
 
-            if (res.status === 201 || res.ok || res.status === 200) {                
+            if (res.status === 201 || res.ok || res.status === 200) {
                 router.push('/dashboard/blog');
                 setData({ title: "", subTitle: "", blog_image: null });
                 $('#image').val('');

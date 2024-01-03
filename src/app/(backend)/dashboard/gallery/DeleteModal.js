@@ -1,4 +1,5 @@
 'use client'
+import FetchData from '@/app/components/FetchData';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useCookies } from 'react-cookie';
@@ -16,13 +17,8 @@ const DeleteModal = ({ did, dc, setdc }) => {
                 throw new Error('No Image ID to delete');
             }
 
-            const resDel = await fetch(`http://172.232.189.142:8000/app/deleteGImage/${did}/`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                }
-            });
-
+            const resDel = await FetchData({ url: `app/deleteGImage/${did}`, method: "DELETE", authorization: `Bearer ${token}` });
+            
             if (!resDel.ok) {
                 throw new Error('Failed to delete Gallery');
             }

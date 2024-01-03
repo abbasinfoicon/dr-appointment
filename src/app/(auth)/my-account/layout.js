@@ -26,7 +26,7 @@ export default function DashboardLayout({ children }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await FetchData({ url: "details", method: "GET", authorization: `Bearer ${token}` });
+                const res = await FetchData({ url: "user/details", method: "GET", authorization: `Bearer ${token}` });
                 
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');

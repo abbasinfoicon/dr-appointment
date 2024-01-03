@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Banner from '@/app/components/Banner';
 import Sidebar from '../Sidebar';
 import { useParams } from 'next/navigation'
+import FetchData from '@/app/components/FetchData';
 
 const BlogDetails = () => {
     const params = useParams();
@@ -12,9 +13,7 @@ const BlogDetails = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(`http://172.232.189.142:8000/app/blog/${id}/`, {
-                    method: "POST",
-                });
+                const res = await FetchData({ url: `app/blog/${id}`, method: "POST" });                 
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');

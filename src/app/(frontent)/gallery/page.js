@@ -1,9 +1,39 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Banner from '@/app/components/Banner';
 import { SlideshowLightbox } from 'lightbox.js-react';
+import FetchData from '@/app/components/FetchData';
 
 const Gallery = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await FetchData({ url: "app/allGImages", method: "GET" });        
+
+        if (!res.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const result = await res.json();
+        setData(result.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+        setLoading(true);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  console.log("Gallery Images:", data)
 
   return (
     <>
@@ -17,14 +47,9 @@ const Gallery = () => {
 
         <div className="clearfix">
           <SlideshowLightbox className="slide__gallery">
-            <img className="lightbox_img" src="/assets/images/our-work/work/pic1.jpg" />
-            <img className="lightbox_img" src="/assets/images/our-work/work/pic2.jpg" />
-            <img className="lightbox_img" src="/assets/images/our-work/work/pic3.jpg" />
-            <img className="lightbox_img" src="/assets/images/our-work/work/pic4.jpg" />
-            <img className="lightbox_img" src="/assets/images/our-work/work/pic5.jpg" />
-            <img className="lightbox_img" src="/assets/images/our-work/work/pic6.jpg" />
-            <img className="lightbox_img" src="/assets/images/our-work/work/pic7.jpg" />
-            <img className="lightbox_img" src="/assets/images/our-work/work/pic8.jpg" />
+            {
+              data.length && data.map((item) => (<img className="lightbox_img" src={`http://172.232.189.142:8000/${item.image}`} alt={item.heading} />))
+            }
           </SlideshowLightbox>
         </div>
       </div>

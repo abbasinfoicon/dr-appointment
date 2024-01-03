@@ -1,4 +1,5 @@
 'use client'
+import FetchData from '@/app/components/FetchData';
 import Link from 'next/link'
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -12,9 +13,7 @@ const GalleryDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://172.232.189.142:8000/app/gImage/${id}/`, {
-          method: "POST",
-        });
+        const res = await FetchData({ url: `app/gImage/${id}`, method: "POST" });
 
         if (!res.ok) {
           throw new Error('Failed to fetch data');
