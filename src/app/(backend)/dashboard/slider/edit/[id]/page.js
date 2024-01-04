@@ -14,14 +14,14 @@ const Edit = () => {
     const editor = useRef(null);
     const [content, setContent] = useState('');
 
-    const [data, setData] = useState({ title: "", subTitle: "", blog_image: "", approved: "", availablity: "", description: "" });
+    const [data, setData] = useState({ heading: "", image: "", availability: "", description: "" });
     const [cookies, setCookie, removeCookies] = useCookies(['access_token']);
     const token = cookies.access_token;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await FetchData({ url: `app/blog/${id}`, method: "POST" });
+                const res = await FetchData({ url: `app/banner/${id}`, method: "POST" });
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');
@@ -46,8 +46,8 @@ const Edit = () => {
         const newFormData = new FormData();
 
         if (e.target.id === 'image' && e.target.files?.[0]) {
-            newFormData.append('blog_image', e.target.files[0]);
-            newData.blog_image = e.target.files[0]; // Update the local state with the new image file
+            newFormData.append('image', e.target.files[0]);
+            newData.image = e.target.files[0]; // Update the local state with the new image file
         } else {
             newData[e.target.name] = e.target.value;
         }
@@ -59,28 +59,26 @@ const Edit = () => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.set('title', data.title);
-        formData.set('subTitle', data.subTitle);
-        formData.set('approved', data.approved);
-        formData.set('availablity', data.availablity);
+        formData.set('heading', data.heading);
+        formData.set('availability', data.availability);
         formData.set('description', content);
 
-        if (data.blog_image instanceof File) {
-            formData.append('blog_image', data.blog_image);
+        if (data.image instanceof File) {
+            formData.append('image', data.image);
         }
 
         try {
-            const res = await FetchData({ url: `app/update_blog/${id}`, method: "PATCH", formdata: formData, authorization: `Bearer ${token}` });
+            const res = await FetchData({ url: `app/updateBanner/${id}`, method: "PATCH", formdata: formData, authorization: `Bearer ${token}` });
 
             if (!res.ok) {
-                throw new Error('Failed to update blog');
+                throw new Error('Failed to update');
             }
 
-            toast.success("Blog updated successfully!");
-            router.push('/dashboard/blog');
+            toast.success("updated successfully!");
+            router.push('/dashboard/slider');
         } catch (error) {
-            console.error("Error updating blog:", error);
-            toast.error("Failed to update blog");
+            console.error("Error updating:", error);
+            toast.error("Failed to update");
         }
     };
 
@@ -89,13 +87,13 @@ const Edit = () => {
             <div className="row page-titles mx-0">
                 <div className="col-sm-6">
                     <div className="welcome-text">
-                        <h4>Edit Blog</h4>
+                        <h4>Edit Slider</h4>
                     </div>
                 </div>
                 <div className="col-sm-6 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><Link href="/dashboard/blog">Blog</Link></li>
-                        <li className="breadcrumb-item active"><Link href="#">Edit Blog</Link></li>
+                        <li className="breadcrumb-item"><Link href="/dashboard/slider">Slider</Link></li>
+                        <li className="breadcrumb-item active"><Link href="#">Edit Slider</Link></li>
                     </ol>
                 </div>
             </div>
@@ -107,51 +105,33 @@ const Edit = () => {
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-md-2 form-group">
-                                        <label className="form-label">Blog Id</label>
-                                        <input type="text" name='blog_id' value={data.blog_id} onChange={handleInputChange} className="form-control" readOnly />
-                                    </div>
-                                    <div className="col-md-2 form-group">
-                                        <label className="form-label">Created by user id</label>
-                                        <input type="text" name='created_by' value={data.created_by?.id} onChange={handleInputChange} className="form-control" readOnly />
+                                        <label className="form-label">Slider Id</label>
+                                        <input type="text" name='banner_id' value={data.banner_id} onChange={handleInputChange} className="form-control" readOnly />
                                     </div>
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="form-label">Title</label>
-                                    <input type="text" name='title' value={data.title} onChange={handleInputChange} className="form-control" placeholder="Enter Title" />
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-label">Sub Title</label>
-                                    <input type="text" name='subTitle' value={data.subTitle} onChange={handleInputChange} className="form-control" placeholder="Enter Sub Title" />
+                                    <label className="form-label">Heading</label>
+                                    <input type="text" name='heading' value={data.heading} onChange={handleInputChange} className="form-control" placeholder="Enter Heading" />
                                 </div>
                                 <div className="row">
                                     <div className="col-md-7">
                                         <div className="form-group">
-                                            <label className="form-label">Status</label>
-                                            <select name="approved" className="form-control" value={data.approved} onChange={handleInputChange}>
-                                                <option value="Pending">Pending</option>
-                                                <option value="Approved">Approved</option>
-                                                <option value="Unapproved">Unapproved</option>
-                                            </select>
-                                        </div>
-                                        <div className="form-group">
                                             <label className="form-label">Availability</label>
-                                            <select name="availablity" className="form-control" value={data.availablity} onChange={handleInputChange}>
+                                            <select name="availability" className="form-control" value={data.availability} onChange={handleInputChange}>
                                                 <option value="false">Hide</option>
-                                                {
-                                                    data.approved === 'Approved' ? <option value="true">Show</option> : null
-                                                }
+                                                <option value="true">Show</option>
                                             </select>
                                         </div>
                                         <div className="form-group">
-                                            <label className="form-label" >Blog Image</label>
-                                            <input type="file" id="image" className="form-control" name='blog_image' onChange={handleInputChange} accept="image/gif, image/jpeg, image/png" />
+                                            <label className="form-label" >Slider Image</label>
+                                            <input type="file" id="image" className="form-control" name='image' onChange={handleInputChange} accept="image/gif, image/jpeg, image/png" />
                                         </div>
                                     </div>
 
                                     <div className="col-md-5">
                                         <div className="form-group">
-                                            <img src={`http://172.232.189.142:8000/${data.blog_image}`} alt="" className="img-fluid" />
+                                            <img src={`http://172.232.189.142:8000/${data.image}`} alt="" className="img-fluid" />
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +153,7 @@ const Edit = () => {
 
                                 <div className="col-xs-12">
                                     <button type='submit' className="btn btn-primary">Update</button>
-                                    <Link className="btn" href='/dashboard/blog/'>Cancel</Link>
+                                    <Link className="btn" href='/dashboard/slider/'>Cancel</Link>
                                 </div>
                             </div>
                         </form>

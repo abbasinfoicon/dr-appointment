@@ -11,7 +11,7 @@ const Gallery = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await FetchData({ url: "app/allGImages", method: "GET" });        
+        const res = await FetchData({ url: "app/allGImages", method: "GET" });
 
         if (!res.ok) {
           throw new Error('Failed to fetch data');
@@ -29,11 +29,10 @@ const Gallery = () => {
     fetchData();
   }, []);
 
+
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  console.log("Gallery Images:", data)
 
   return (
     <>
@@ -48,7 +47,7 @@ const Gallery = () => {
         <div className="clearfix">
           <SlideshowLightbox className="slide__gallery">
             {
-              data.length && data.map((item) => (<img className="lightbox_img" src={`http://172.232.189.142:8000/${item.image}`} alt={item.heading} />))
+              data.length && data.map((item, i) => (<img className="lightbox_img" src={`http://172.232.189.142:8000/${item.image}`} alt={item.heading} key={i} />))
             }
           </SlideshowLightbox>
         </div>

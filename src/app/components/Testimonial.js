@@ -10,6 +10,7 @@ const options = {
     margin: 30,
     autoplaySpeed: 8000,
     autoplay: 5000,
+    autoplayHoverPause:true,
     nav: true,
     dots: true,
     navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],

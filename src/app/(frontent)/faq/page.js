@@ -2,16 +2,38 @@
 import React, { useEffect, useState } from 'react'
 import Banner from '@/app/components/Banner';
 import Link from 'next/link';
+import FetchData from '@/app/components/FetchData';
 
 const Faq = () => {
+    const [data, setData] = useState([]);
     const [activePanel, setActivePanel] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const togglePanel = (panel) => {
         setActivePanel((prevPanel) => (prevPanel === panel ? null : panel));
     };
 
     useEffect(() => {
-        // Add any additional initialization or side effects here
+        const fetchData = async () => {
+            try {
+                const res = await FetchData({ url: "FAQ/view", method: "GET" });
+
+                if (!res.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+
+                const result = await res.json();
+
+                // Update the state with result.data
+                setData(result);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching data:', error.message);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
     }, []);
 
     return (
@@ -23,30 +45,29 @@ const Faq = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-9">
-                                {/* Your other content */}
-                                {faqData.map((section, index) => (
-                                    <div className="m-b30" key={index}>
-                                        <h2 className="m-b10">{section.title}</h2>
-                                        <p>{section.description}</p>
+                                <div className="m-b30">
+                                    <h2 className="m-b10">General Questions</h2>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.</p>
 
-                                        <div className="accordion space faq-bx">
-                                            {section.questions.map((question, i) => (
+                                    <div className="accordion space faq-bx">
+                                        {
+                                            data.map((item, i) => (
                                                 <div className="panel" key={i}>
                                                     <div className="acod-head">
                                                         <h6 className="acod-title">
-                                                            <p className={activePanel === i + 1 + index * 100 ? '' : 'collapsed'} onClick={() => togglePanel(i + 1 + index * 100)}>
-                                                                <i className="fa fa-question-circle"></i> {question.title}
+                                                            <p className={activePanel === i + 1 + i * 100 ? '' : 'collapsed'} onClick={() => togglePanel(i + 1 + i * 100)}>
+                                                                <i className="fa fa-question-circle"></i> {item.question}
                                                             </p>
                                                         </h6>
                                                     </div>
-                                                    <div id={`collapse${i + 1}${index}`} className={`acod-body collapse ${activePanel === i + 1 + index * 100 ? 'show' : ''}`}>
-                                                        <div className="acod-content">{question.answer}</div>
+                                                    <div id={`collapse${i + 1}${i}`} className={`acod-body collapse ${activePanel === i + 1 + i * 100 ? 'show' : ''}`}>
+                                                        <div className="acod-content" dangerouslySetInnerHTML={{ __html: item.answer }}></div>
                                                     </div>
                                                 </div>
-                                            ))}
-                                        </div>
+                                            ))
+                                        }
                                     </div>
-                                ))}
+                                </div>
                             </div>
 
                             <div className="col-lg-3">
@@ -78,84 +99,3 @@ const Faq = () => {
 }
 
 export default Faq
-
-const faqData = [
-    {
-        title: 'General Questions',
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.',
-        questions: [
-            {
-                title: 'Can I Get A Refund?',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: 'Showcase Items with a Referral Widget',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: 'Where Can I Find my Purchase Code?',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: 'Showcase Items with a Referral Widget',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: ' here Can I Find my Purchase Code?',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-        ],
-    },
-    {
-        title: 'Popular articles',
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.',
-        questions: [
-            {
-                title: 'Can I Get A Refund?',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: 'Showcase Items with a Referral Widget',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: 'Where Can I Find my Purchase Code?',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: 'Showcase Items with a Referral Widget',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: ' here Can I Find my Purchase Code?',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-        ],
-    },
-    {
-        title: 'General Questions',
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.',
-        questions: [
-            {
-                title: 'Can I Get A Refund?',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: 'Showcase Items with a Referral Widget',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: 'Where Can I Find my Purchase Code?',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: 'Showcase Items with a Referral Widget',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-            {
-                title: ' here Can I Find my Purchase Code?',
-                answer: 'Web design aorem apsum dolor sit amet, adipiscing elit, sed diam nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus. ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Claritas est etiam processu',
-            },
-        ],
-    },
-];

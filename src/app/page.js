@@ -8,6 +8,7 @@ import CountUp from 'react-countup';
 import Testimonial from "./components/Testimonial";
 import Link from "next/link";
 import Appointment from "./components/Appointment";
+import FetchData from "./components/FetchData";
 
 const options = {
   loop: true,
@@ -40,6 +41,10 @@ const options2 = {
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [slider, setSlider] = useState([]);
+  const [gallery, setGallery] = useState([]);
+  const [docData, setDocData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -56,57 +61,108 @@ export default function Home() {
 
     const fetchData = async () => {
       try {
-        const res = await fetch('https://dummyjson.com/posts');
+        const res = await FetchData({ url: "app/blogs", method: "GET" });
+
         if (!res.ok) {
           throw new Error('Failed to fetch data');
         }
         const data = await res.json();
-        setPosts(data.posts); // Assuming the actual array is under the 'posts' property
+        setPosts(data.data);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
+        setLoading(true);
+      }
+    };
+
+    const fatechGallery = async () => {
+      try {
+        const res = await FetchData({ url: "app/allGImages", method: "GET" });
+
+        if (!res.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const result = await res.json();
+        setGallery(result.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+        setLoading(true);
+      }
+    };
+
+    const fetchDoc = async () => {
+      try {
+        const res = await FetchData({ url: "user/doctors", method: "GET" });
+
+        if (!res.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const result = await res.json();
+
+        setDocData(result);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+        setLoading(true);
+      }
+    };
+
+    const fetchSlider = async () => {
+      try {
+        const res = await FetchData({ url: "app/allBanners", method: "GET" });
+
+        if (!res.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const result = await res.json();
+
+        setSlider(result.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+        setLoading(false);
       }
     };
 
     fetchData();
+    fatechGallery();
+    fetchDoc();
+    fetchSlider();
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="page-content">
-      <OwlCarousel className="main-slider" id="home" {...options}>
-        <div className="item">
-          <div className="mainSlider">
-            <img className='img-fluid' src="assets/images/main-slider/slide6.jpg" />
-            <div className="mainSlider-text">
-              <h3>Welcome to Dr. Appointment</h3>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
-              <Link href="/about" className="site-button">Read More</Link>
-            </div>
-          </div>
-        </div>
+      {
+        slider.length &&
 
-        <div className="item">
-          <div className="mainSlider">
-            <img className='img-fluid' src="assets/images/main-slider/slide7.jpg" />
-            <div className="mainSlider-text">
-              <h3>Welcome to Dr. Appointment</h3>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
-              <Link href="/about" className="site-button">Read More</Link>
-            </div>
-          </div>
-        </div>
+        <OwlCarousel className="main-slider" id="home" {...options}>
+          {
+            slider.map((item, i) => {
+              return (
+                <div className="item" key={i}>
+                  <div className="mainSlider">
+                    <img className='img-fluid' src={`${item?.image == null ? "/assets/images/avatar/1.jpg" : "http://172.232.189.142:8000/" + item?.image}`} />
+                    <div className="mainSlider-text">
+                      <h3>{item.heading}</h3>
+                      <p dangerouslySetInnerHTML={{ __html: item?.description }}></p>
+                      <Link href="/about" className="site-button">Read More</Link>
+                    </div>
+                  </div>
+                </div>
+              )
+            })
+          }
+        </OwlCarousel>
+      }
 
-        <div className="item">
-          <div className="mainSlider">
-            <img className='img-fluid' src="assets/images/main-slider/slide8.jpg" />
-            <div className="mainSlider-text">
-              <h3>Welcome to Dr. Appointment</h3>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, sequi distinctio atque eaque soluta laudantium. Fugit distinctio commodi natus! Ea aut itaque ipsa similique non autem cupiditate dolores, labore iure!</p>
-              <Link href="/about" className="site-button">Read More</Link>
-            </div>
-          </div>
-        </div>
-      </OwlCarousel>
 
       <div className="section-full content-inner bg-white video-section">
         <div className="container">
@@ -318,83 +374,30 @@ export default function Home() {
           </div>
           <div className="section-content text-center ">
             <div className="row">
-              <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/doctor/jon-miller"><img src="assets/images/our-team/pic13.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><Link href="/doctor/jon-miller">Dr. Jon Miller</Link></h4>
+              {
+                docData.length && docData.slice(0, 4).map((item, i) => (
+                  <div className="col-lg-3 col-md-6 col-sm-6 m-b15" key={i}>
+                    <div className="dez-box xob-zed">
+                      <div className="dez-media"> <Link href={`/doctor/${item.user.id}`}><img src={`${item?.image == null ? "/assets/images/our-team/pic13.jpg" : item?.image}`} alt={item.user.first_name} /></Link> </div>
+                      <div className="dez-info p-a30 bg-white">
+                        <h4 className="dez-title m-t0 m-b15"><Link href={`/doctor/${item.user.id}`}>Dr. {item.user.first_name} {item.user.last_name}</Link></h4>
 
-                    <div className="specialitie">
-                      <p><i className="fa fa-user-md" aria-hidden="true"></i> Cardiology</p>
-                      <p><i className="fa fa-graduation-cap" aria-hidden="true"></i> MBBS, FCPS, FRCS</p>
+                        <div className="specialitie">
+                          <p><i className="fa fa-user-md" aria-hidden="true"></i> {item.specialization}</p>
+                          <p><i className="fa fa-graduation-cap" aria-hidden="true"></i> {item.qualifications}</p>
+                        </div>
+
+                        <ul className="dez-social-icon border dez-social-icon-lg">
+                          <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
+                          <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
+                          <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
+                          <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
+                        </ul>
+                      </div>
                     </div>
-
-                    <ul className="dez-social-icon border dez-social-icon-lg">
-                      <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
-                    </ul>
                   </div>
-                </div>
-              </div>
-
-              <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/doctor/andy-miller"><img src="assets/images/our-team/pic14.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><Link href="/doctor/andy-miller">Dr. Andy Miller</Link></h4>
-                    <div className="specialitie">
-                      <p><i className="fa fa-user-md" aria-hidden="true"></i> Neurology</p>
-                      <p><i className="fa fa-graduation-cap" aria-hidden="true"></i> MBBS, FCPS, FRCS</p>
-                    </div>
-                    <ul className="dez-social-icon border dez-social-icon-lg">
-                      <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/doctor/nashid-martines"><img src="assets/images/our-team/pic15.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><Link href="/doctor/nashid-martines">Dr. Nashid Martines</Link></h4>
-                    <div className="specialitie">
-                      <p><i className="fa fa-user-md" aria-hidden="true"></i> Ophthalmology</p>
-                      <p><i className="fa fa-graduation-cap" aria-hidden="true"></i> MBBS, FCPS, FRCS</p>
-                    </div>
-                    <ul className="dez-social-icon border dez-social-icon-lg">
-                      <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-3 col-md-6 col-sm-6 m-b15">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/doctor/martines-nashid"><img src="assets/images/our-team/pic16.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 bg-white">
-                    <h4 className="dez-title m-t0 m-b15"><Link href="/doctor/martines-nashid">Dr. Martines Nashid</Link></h4>
-                    <div className="specialitie">
-                      <p><i className="fa fa-user-md" aria-hidden="true"></i> Pediatric</p>
-                      <p><i className="fa fa-graduation-cap" aria-hidden="true"></i> MBBS, FCPS, FRCS</p>
-                    </div>
-                    <ul className="dez-social-icon border dez-social-icon-lg">
-                      <li><Link href="#" className="fa fa-facebook fb-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-twitter tw-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-linkedin link-btn"></Link></li>
-                      <li><Link href="#" className="fa fa-pinterest-p pin-btn"></Link></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                ))
+              }
 
               <div className="col-md-12 text-center">
                 <Link className="site-button" href="/doctor">View More</Link>
@@ -412,15 +415,14 @@ export default function Home() {
 
         <div className="clearfix">
           <SlideshowLightbox className="slide__gallery">
-            <img className="lightbox_img" src="assets/images/our-work/work/pic1.jpg" />
-            <img className="lightbox_img" src="assets/images/our-work/work/pic2.jpg" />
-            <img className="lightbox_img" src="assets/images/our-work/work/pic3.jpg" />
-            <img className="lightbox_img" src="assets/images/our-work/work/pic4.jpg" />
-            <img className="lightbox_img" src="assets/images/our-work/work/pic5.jpg" />
-            <img className="lightbox_img" src="assets/images/our-work/work/pic6.jpg" />
-            <img className="lightbox_img" src="assets/images/our-work/work/pic7.jpg" />
-            <img className="lightbox_img" src="assets/images/our-work/work/pic8.jpg" />
+            {
+              gallery.length && gallery.slice(0, 8).map((item, i) => (<img className="lightbox_img" src={`http://172.232.189.142:8000/${item.image}`} alt={item.heading} key={i} />))
+            }
           </SlideshowLightbox>
+        </div>
+
+        <div className="text-center mt-5">
+          <Link className="site-button" href="/gallery">View All Media</Link>
         </div>
       </div>
 
@@ -436,21 +438,27 @@ export default function Home() {
                 {
                   posts.map((item) => {
                     return (
-                      <div className="item" key={item.id}>
-                        <div className="dez-box">
+                      <div className="item" key={item.blog_id}>
+                        <div className="dez-box xob-zed">
                           <div className="dez-media">
-                            <Link href={`/blog/${item.id}`}><img src="assets/images/blog/latest-blog/blog/pic1.jpg" alt="" /></Link>
+                            <Link href={`/blog/${item.blog_id}`}><img src={`http://172.232.189.142:8000/${item.blog_image}`} alt={item.title} /></Link>
                           </div>
+
                           <div className="dez-info p-t20">
                             <div className="dez-post-meta">
                               <ul>
-                                <li className=""> <i className="fa fa-calendar"></i><strong>10 Aug</strong> <span> 2020</span> </li>
-                                <li className="post-author"><i className="fa fa-user"></i>By <Link href="#">Jone</Link> </li>
-                                <li className="post-comment"><i className="fa fa-comments"></i> <Link href="#">{item.userId}</Link> </li>
+                                <li className="post-date">
+                                  <i className="fa fa-calendar"></i>
+                                  <strong>{new Date(item.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}</strong>
+                                  <span> {new Date(item.created_at).getFullYear()}</span>
+                                </li>
+                                <li className="post-author"><i className="fa fa-user"></i>By <Link href="#">{item.created_by.first_name} {item.created_by.last_name}</Link> </li>
+                                <li className="post-comment"><i className="fa fa-comments"></i> <Link href="#">{item.blog_id} Comments</Link> </li>
                               </ul>
                             </div>
-                            <h4 className="dez-title m-t15"><Link href={`/blog/${item.id}`}>{item.title}</Link></h4>
-                            <Link href={`/blog/${item.id}`} className="site-button">Read More</Link>
+
+                            <h4 className="dez-title m-t15 mh-44"><Link href={`/blog/${item.blog_id}`}>{item.title}</Link></h4>
+                            <Link href={`/blog/${item.blog_id}`} className="site-button">Read More</Link>
                           </div>
                         </div>
                       </div>
@@ -459,6 +467,10 @@ export default function Home() {
                 }
               </OwlCarousel>
             }
+          </div>
+
+          <div className="text-center mt-5">
+            <Link className="site-button white border" href="/blog">View All Posts</Link>
           </div>
         </div >
       </div >

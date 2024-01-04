@@ -49,7 +49,7 @@ const Blog = () => {
                   currentPosts.map((item) => (
                     <div className="blog-post blog-lg date-style-2" key={item.blog_id}>
                       <div className="dez-post-media dez-img-effect zoom-slow">
-                        <Link href={`/blog/${item.blog_id}`}><img src={`http://172.232.189.142:8000/${item.blog_image}`} alt="" /></Link>
+                        <Link href={`/blog/${item.blog_id}`}><img src={`http://172.232.189.142:8000/${item.blog_image}`} alt={item.title} /></Link>
                       </div>
 
                       <div className="dez-post-info">

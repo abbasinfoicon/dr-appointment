@@ -13982,6 +13982,14 @@ pre {
     padding: 25px;
 }
 
+.biography_text p {
+    margin-bottom: 10px;
+}
+
+.biography_text p strong {
+    color: #000;
+}
+
 .biography_text h4 {
     font-size: 18px;
     font-weight: 600;
@@ -15494,4 +15502,28 @@ button {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.xob-zed .dez-media {
+    height: 240px;
+    overflow: hidden;
+}
+
+.xob-zed .dez-media a {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.xob-zed .dez-media a img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.xob-zed .dez-title.mh-44 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 44px;
 }

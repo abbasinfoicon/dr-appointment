@@ -1,10 +1,34 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import FetchData from './FetchData';
 
 const Footer = () => {
     const pathname = usePathname();
+    const [posts, setPosts] = useState([]);
+    const reversedArray = posts.slice().reverse();
+
+    const fetchData = async () => {
+        try {
+            const res = await FetchData({ url: "app/blogs", method: "GET" });
+
+            if (!res.ok) {
+                throw new Error('Failed to fetch data');
+            }
+
+            const result = await res.json();
+
+            setPosts(result.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <footer className={pathname.startsWith('/dashboard') ? 'd-none' : 'site-footer'}>
             <div className="footer-top text-white footer-image overlay-black-dark bg-img-fix" style={{ backgroundImage: 'url(/assets/images/background/bg3.jpg)', backgroundAttachment: 'fixed' }}>
@@ -53,15 +77,15 @@ const Footer = () => {
                                 <h4 className="m-b15 text-uppercase">Recent Post</h4>
                                 <div className="dez-separator bg-primary"></div>
                                 <ul>
-                                    <li className="img-effect2"> <Link href="#"><img src="/assets/images/gallery/small/pic1.jpg" alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link href="#"><img src="/assets/images/gallery/small/pic2.jpg" alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link href="#"><img src="/assets/images/gallery/small/pic3.jpg" alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link href="#"><img src="/assets/images/gallery/small/pic4.jpg" alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link href="#"><img src="/assets/images/gallery/small/pic5.jpg" alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link href="#"><img src="/assets/images/gallery/small/pic7.jpg" alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link href="#"><img src="/assets/images/gallery/small/pic6.jpg" alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link href="#"><img src="/assets/images/gallery/small/pic8.jpg" alt="" /></Link> </li>
-                                    <li className="img-effect2"> <Link href="#"><img src="/assets/images/gallery/small/pic9.jpg" alt="" /></Link> </li>
+                                    {
+                                        posts && posts.length ?
+                                            reversedArray.slice(0, 9).map((item) => {
+                                                return (
+                                                    <li className="img-effect2" key={item.blog_id}> <Link href={`/blog/${item.blog_id}`}><img src={`http://172.232.189.142:8000/${item.blog_image}`} alt={item.title} /></Link> </li>
+                                                )
+                                            })
+                                            : <p>Loading...</p>
+                                    }
                                 </ul>
                             </div>
                         </div>

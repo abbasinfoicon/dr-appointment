@@ -28,6 +28,7 @@ const Sidebar = () => {
         fetchData();
     }, []);
 
+    
     return (
         <aside className="side-bar">
             <div className="widget d-none">

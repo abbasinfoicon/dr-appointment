@@ -63,11 +63,11 @@ const Sidebar = () => {
                     </li>
                     <li><Link className="has-arrow ai-icon" href="#">
                         <i className="icon-chemistry"></i>
-                        <span className="nav-text">Services</span>
+                        <span className="nav-text">Specialities</span>
                     </Link>
                         <ul className="mm-collapse">
-                            <li><Link href="/dashboard/services">All Services</Link></li>
-                            <li><Link href="/dashboard/services/add-service">Add Service</Link></li>
+                            <li><Link href="/dashboard/specialities">All Specialities</Link></li>
+                            <li><Link href="/dashboard/specialities/add">Add Specialities</Link></li>
                         </ul>
                     </li>
                     <li><Link className="has-arrow ai-icon" href="#">
@@ -82,6 +82,15 @@ const Sidebar = () => {
 
                     <li className="nav-label">Media</li>
 
+                    <li><Link className="has-arrow ai-icon" href="#">
+                        <i className="icon-film"></i>
+                        <span className="nav-text">Slider</span>
+                    </Link>
+                        <ul className="mm-collapse">
+                            <li><Link href="/dashboard/slider">All Slider</Link></li>
+                            <li><Link href="/dashboard/slider/add">Add Slider</Link></li>
+                        </ul>
+                    </li>
                     <li><Link className="has-arrow ai-icon" href="#">
                         <i className="icon-note"></i>
                         <span className="nav-text">Blog</span>
@@ -101,15 +110,6 @@ const Sidebar = () => {
                         </ul>
                     </li>
                     <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-bubbles"></i>
-                        <span className="nav-text">Testimonial</span>
-                    </Link>
-                        <ul className="mm-collapse">
-                            <li><Link href="/dashboard/testimonial">All Testimonial</Link></li>
-                            <li><Link href="/dashboard/testimonial/add-testimonial">Add Testimonial</Link></li>
-                        </ul>
-                    </li>
-                    <li><Link className="has-arrow ai-icon" href="#">
                         <i className="icon-support"></i>
                         <span className="nav-text">Support</span>
                     </Link>
@@ -118,6 +118,15 @@ const Sidebar = () => {
                             <li><Link href="/dashboard/contact">Contact us</Link></li>
                             <li><Link href="/dashboard/privacy-policy">Privacy Policy</Link></li>
                             <li><Link href="/dashboard/help-center">Help center</Link></li>
+                        </ul>
+                    </li>
+                    <li><Link className="has-arrow ai-icon" href="#">
+                        <i className="icon-bubbles"></i>
+                        <span className="nav-text">Testimonial</span>
+                    </Link>
+                        <ul className="mm-collapse">
+                            <li><Link href="/dashboard/testimonial">All Testimonial</Link></li>
+                            <li><Link href="/dashboard/testimonial/add-testimonial">Add Testimonial</Link></li>
                         </ul>
                     </li>
 

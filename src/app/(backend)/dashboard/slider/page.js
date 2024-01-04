@@ -7,7 +7,7 @@ import DeleteModal from './DeleteModal';
 import FetchData from '@/app/components/FetchData';
 import { toast } from 'react-toastify';
 
-const Faq = () => {
+const Slider = () => {
     const [data, setData] = useState([]);
     const [deleteContent, setDeleteContent] = useState(false);
     const [deleteId, setDeleteId] = useState('');
@@ -44,25 +44,29 @@ const Faq = () => {
 
     const handleDeletePopup = (row) => {
         setDeleteContent(!deleteContent);
-        setDeleteId(row.original.id);
+        setDeleteId(row.original.banner_id);
     }
 
     const handleAvailabilityChange = async (row) => {
         console.log("On change all value: ", row);
         const formData = new FormData();
-        formData.set('question', row.original.question);
-        formData.set('answer', row.original.answer);
+        formData.set('heading', row.original.heading);
+        formData.set('description', row.original.description);
 
 
-        if (row.original.show_visibility === false) {
-            formData.set('show_visibility', true);
+        if (row.original.availability === false) {
+            formData.set('availability', true);
         } else {
-            formData.set('show_visibility', false);
+            formData.set('availability', false);
+        }
+
+        if (row.original.image instanceof File) {
+            formData.append('image', row.original.image);
         }
 
         try {
             const res = await FetchData({
-                url: `FAQ/admin/${row.original.id}`,
+                url: `app/updateBanner/${row.original.banner_id}`,
                 method: 'PATCH',
                 formdata: formData,
                 authorization: `Bearer ${token}`,
@@ -82,9 +86,21 @@ const Faq = () => {
     const columns = useMemo(
         () => [
             {
-                accessorKey: 'id',
-                header: 'Faq Id',
+                accessorKey: 'banner_id',
+                header: 'Slider Id',
                 size: 50,
+            },
+            {
+                accessorKey: 'image',
+                header: 'Image',
+                size: 100,
+                Cell: ({ row }) => {
+                    if (row.original.image) {
+                        return <img src={`http://172.232.189.142:8000/${row.original.image}`} alt="Slider Image" style={{ width: '100px', height: 'auto' }} />
+                    } else {
+                        return null;
+                    }
+                },
             },
             {
                 accessorKey: 'updated_at',
@@ -100,25 +116,17 @@ const Faq = () => {
                 },
             },
             {
-                accessorKey: 'question',
-                header: 'Question',
+                accessorKey: 'heading',
+                header: 'Heading',
                 size: 200,
             },
             {
-                accessorKey: 'answer',
-                header: 'Answer',
-                size: 200,
-                Cell: ({ row }) => {
-                    <p dangerouslySetInnerHTML={{ __html: row.original.answer }}></p>
-                },
-            },
-            {
-                accessorKey: 'show_visibility',
+                accessorKey: 'availability',
                 header: 'Availablity',
                 size: 50,
                 Cell: ({ row }) => (
                     <div className="custom_checkbox">
-                        <input id={`c${row.index}`} type="checkbox" className="switch" checked={row.original.show_visibility}
+                        <input id={`c${row.index}`} type="checkbox" className="switch" checked={row.original.availability}
                             onChange={() => handleAvailabilityChange(row)} />
                     </div>
                 ),
@@ -129,8 +137,8 @@ const Faq = () => {
                 size: 150,
                 Cell: ({ row }) => (
                     <div>
-                        <Link href={`faq/${row.original.id}`} className='btn rounded btn-primary'><i className="icon-eye"></i></Link>
-                        <Link href={`faq/edit/${row.original.id}`} className='btn rounded btn-info mx-1'><i className="icon-pencil"></i></Link>
+                        <Link href={`slider/${row.original.banner_id}`} className='btn rounded btn-primary'><i className="icon-eye"></i></Link>
+                        <Link href={`slider/edit/${row.original.banner_id}`} className='btn rounded btn-info mx-1'><i className="icon-pencil"></i></Link>
                         <button className='btn rounded btn-danger' onClick={() => handleDeletePopup(row)}><i className="icon-trash"></i></button>
                     </div>
                 ),
@@ -144,7 +152,7 @@ const Faq = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await FetchData({ url: "FAQ/admin", method: "GET", authorization: `Bearer ${token}` });
+                const res = await FetchData({ url: "app/allBanners", method: "GET" });
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');
@@ -153,7 +161,7 @@ const Faq = () => {
                 const result = await res.json();
 
                 // Update the state with result.data
-                setData(result);
+                setData(result.data);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error.message);
@@ -174,13 +182,13 @@ const Faq = () => {
             <div className="row page-titles mx-0">
                 <div className="col-sm-6">
                     <div className="welcome-text">
-                        <h4>All FAQ's</h4>
+                        <h4>All Slider</h4>
                     </div>
                 </div>
                 <div className="col-sm-6 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><Link href="/dashboard/faq">FAQ's</Link></li>
-                        <li className="breadcrumb-item active"><Link href="#">All FAQ's</Link></li>
+                        <li className="breadcrumb-item"><Link href="/dashboard/slider">Slider</Link></li>
+                        <li className="breadcrumb-item active"><Link href="#">All Slider</Link></li>
                     </ol>
                 </div>
             </div>
@@ -189,9 +197,9 @@ const Faq = () => {
                 <div className="col-12">
                     <div className="card">
                         <div className="card-header">
-                            <h4 className="card-title">FAQ's Details Lists</h4>
+                            <h4 className="card-title">Slider Details Lists</h4>
                             <div className="add-new text-right">
-                                <Link href="/dashboard/faq/add" className="btn btn-outline-primary btn-lg btn-rounded mt-1 pl-5 pr-5 add-new">Add New</Link>
+                                <Link href="/dashboard/slider/add" className="btn btn-outline-primary btn-lg btn-rounded mt-1 pl-5 pr-5 add-new">Add New</Link>
                             </div>
                         </div>
 
@@ -211,4 +219,4 @@ const Faq = () => {
     )
 }
 
-export default Faq
+export default Slider
