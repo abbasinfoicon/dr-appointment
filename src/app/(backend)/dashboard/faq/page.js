@@ -48,7 +48,6 @@ const Faq = () => {
     }
 
     const handleAvailabilityChange = async (row) => {
-        console.log("On change all value: ", row);
         const formData = new FormData();
         formData.set('question', row.original.question);
         formData.set('answer', row.original.answer);

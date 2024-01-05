@@ -8,6 +8,7 @@ const LoginLogout = () => {
     const [data, setData] = useState({});
     const [cookies] = useCookies(['access_token']);
     const token = cookies.access_token;
+    const role = cookies.role;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,7 +32,7 @@ const LoginLogout = () => {
     return (
         cookies.access_token ? (
             <li>
-                <Link href='/my-account'>
+                <Link href={`${role === "Admin" || role === "Doctor" ? '/dashboard' : '/my-account'}`}>
                     <i className='fa fa-user'></i> {data.first_name} {data.last_name}
                 </Link>
             </li>

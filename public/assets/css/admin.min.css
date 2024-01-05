@@ -25215,3 +25215,27 @@ div#myModal.show,
 .img-full-gallery img {
   width: auto;
 }
+
+.deznav .metismenu>li>button {
+  color: #fff;
+  position: relative;
+  padding: 0.5rem 1.25rem;
+  text-decoration: none;
+  font-weight: 300;
+  display: inline-block;
+  background: #00719f;
+  border-radius: 25px;
+}
+
+.deznav .metismenu>li>button i {
+  margin-right: 10px;
+}
+
+.deznav .metismenu li:last-child {
+  background: transparent;
+}
+
+.deznav .metismenu>li>button:hover {
+  background: #038fc8;
+  border-color: #007bad;
+}

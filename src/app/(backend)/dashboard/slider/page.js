@@ -48,7 +48,6 @@ const Slider = () => {
     }
 
     const handleAvailabilityChange = async (row) => {
-        console.log("On change all value: ", row);
         const formData = new FormData();
         formData.set('heading', row.original.heading);
         formData.set('description', row.original.description);

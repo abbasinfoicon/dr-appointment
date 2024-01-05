@@ -10364,6 +10364,7 @@ ol.commentlist li .star-rating {
     font-size: 3.75rem;
     color: #fff;
     margin-bottom: 45px;
+    line-height: 1;
 }
 
 @media (max-width: 991px) {
@@ -11351,11 +11352,15 @@ a.bg-primary:hover {
     display: table;
     height: 100vh;
     left: 0;
-    position: absolute;
+    position: relative;
     right: 0;
     top: 0;
     width: 100%;
     z-index: 999;
+}
+
+.dez-login + footer {
+    display: none;
 }
 
 .login-form {

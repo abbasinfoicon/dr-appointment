@@ -1,15 +1,19 @@
 'use client'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
+import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/navigation';
 
 const Sidebar = () => {
+    const [cookies, , removeCookie] = useCookies(['access_token', 'refresh_token', 'role', 'user_id']);
+    const router = useRouter();
     useEffect(() => {
         const menuItems = document.querySelectorAll('.metismenu li');
 
         menuItems.forEach((item) => {
             item.addEventListener('click', function () {
                 this.classList.add('mm-active');
-                
+
                 const siblings = Array.from(this.parentElement.children);
                 siblings.forEach((sibling) => {
                     if (sibling !== this) {
@@ -20,6 +24,14 @@ const Sidebar = () => {
         });
     }, []);
 
+    const removeCookies = () => {
+        removeCookie('access_token');
+        removeCookie('refresh_token');
+        removeCookie('role');
+        removeCookie('user_id');
+
+        router.push("/login");
+    };
 
     return (
         <div className="deznav">
@@ -163,10 +175,11 @@ const Sidebar = () => {
                         <span className="nav-text">Chat</span>
                     </Link>
                     </li>
-                    <li><Link className="ai-icon" href="/login">
-                        <i className="icon-logout"></i>
-                        <span className="nav-text">Logout</span>
-                    </Link>
+                    <li>
+                        <button className="ai-icon" onClick={removeCookies}>
+                            <i className="icon-logout"></i>
+                            <span className="nav-text">Logout</span>
+                        </button>
                     </li>
                 </ul>
             </div>

@@ -46,6 +46,75 @@ export default function Home() {
   const [docData, setDocData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchData = async () => {
+    try {
+      const res = await FetchData({ url: "app/blogs", method: "GET" });
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await res.json();
+      setPosts(data.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(true);
+    }
+  };
+
+  const fatechGallery = async () => {
+    try {
+      const res = await FetchData({ url: "app/allGImages", method: "GET" });
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const result = await res.json();
+      setGallery(result.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+      setLoading(true);
+    }
+  };
+
+  const fetchDoc = async () => {
+    try {
+      const res = await FetchData({ url: "user/doctors", method: "GET" });
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const result = await res.json();
+
+      setDocData(result);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+      setLoading(true);
+    }
+  };
+
+  const fetchSlider = async () => {
+    try {
+      const res = await FetchData({ url: "app/allBanners", method: "GET" });
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const result = await res.json();
+
+      setSlider(result.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // Import and initialize magnific-popup
@@ -58,75 +127,6 @@ export default function Home() {
         });
       });
     }
-
-    const fetchData = async () => {
-      try {
-        const res = await FetchData({ url: "app/blogs", method: "GET" });
-
-        if (!res.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data = await res.json();
-        setPosts(data.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setLoading(true);
-      }
-    };
-
-    const fatechGallery = async () => {
-      try {
-        const res = await FetchData({ url: "app/allGImages", method: "GET" });
-
-        if (!res.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const result = await res.json();
-        setGallery(result.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-        setLoading(true);
-      }
-    };
-
-    const fetchDoc = async () => {
-      try {
-        const res = await FetchData({ url: "user/doctors", method: "GET" });
-
-        if (!res.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const result = await res.json();
-
-        setDocData(result);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-        setLoading(true);
-      }
-    };
-
-    const fetchSlider = async () => {
-      try {
-        const res = await FetchData({ url: "app/allBanners", method: "GET" });
-
-        if (!res.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const result = await res.json();
-
-        setSlider(result.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-        setLoading(false);
-      }
-    };
 
     fetchData();
     fatechGallery();
@@ -415,9 +415,15 @@ export default function Home() {
 
         <div className="clearfix">
           <SlideshowLightbox className="slide__gallery">
-            {
-              gallery.length && gallery.slice(0, 8).map((item, i) => (<img className="lightbox_img" src={`http://172.232.189.142:8000/${item.image}`} alt={item.heading} key={i} />))
-            }
+            {gallery.length > 0 &&
+              gallery.slice(0, 8).map((item, i) => (
+                <img
+                  className="lightbox_img"
+                  src={`http://172.232.189.142:8000/${item?.image || ''}`}
+                  alt={item?.heading || ''}
+                  key={i}
+                />
+              ))}
           </SlideshowLightbox>
         </div>
 
