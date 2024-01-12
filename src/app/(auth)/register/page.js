@@ -52,7 +52,8 @@ const page = () => {
             if (result.status === 201 || res.ok) {
                 setData({ first_name: "", last_name: "", gender: "", phone_no: "", address: "", city: "", state: "", email: "", password: "" });
                 toast.success(result.Message);
-                router.push("/email-verification");
+                router.push("/login");
+                // router.push("/email-verification");
             }
 
         } catch (error) {

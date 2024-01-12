@@ -15301,6 +15301,10 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   background-repeat: no-repeat;
 }
 
+.photo-content .cover-photo.mh-285 {
+  min-height: 285px;
+}
+
 .photo-content .profile-photo {
   bottom: -75px;
   left: 100px;
@@ -17717,7 +17721,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 .widget-timeline {
   position: relative;
-  height: 290px;
+  height: 405px;
   overflow: hidden;
   overflow-y: auto;
 }
@@ -25233,9 +25237,32 @@ div#myModal.show,
 
 .deznav .metismenu li:last-child {
   background: transparent;
+  margin-top: 50px;
+}
+
+.deznav .metismenu li .mm-collapse li:last-child {
+  margin-top: 0;
 }
 
 .deznav .metismenu>li>button:hover {
   background: #038fc8;
   border-color: #007bad;
+}
+
+.eqlHeight img,
+.h-100px {
+  object-fit: cover;
+  height: 100px;
+}
+
+.dez-media.height_eql {
+  height: 440px;
+  overflow: hidden;
+}
+
+.dez-media.height_eql a,
+.dez-media.height_eql a img {
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }

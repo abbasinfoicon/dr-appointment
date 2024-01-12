@@ -14,7 +14,7 @@ const FetchData = async ({ url, method, body, formdata, authorization, contentTy
     }
 
     return (
-        await fetch(`http://172.232.189.142:8000/${url}/`, {
+        await fetch(`${process.env.BASE_URL}/${url}/`, {
             method: method,
             headers: headers,
             body: body ? JSON.stringify(body) : formdata ? formdata : null,

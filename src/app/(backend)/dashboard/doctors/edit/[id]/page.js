@@ -63,7 +63,6 @@ const EditDoctor = (id) => {
 
         try {
             const responseData = await resRegister.json();
-            console.log("ResponseData:", responseData);
 
             if (responseData.status === 400 || responseData.status === 409 || responseData.status === 500 || responseData.status === 415) {
                 toast.error(responseData.error);
@@ -106,8 +105,6 @@ const EditDoctor = (id) => {
         }
 
       }, [token,userId, setCookie]);
-
-      console.log(data,id1);
 
     return (
         <div className="container-fluid">

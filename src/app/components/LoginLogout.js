@@ -1,39 +1,34 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useCookies } from 'react-cookie';
 import Link from 'next/link';
-import FetchData from './FetchData';
+import { useGetAllUserQuery } from '@/redux/slices/serviceApi';
+import Loading from '../loading';
 
 const LoginLogout = () => {
-    const [data, setData] = useState({});
     const [cookies] = useCookies(['access_token']);
     const token = cookies.access_token;
-    const role = cookies.role;
+    const { data = [], isLoading, isFetching, isError } = useGetAllUserQuery(token);
+    const user = data?.data;
+    const role = data?.data?.roles;
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await FetchData({ url: "user/details", method: "GET", authorization: `Bearer ${token}` });
+    if (token) {
+        if (isError) return <p>An error has occurred!</p>
+        if (isLoading) return <Loading />
+        if (isFetching) return <p>Fetching...</p>
 
-                if (!res.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-
-                const result = await res.json();
-                setData(result.data);
-            } catch (error) {
-                console.error('Error fetching data:', error.message);
-            }
-        };
-
-        fetchData();
-    }, [token]);
+        // Handle 403 Forbidden error
+        if (data && data.error && data.error.includes('Invalid token')) {
+            // Display a message or redirect to login page
+            return <p>Invalid token. Please log in again.</p>
+        }
+    }
 
     return (
         cookies.access_token ? (
             <li>
                 <Link href={`${role === "Admin" || role === "Doctor" ? '/dashboard' : '/my-account'}`}>
-                    <i className='fa fa-user'></i> {data.first_name} {data.last_name}
+                    <i className='fa fa-user'></i> {user.first_name} {user.last_name}
                 </Link>
             </li>
         ) : (

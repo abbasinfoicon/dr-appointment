@@ -1,42 +1,18 @@
 'use client'
 import Banner from '@/app/components/Banner';
-import FetchData from '@/app/components/FetchData';
+import Loading from '@/app/loading';
+import { useGetSingleDoctorQuery } from '@/redux/slices/serviceApi';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 const page = () => {
     const pathname = usePathname();
-    const doctorSlug = pathname.replace(/^\/doctor\//, '');
-    const [data, setData] = useState({});
-    const [loading, setLoading] = useState(true);
+    const slug = pathname.replace(/^\/doctor\//, '');
+    const { data = [], isLoading, isFetching, isError } = useGetSingleDoctorQuery(slug)
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await FetchData({ url: `user/doctor/${doctorSlug}`, method: "GET" });
-
-                if (!res.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-
-                const result = await res.json();
-
-                setData(result);
-                setLoading(false);
-            } catch (error) {
-                setLoading(true);
-                console.error('Error fetching data:', error.message);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    console.log("Single Frontend dr.:", data)
+    if (isError) return <p>An error has occurred!</p>
+    if (isLoading) return <Loading />
+    if (isFetching) return <p>Fetching...</p>
 
     return (
         <>

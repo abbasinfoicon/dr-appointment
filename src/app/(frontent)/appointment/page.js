@@ -16,7 +16,6 @@ const Appointment = () => {
                             </div>
                             <div className="col-lg-7 m-b30">
                                 <h3 className="h3 text-uppercase">Make An <span className="text-primary"> Appointment</span></h3>
-                                <p className="m-b10"><strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown...</strong></p>
                                 <p className="m-b30">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
                                 <div className="clearfix bg-primary radius-sm text-white p-a30 about-appoint">
                                     <div className="dzFormMsg"></div>

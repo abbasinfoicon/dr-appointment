@@ -27,7 +27,7 @@ export default function DashboardLayout({ children }) {
         const fetchData = async () => {
             try {
                 const res = await FetchData({ url: "user/details", method: "GET", authorization: `Bearer ${token}` });
-                
+
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');
                 }
@@ -62,11 +62,12 @@ export default function DashboardLayout({ children }) {
                                 <p>Patient Id : {data.id}</p>
                             </div>
                             <ul className="dashboard_menu">
-                                <li><Link className={pathname === '/my-account' ? 'active' : ''} href="/my-account">My Profile</Link></li>
+                                <li><Link className={pathname === '/my-account' || pathname === '/my-account/profile' ? 'active' : ''} href="/my-account">My Profile</Link></li>
                                 <li><Link className={pathname === '/my-account/appointment' ? 'active' : ''} href="/my-account/appointment">Appointment</Link></li>
                                 <li><Link className={pathname === '/my-account/transaction-history' ? 'active' : ''} href="/my-account/transaction-history">Transaction History</Link></li>
                                 <li><Link className={pathname === '/my-account/meeting-history' ? 'active' : ''} href="/my-account/meeting-history">Meeting History</Link></li>
                                 <li><Link className={pathname === '/my-account/upcoming-meeting' ? 'active' : ''} href="/my-account/upcoming-meeting">Upcoming Meeting</Link></li>
+                                <li><Link className={pathname === '/my-account/testimonial' ? 'active' : ''} href="/my-account/testimonial">Testimonial</Link></li>
                                 <li><Link className={pathname === '/my-account/chat' ? 'active' : ''} href="/my-account/chat">Chat</Link></li>
                                 <li><button onClick={removeCookies}>Logout</button></li>
                             </ul>

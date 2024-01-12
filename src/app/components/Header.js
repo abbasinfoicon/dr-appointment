@@ -4,11 +4,15 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import LoginLogout from './LoginLogout';
 import dynamic from "next/dynamic";
+import { useCookies } from 'react-cookie';
 
 const Header = () => {
     const [open, setOpen] = useState(false);
     const [menu, setMenu] = useState(false);
     const pathname = usePathname();
+    const [cookies] = useCookies(['access_token']);
+    const token = cookies.access_token;
+    const role = cookies.role;
 
     useEffect(() => {
         window.onscroll = function () { myFunction() };
@@ -84,21 +88,14 @@ const Header = () => {
                             <ul className="nav navbar-nav align-items-center">
                                 <li className={pathname === '/' ? 'active' : ''}><Link href="/">Home</Link></li>
                                 <li className={pathname === '/about' ? 'active' : ''}><Link href="/about">About</Link></li>
-                                <li className={isSpecialitiesPage ? 'active' : ''}><Link href="/specialities">Specialities <i className="fa fa-chevron-down"></i></Link>
-                                    <ul className="sub-menu">
-                                        <li><Link href="/specialities/emegency-care">Emegency Care</Link></li>
-                                        <li><Link href="/specialities/operation-theater">Operation Theater</Link></li>
-                                        <li><Link href="/specialities/medical-checkup">Medical Checkup</Link></li>
-                                        <li><Link href="/specialities/ddiagnostic-center">Ddiagnostic Center</Link></li>
-                                        <li><Link href="/specialities/outdoor-checkup">Outdoor Checkup</Link></li>
-                                        <li><Link href="/specialities/pharmacy-servicea">Pharmacy Servicea</Link></li>
-                                    </ul>
-                                </li>
+                                <li className={isSpecialitiesPage ? 'active' : ''}><Link href="/specialities">Specialities</Link></li>
                                 <li className={pathname === '/facilities' ? 'active' : ''}><Link href="/facilities">Facilities</Link></li>
                                 <li className={isBlogPage ? 'active' : ''}><Link href="/blog">Blog</Link></li>
                                 <li className={pathname === '/gallery' ? 'active' : ''}><Link href="/gallery">Gallery</Link></li>
                                 <li className={pathname === '/contact' ? 'active' : ''}><Link href="/contact">Contact</Link></li>
-                                <li className="btn btn-appointment"><Link href="/appointment">Appointment</Link></li>
+                                
+                                {role == "Patient" ? <li className="btn btn-appointment"><Link href={token ? "/appointment" : "/login"}>Appointment</Link></li> : null}
+
                             </ul>
                         </div>
                     </div>

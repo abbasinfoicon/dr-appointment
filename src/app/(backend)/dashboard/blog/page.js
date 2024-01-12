@@ -1,37 +1,9 @@
 'use client'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie';
+import React from 'react'
 import BlogList from './BlogList';
-import FetchData from '@/app/components/FetchData';
 
 const Blog = () => {
-  const [data, setData] = useState([]);
-  const [cookies] = useCookies(['access_token']);
-  const token = cookies.access_token;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await FetchData({ url: "app/all_blogs", method: "GET", authorization: `Bearer ${token}` });      
-
-        if (!res.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const result = await res.json();
-        setData(result.data);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-      }
-    };
-
-    fetchData();
-  }, [token]);
-
-  if (!data) {
-    return <div>Loading...</div>; // Add a loading indicator while data is being fetched
-  }
 
   return (
     <div className="container-fluid">

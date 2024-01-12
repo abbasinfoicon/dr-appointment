@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 import Link from 'next/link';
 import DeleteModal from './DeleteModal';
 import FetchData from '@/app/components/FetchData';
+import Loading from '@/app/loading';
 
 const BlogList = () => {
     const [data, setData] = useState([]);
@@ -75,7 +76,7 @@ const BlogList = () => {
                 size: 100,
                 Cell: ({ row }) => {
                     if (row.original.blog_image) {
-                        return <img src={`http://172.232.189.142:8000/${row.original.blog_image}`} alt="Blog Image" style={{ width: '100px', height: 'auto' }} />
+                        return <img src={process.env.BASE_URL + row.original.blog_image} alt="Blog Image" style={{ width: '100px', height: 'auto' }} />
                     } else {
                         return null;
                     }
@@ -157,13 +158,13 @@ const BlogList = () => {
     }, [token, deleteContent]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     return (
         <>
             {loading ? (
-                <div>Loading...</div>
+                <Loading />
             ) : (
                 <MaterialReactTable table={table} />
             )}

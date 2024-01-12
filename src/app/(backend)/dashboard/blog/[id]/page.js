@@ -77,9 +77,9 @@ const BlogDetail = () => {
           <div className="profile">
             <div className="profile-head">
               <div className="photo-content">
-                <div className="cover-photo" style={{ backgroundImage: `url(http://172.232.189.142:8000/${data.blog_image})` }}></div>
+                <div className="cover-photo" style={{ backgroundImage: `url(${process.env.BASE_URL + data.blog_image})` }}></div>
                 <div className="profile-photo">
-                  <img src={`http://172.232.189.142:8000/${data.blog_image}`} className="img-fluid rounded-circle" alt="" />
+                  <img src={process.env.BASE_URL + data.blog_image} className="img-fluid rounded-circle" alt="" />
                 </div>
               </div>
               <div className="profile-info">

@@ -1,5 +1,6 @@
 'use client'
 import FetchData from '@/app/components/FetchData';
+import Loading from '@/app/loading';
 import Link from 'next/link'
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -43,7 +44,7 @@ const GalleryDetail = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
@@ -66,7 +67,7 @@ const GalleryDetail = () => {
         <div className="col-md-12">
           <div className="card mb-3">
             <div className="img-full-gallery">
-              <img className="card-img-top img-fluid" src={`http://172.232.189.142:8000/${data.image}`} alt={data.heading} />
+              <img className="card-img-top img-fluid" src={process.env.BASE_URL + data.image} alt={data.heading} />
             </div>
 
             <div className="card-header">

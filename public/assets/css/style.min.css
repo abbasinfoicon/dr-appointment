@@ -11359,7 +11359,7 @@ a.bg-primary:hover {
     z-index: 999;
 }
 
-.dez-login + footer {
+.dez-login+footer {
     display: none;
 }
 
@@ -15110,7 +15110,9 @@ pre {
 
 .dashboard_profile a:hover {
     background: var(--maindark);
+    color: #fff;
 }
+
 
 .dashboard_profile ul li {
     font-size: 16px;
@@ -15531,4 +15533,50 @@ button {
     -webkit-box-orient: vertical;
     overflow: hidden;
     min-height: 44px;
+}
+
+/* PULSE BUBBLES */
+.spinner-box {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pulse-container {
+    width: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pulse-bubble {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #13aeed;
+}
+
+.pulse-bubble-1 {
+    animation: pulse .4s ease 0s infinite alternate;
+}
+
+.pulse-bubble-2 {
+    animation: pulse .4s ease .2s infinite alternate;
+}
+
+.pulse-bubble-3 {
+    animation: pulse .4s ease .4s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: .25;
+        transform: scale(.75);
+    }
 }

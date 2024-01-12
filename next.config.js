@@ -13,6 +13,9 @@ const nextConfig = {
 
         return config;
     },
+    env: {
+        BASE_URL: 'http://172.232.189.142:8000',
+    },
 };
 
 module.exports = nextConfig

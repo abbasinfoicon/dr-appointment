@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 const Sidebar = () => {
     const [cookies, , removeCookie] = useCookies(['access_token', 'refresh_token', 'role', 'user_id']);
     const router = useRouter();
+    const role = cookies.role;
+
     useEffect(() => {
         const menuItems = document.querySelectorAll('.metismenu li');
 
@@ -33,6 +35,7 @@ const Sidebar = () => {
         router.push("/login");
     };
 
+
     return (
         <div className="deznav">
             <div className="deznav-scroll">
@@ -43,15 +46,20 @@ const Sidebar = () => {
                         <span className="nav-text">Dashboard</span>
                     </Link>
                     </li>
-                    <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-user"></i>
-                        <span className="nav-text">Doctors</span>
-                    </Link>
-                        <ul className="mm-collapse">
-                            <li><Link href="/dashboard/doctors">All Doctors</Link></li>
-                            <li><Link href="/dashboard/doctors/add-doctor">Add Doctor</Link></li>
-                        </ul>
-                    </li>
+
+                    {role === 'Admin' && (
+                        <li>
+                            <Link className="has-arrow ai-icon" href="#">
+                                <i className="icon-user"></i>
+                                <span className="nav-text">Doctors</span>
+                            </Link>
+                            <ul className="mm-collapse">
+                                <li><Link href="/dashboard/doctors">All Doctors</Link></li>
+                                <li><Link href="/dashboard/doctors/add-doctor">Add Doctor</Link></li>
+                            </ul>
+                        </li>
+                    )}
+
                     <li><Link className="has-arrow ai-icon" href="#">
                         <i className="icon-people"></i>
                         <span className="nav-text">Patients</span>
@@ -73,36 +81,45 @@ const Sidebar = () => {
                             <li><Link href="/dashboard/book-appointment">Book Appointment</Link></li>
                         </ul>
                     </li>
-                    <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-chemistry"></i>
-                        <span className="nav-text">Specialities</span>
-                    </Link>
-                        <ul className="mm-collapse">
-                            <li><Link href="/dashboard/specialities">All Specialities</Link></li>
-                            <li><Link href="/dashboard/specialities/add">Add Specialities</Link></li>
-                        </ul>
-                    </li>
-                    <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-briefcase"></i>
-                        <span className="nav-text">Career</span>
-                    </Link>
-                        <ul className="mm-collapse">
-                            <li><Link href="/dashboard/job">All Jobs</Link></li>
-                            <li><Link href="/dashboard/job/add-job">Add Job</Link></li>
-                        </ul>
-                    </li>
+
+                    {role === 'Admin' && (
+                        <li><Link className="has-arrow ai-icon" href="#">
+                            <i className="icon-chemistry"></i>
+                            <span className="nav-text">Specialities</span>
+                        </Link>
+                            <ul className="mm-collapse">
+                                <li><Link href="/dashboard/specialities">All Specialities</Link></li>
+                                <li><Link href="/dashboard/specialities/add">Add Specialities</Link></li>
+                            </ul>
+                        </li>
+                    )}
+
+                    {role === 'Admin' && (
+                        <li><Link className="has-arrow ai-icon" href="#">
+                            <i className="icon-briefcase"></i>
+                            <span className="nav-text">Career</span>
+                        </Link>
+                            <ul className="mm-collapse">
+                                <li><Link href="/dashboard/job">All Jobs</Link></li>
+                                <li><Link href="/dashboard/job/add">Add Job</Link></li>
+                            </ul>
+                        </li>
+                    )}
 
                     <li className="nav-label">Media</li>
 
-                    <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-film"></i>
-                        <span className="nav-text">Slider</span>
-                    </Link>
-                        <ul className="mm-collapse">
-                            <li><Link href="/dashboard/slider">All Slider</Link></li>
-                            <li><Link href="/dashboard/slider/add">Add Slider</Link></li>
-                        </ul>
-                    </li>
+                    {role === 'Admin' && (
+                        <li><Link className="has-arrow ai-icon" href="#">
+                            <i className="icon-film"></i>
+                            <span className="nav-text">Slider</span>
+                        </Link>
+                            <ul className="mm-collapse">
+                                <li><Link href="/dashboard/slider">All Slider</Link></li>
+                                <li><Link href="/dashboard/slider/add">Add Slider</Link></li>
+                            </ul>
+                        </li>
+                    )}
+
                     <li><Link className="has-arrow ai-icon" href="#">
                         <i className="icon-note"></i>
                         <span className="nav-text">Blog</span>
@@ -112,69 +129,78 @@ const Sidebar = () => {
                             <li><Link href="/dashboard/blog/add-blog">Add Blog</Link></li>
                         </ul>
                     </li>
-                    <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-picture"></i>
-                        <span className="nav-text">Gallery</span>
-                    </Link>
-                        <ul className="mm-collapse">
-                            <li><Link href="/dashboard/gallery">All Gallery</Link></li>
-                            <li><Link href="/dashboard/gallery/add-img">Add Image</Link></li>
-                        </ul>
-                    </li>
-                    <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-support"></i>
-                        <span className="nav-text">Support</span>
-                    </Link>
-                        <ul className="mm-collapse">
-                            <li><Link href="/dashboard/faq">FAQ</Link></li>
-                            <li><Link href="/dashboard/contact">Contact us</Link></li>
-                            <li><Link href="/dashboard/privacy-policy">Privacy Policy</Link></li>
-                            <li><Link href="/dashboard/help-center">Help center</Link></li>
-                        </ul>
-                    </li>
-                    <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-bubbles"></i>
-                        <span className="nav-text">Testimonial</span>
-                    </Link>
-                        <ul className="mm-collapse">
-                            <li><Link href="/dashboard/testimonial">All Testimonial</Link></li>
-                            <li><Link href="/dashboard/testimonial/add-testimonial">Add Testimonial</Link></li>
-                        </ul>
-                    </li>
+
+                    {role === 'Admin' && (
+                        <li><Link className="has-arrow ai-icon" href="#">
+                            <i className="icon-picture"></i>
+                            <span className="nav-text">Gallery</span>
+                        </Link>
+                            <ul className="mm-collapse">
+                                <li><Link href="/dashboard/gallery">All Gallery</Link></li>
+                                <li><Link href="/dashboard/gallery/add-img">Add Image</Link></li>
+                            </ul>
+                        </li>
+                    )}
+
+                    {role === 'Admin' && (
+                        <li><Link className="has-arrow ai-icon" href="#">
+                            <i className="icon-support"></i>
+                            <span className="nav-text">Support</span>
+                        </Link>
+                            <ul className="mm-collapse">
+                                <li><Link href="/dashboard/faq">FAQ</Link></li>
+                                <li><Link href="/dashboard/contact">Contact us</Link></li>
+                                <li><Link href="/dashboard/privacy-policy">Privacy Policy</Link></li>
+                                <li><Link href="/dashboard/help-center">Help center</Link></li>
+                            </ul>
+                        </li>
+                    )}
+
+                    {role === 'Admin' && (
+                        <li><Link className="has-arrow ai-icon" href="#">
+                            <i className="icon-bubbles"></i>
+                            <span className="nav-text">Testimonial</span>
+                        </Link>
+                            <ul className="mm-collapse">
+                                <li><Link href="/dashboard/testimonial">All Testimonial</Link></li>
+                                <li><Link href="/dashboard/testimonial/add">Add Testimonial</Link></li>
+                            </ul>
+                        </li>
+                    )}
 
                     <li className="nav-label">Extra App</li>
 
+                    {role === 'Admin' && (
+                        <li><Link className="has-arrow ai-icon" href="#">
+                            <i className="icon-paypal"></i>
+                            <span className="nav-text">Billing</span>
+                        </Link>
+                            <ul className="mm-collapse">
+                                <li><Link href="/dashboard/payments">Payments</Link></li>
+                                <li><Link href="/dashboard/add-payment">Add Payment</Link></li>
+                                <li><Link href="/dashboard/patient-invoice">Patient Invoice</Link></li>
+                            </ul>
+                        </li>
+                    )}
+
                     <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-paypal"></i>
-                        <span className="nav-text">Billing</span>
+                        <i className="icon-settings"></i>
+                        <span className="nav-text">Setting</span>
                     </Link>
                         <ul className="mm-collapse">
-                            <li><Link href="/dashboard/payments">Payments</Link></li>
-                            <li><Link href="/dashboard/add-payment">Add Payment</Link></li>
-                            <li><Link href="/dashboard/patient-invoice">Patient Invoice</Link></li>
-                        </ul>
-                    </li>
-                    <li><Link className="has-arrow ai-icon" href="#">
-                        <i className="icon-envelope-open"></i>
-                        <span className="nav-text">Apps</span>
-                    </Link>
-                        <ul className="mm-collapse">
-                            <li><Link href="/dashboard/app-profile">Profile</Link></li>
-                            <li><Link className="has-arrow" href="#">Email</Link>
-                                <ul className="mm-collapse">
-                                    <li><Link href="/dashboard/email-compose">Compose</Link></li>
-                                    <li><Link href="/dashboard/email-inbox">Inbox</Link></li>
-                                    <li><Link href="/dashboard/email-read">Read</Link></li>
-                                </ul>
-                            </li>
+                            <li><Link href="/dashboard/profile">Profile</Link></li>
+                            <li><Link href="/dashboard/change-password">Change Password</Link></li>
                             <li><Link href="/dashboard/app-calender">Calendar</Link></li>
+                            <li><Link href="/dashboard/lock-screen">Lock Screen</Link></li>
                         </ul>
                     </li>
+
                     <li><Link className="ai-icon" href="/login">
                         <i className="icon-speech"></i>
                         <span className="nav-text">Chat</span>
                     </Link>
                     </li>
+
                     <li>
                         <button className="ai-icon" onClick={removeCookies}>
                             <i className="icon-logout"></i>

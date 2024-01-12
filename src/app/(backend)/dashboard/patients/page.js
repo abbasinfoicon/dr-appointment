@@ -4,6 +4,7 @@ import Link from 'next/link'
 import DeleteModal from './DeleteModal';
 import FetchData from '@/app/components/FetchData';
 import { useCookies } from 'react-cookie';
+import Loading from '@/app/loading';
 
 const Patients = () => {
   const [data, setData] = useState({});
@@ -59,7 +60,7 @@ const Patients = () => {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
@@ -81,13 +82,11 @@ const Patients = () => {
       <div className="row page-titles mx-0 justify-content-between">
         <div className="col-sm-3">
           <div className="form-search">
-            <div className="form-search">
-              <form onSubmit={(e) => { e.preventDefault(); }}>
-                <input id="" className="form-control" placeholder="Search Patient..." type="search" name=""
-                  value={filters.search}
-                  onChange={(e) => setFilters({ ...filters, search: e.target.value })} />
-                <button className="search-btn"><i className="mdi mdi-magnify"></i></button></form>
-            </div>
+            <form onSubmit={(e) => { e.preventDefault(); }}>
+              <input id="" className="form-control" placeholder="Search Patient..." type="search" name=""
+                value={filters.search}
+                onChange={(e) => setFilters({ ...filters, search: e.target.value })} />
+              <button className="search-btn"><i className="mdi mdi-magnify"></i></button></form>
           </div>
         </div>
 
@@ -105,9 +104,9 @@ const Patients = () => {
               return (
                 <div className="col-xl-3 col-lg-3 col-md-6" key={index}>
                   <div className="card">
-                    <div className="text-center py-4 px-5 overlay-box" style={{ backgroundImage: 'url(./asset/images/big/img1.jpg)' }}>
+                    <div className="text-center py-4 px-5 overlay-box" style={{ backgroundImage: 'url(/assets/images/big/img1.jpg)' }}>
                       <div className="profile-photo">
-                        <img src={`/assets/images/patients/patient${item.gender === "Male" ? "1" : "2"}.png`} width="100" className="img-fluid rounded-circle" alt="" />
+                        <img src={`/assets/images/patients/patient${item.gender === "Male" ? "2" : "1"}.png`} width="100" className="img-fluid rounded-circle" alt="" />
                       </div>
 
                       <h3 className="mt-3 mb-1 text-white">{item.first_name} {item.last_name}</h3>
@@ -138,7 +137,7 @@ const Patients = () => {
                 </div>
               );
             })
-            : <p>No matching media found</p>
+            : <p>No data found</p>
         }
 
 

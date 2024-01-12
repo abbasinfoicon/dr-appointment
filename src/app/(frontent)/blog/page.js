@@ -14,7 +14,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await FetchData({ url: "app/blogs", method: "GET" }); 
+        const res = await FetchData({ url: "app/blogs", method: "GET" });
 
         if (!res.ok) {
           throw new Error('Failed to fetch data');
@@ -49,7 +49,7 @@ const Blog = () => {
                   currentPosts.map((item) => (
                     <div className="blog-post blog-lg date-style-2" key={item.blog_id}>
                       <div className="dez-post-media dez-img-effect zoom-slow">
-                        <Link href={`/blog/${item.blog_id}`}><img src={`http://172.232.189.142:8000/${item.blog_image}`} alt={item.title} /></Link>
+                        <Link href={`/blog/${item.blog_id}`}><img src={process.env.BASE_URL + item.blog_image} alt={item.title} /></Link>
                       </div>
 
                       <div className="dez-post-info">
@@ -79,7 +79,7 @@ const Blog = () => {
                       </div>
                     </div>
                   ))
-                  : <p>Loading...</p>
+                  : <p>No data available!!!</p>
               }
 
               {currentPosts.length ?

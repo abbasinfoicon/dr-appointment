@@ -5,6 +5,7 @@ import { MaterialReactTable, useMaterialReactTable, } from 'material-react-table
 import { useCookies } from 'react-cookie';
 import DeleteModal from './DeleteModal';
 import FetchData from '@/app/components/FetchData';
+import Loading from '@/app/loading';
 
 const Testimonial = () => {
   const [data, setData] = useState([]);
@@ -42,26 +43,26 @@ const Testimonial = () => {
 
   const handleDeletePopup = (row) => {
     setDeleteContent(!deleteContent);
-    setDeleteId(row.original.blog_id);
+    setDeleteId(row.original.id);
   }
 
-  const handleCheckboxChange = async (row) => {
-    console.log('Checkbox changed for blog_id:', row.original.blog_id);
+  const handleAvailabilityChange = async (row) => {
+    // console.log("handleAvailabilityChange", row.original.id)
   };
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: 'blog_id',
-        header: 'Blog Id',
+        accessorKey: 'id',
+        header: '#Id',
         size: 50,
       },
       {
-        accessorKey: 'created_at',
+        accessorKey: 'updated_at',
         header: 'Date',
         size: 100,
         Cell: ({ row }) => {
-          const { formattedDate, formattedTime } = formatDate(row.original.created_at);
+          const { formattedDate, formattedTime } = formatDate(row.original.updated_at);
           return (
             <span>
               {formattedDate} <br /> {formattedTime}
@@ -70,47 +71,31 @@ const Testimonial = () => {
         },
       },
       {
-        accessorKey: 'blog_image',
-        header: 'Image',
-        size: 100,
-        Cell: ({ row }) => {
-          if (row.original.blog_image) {
-            return <img src={`http://172.232.189.142:8000/${row.original.blog_image}`} alt="Blog Image" style={{ width: '100px', height: 'auto' }} />
-          } else {
-            return null;
-          }
-        },
-      },
-      {
-        accessorKey: 'title',
-        header: 'Title',
-        size: 150,
-      },
-      {
-        accessorKey: 'subTitle',
-        header: 'Sub Title',
-        size: 150,
-      },
-      {
-        accessorKey: 'created_by.first_name',
-        header: 'Created By',
+        accessorKey: 'user.first_name',
+        header: 'Name',
         size: 100,
       },
       {
-        accessorKey: 'approved',
-        header: 'Status',
-        size: 100,
+        accessorKey: 'comment',
+        header: 'Review',
+        size: 300,
         Cell: ({ row }) => (
-          <span className={`alert-custom alert ${row.original.approved === 'Pending' ? 'alert-warning' : row.original.approved === 'Unapproved' ? 'alert-danger' : 'alert-success'}`} >{row.original.approved}</span>
+          <p dangerouslySetInnerHTML={{ __html: row.original.comment }}></p>
         ),
       },
       {
-        accessorKey: 'availablity',
-        header: 'Availablity',
-        size: 100,
+        accessorKey: 'star',
+        header: 'Rating',
+        size: 50,
+      },
+      {
+        accessorKey: 'hidden',
+        header: 'Hidden',
+        size: 50,
         Cell: ({ row }) => (
           <div className="custom_checkbox">
-            <input id={`c${row.index}`} type="checkbox" className="switch" checked={row.original.availablity} onChange={() => handleCheckboxChange(row)} disabled={row.original.approved === 'Approved' ? false : true} />
+            <input id={`c${row.index}`} type="checkbox" className="switch" checked={row.original.hidden}
+              onChange={() => handleAvailabilityChange(row)} />
           </div>
         ),
       },
@@ -120,8 +105,8 @@ const Testimonial = () => {
         size: 150,
         Cell: ({ row }) => (
           <div>
-            <Link href={`blog/${row.original.blog_id}`} className='btn rounded btn-primary'><i className="icon-eye"></i></Link>
-            <Link href={`blog/edit/${row.original.blog_id}`} className='btn rounded btn-info mx-1'><i className="icon-pencil"></i></Link>
+            <Link href={`testimonial/${row.original.id}`} className='btn rounded btn-primary'><i className="icon-eye"></i></Link>
+            <Link href={`testimonial/edit/${row.original.id}`} className='btn rounded btn-info mx-1'><i className="icon-pencil"></i></Link>
             <button className='btn rounded btn-danger' onClick={() => handleDeletePopup(row)}><i className="icon-trash"></i></button>
           </div>
         ),
@@ -135,7 +120,7 @@ const Testimonial = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await FetchData({ url: "app/all_blogs", method: "GET", authorization: `Bearer ${token}` });
+        const res = await FetchData({ url: "app/allRating", method: "GET", authorization: `Bearer ${token}` });
 
         if (!res.ok) {
           throw new Error('Failed to fetch data');
@@ -157,7 +142,7 @@ const Testimonial = () => {
   }, [token, deleteContent]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
@@ -182,13 +167,13 @@ const Testimonial = () => {
             <div className="card-header">
               <h4 className="card-title">Testimonial Details Lists</h4>
               <div className="add-new text-right">
-                <Link href="/dashboard/testimonial/add-testimonial" className="btn btn-outline-primary btn-lg btn-rounded mt-1 pl-5 pr-5 add-new">Add New</Link>
+                <Link href="/dashboard/testimonial/add" className="btn btn-outline-primary btn-lg btn-rounded mt-1 pl-5 pr-5 add-new">Add New</Link>
               </div>
             </div>
 
             <div className='card-body'>
               {loading ? (
-                <div>Loading...</div>
+                <Loading />
               ) : (
                 <MaterialReactTable table={table} />
               )}

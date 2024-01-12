@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 import DeleteModal from './DeleteModal';
 import FetchData from '@/app/components/FetchData';
 import { toast } from 'react-toastify';
+import Loading from '@/app/loading';
 
 const Slider = () => {
     const [data, setData] = useState([]);
@@ -95,7 +96,7 @@ const Slider = () => {
                 size: 100,
                 Cell: ({ row }) => {
                     if (row.original.image) {
-                        return <img src={`http://172.232.189.142:8000/${row.original.image}`} alt="Slider Image" style={{ width: '100px', height: 'auto' }} />
+                        return <img src={process.env.BASE_URL + row.original.image} alt="Slider Image" style={{ width: '100px', height: 'auto' }} />
                     } else {
                         return null;
                     }
@@ -173,7 +174,7 @@ const Slider = () => {
     }, [token, deleteContent, updateAvailability]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     return (
@@ -204,7 +205,7 @@ const Slider = () => {
 
                         <div className='card-body'>
                             {loading ? (
-                                <div>Loading...</div>
+                                <Loading />
                             ) : (
                                 <MaterialReactTable table={table} />
                             )}

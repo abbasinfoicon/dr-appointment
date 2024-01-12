@@ -151,7 +151,7 @@ const Edit = () => {
 
                                     <div className="col-md-5">
                                         <div className="form-group">
-                                            <img src={`http://172.232.189.142:8000/${data.blog_image}`} alt="" className="img-fluid" />
+                                            <img src={process.env.BASE_URL + data.blog_image} alt="" className="img-fluid" />
                                         </div>
                                     </div>
                                 </div>

@@ -14,22 +14,22 @@ const DeleteModal = ({ did, dc, setdc }) => {
         try {
             const idToDelete = did;
             if (!idToDelete) {
-                throw new Error('No blog ID to delete');
+                throw new Error('No testimonial ID to delete');
             }
 
-            const resDel = await FetchData({ url: `app/delete_blog/${did}`, method: "DELETE", authorization: `Bearer ${token}` });
+            const resDel = await FetchData({ url: `app/deleteRating/${did}`, method: "DELETE", authorization: `Bearer ${token}` });
 
             if (!resDel.ok) {
-                throw new Error('Failed to delete blog');
+                throw new Error('Failed to delete testimonial');
             }
 
-            toast.success("Blog Deleted");
+            toast.success("testimonial Deleted");
             setdc(false);
 
-            router.push('/dashboard/blog');
+            router.push('/dashboard/testimonial');
         } catch (error) {
-            console.error("Error deleting blog:", error);
-            toast.error("Failed to delete blog");
+            console.error("Error deleting testimonial:", error);
+            toast.error("Failed to delete testimonial");
         }
     };
 

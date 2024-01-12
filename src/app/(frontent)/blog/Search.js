@@ -10,7 +10,7 @@ const Search = () => {
         e.preventDefault();
 
         try {
-            const apiUrl = `http://172.232.189.142:8000/app/blogs/?search=${searchText}`;
+            const apiUrl = `${process.env.BASE_URL}/app/blogs/?search=${searchText}`;
             const res = await fetch(apiUrl);
 
             if (!res.ok) {

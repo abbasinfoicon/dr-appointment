@@ -1,11 +1,30 @@
 'use client'
+import Loading from '@/app/loading';
+import { useGetAllDoctorQuery, useGetAllUserQuery } from '@/redux/slices/serviceApi';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import { useCookies } from 'react-cookie';
 
 const Header = () => {
+    const [cookies, , removeCookie] = useCookies(['access_token']);
+    const token = cookies.access_token;
+    const router = useRouter();
+    const role = cookies.role;
+
+    const { data = [], isLoading, isFetching, isError } = useGetAllUserQuery(token);
+    const user = data.data;
+
+    const doctor = useGetAllDoctorQuery();
+    const docList = doctor?.data;
+
     const [isActive, setIsActive] = useState(false);
     const [openNote, setOpenNote] = useState(false);
     const [showUser, setShowUser] = useState(false);
+
+    if (isError) return <p>An error has occurred!</p>
+    if (isLoading) return <Loading />
+    if (isFetching) return <p>Fetching...</p>
 
     const hamburgerToggle = () => {
         setIsActive(!isActive);
@@ -22,6 +41,15 @@ const Header = () => {
         setOpenNote(false);
     }
 
+
+    const removeCookies = () => {
+        removeCookie('access_token');
+        removeCookie('refresh_token');
+        removeCookie('role');
+        removeCookie('user_id');
+
+        router.push("/login");
+    };
     return (
         <>
             <div className="nav-header">
@@ -118,12 +146,12 @@ const Header = () => {
                                     </div>
                                 </li>
                                 <li className={`nav-item dropdown header-profile ${showUser ? 'show' : ''}`}>
-                                    <Link className="nav-link" href="#" onClick={openUser}>
-                                        <img src="/assets/images/profile/pic1.jpg" width="20" alt="" />
+                                    <Link className="nav-link text-light" href="#" onClick={openUser}>
+                                        {user.first_name} {user.last_name} <img src="/assets/images/profile/admin.jpg" width="20" alt="" />
                                     </Link>
 
                                     <div className="dropdown-menu dropdown-menu-right">
-                                        <Link href="#" className="dropdown-item ai-icon">
+                                        <Link href="/dashboard/profile" className="dropdown-item ai-icon">
                                             <i className="icon-user"></i>
                                             <span className="ml-2">Profile </span>
                                         </Link>
@@ -131,10 +159,10 @@ const Header = () => {
                                             <i className="icon-envelope-open"></i>
                                             <span className="ml-2">Inbox </span>
                                         </Link>
-                                        <Link href="#" className="dropdown-item ai-icon">
+                                        <button className="dropdown-item ai-icon" onClick={removeCookies}>
                                             <i className="icon-logout"></i>
                                             <span className="ml-2">Logout </span>
-                                        </Link>
+                                        </button>
                                     </div>
                                 </li>
                             </ul>

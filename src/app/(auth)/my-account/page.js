@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import Link from 'next/link';
 import FetchData from '@/app/components/FetchData';
+import Loading from '@/app/loading';
 
 const MyAccount = () => {
     const [data, setData] = useState({});
@@ -29,7 +30,7 @@ const MyAccount = () => {
     }, [token]);
 
     if (!data) {
-        return <div>Loading...</div>; // Add a loading indicator while data is being fetched
+        return <Loading />; // Add a loading indicator while data is being fetched
     }
 
     return (
@@ -60,7 +61,7 @@ const MyAccount = () => {
                         <div className="icon"><i className="fa fa-file-text-o" aria-hidden="true"></i></div>
                         <div className="text">
                             <p>Pending Appointment</p>
-                            <h3>35</h3>
+                            <h3>0</h3>
                         </div>
                     </div>
                 </div>

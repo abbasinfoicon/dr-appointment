@@ -13,7 +13,7 @@ const BlogDetails = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await FetchData({ url: `app/blog/${id}`, method: "POST" });                 
+                const res = await FetchData({ url: `app/blog/${id}`, method: "POST" });
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');
@@ -66,7 +66,7 @@ const BlogDetails = () => {
                                         <li className="post-comment"><i className="fa fa-comments"></i> <a href="#">{data.blog_id} Comments</a> </li>
                                     </ul>
                                 </div>
-                                <div className="dez-post-media dez-img-effect zoom-slow"> <a href="#"><img src={`http://172.232.189.142:8000/${data.blog_image}`} alt="" /></a> </div>
+                                <div className="dez-post-media dez-img-effect zoom-slow"> <a href="#"><img src={process.env.BASE_URL + data.blog_image} alt="" /></a> </div>
                                 <div className="dez-post-text" dangerouslySetInnerHTML={{ __html: data.description }}></div>
                             </div>
 

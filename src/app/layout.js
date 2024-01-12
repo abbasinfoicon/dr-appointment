@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ScrollTop from "./components/ScrollTop";
 import { ToastContainer } from 'react-toastify';
+import { ProviderRedux } from '@/redux/provider';
 
 const open_sans = Open_Sans({ subsets: ['latin'] })
 
@@ -38,9 +39,11 @@ export default function RootLayout({ children }) {
       <body className={open_sans.className}>
         <ToastContainer />
         <ScrollTop />
-        <Header />
-        {children}
-        <Footer />
+        <ProviderRedux>
+          <Header />
+          {children}
+          <Footer />
+        </ProviderRedux>
       </body>
     </html>
   )

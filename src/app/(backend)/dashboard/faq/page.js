@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 import DeleteModal from './DeleteModal';
 import FetchData from '@/app/components/FetchData';
 import { toast } from 'react-toastify';
+import Loading from '@/app/loading';
 
 const Faq = () => {
     const [data, setData] = useState([]);
@@ -165,7 +166,7 @@ const Faq = () => {
     }, [token, deleteContent, updateAvailability]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     return (
@@ -196,7 +197,7 @@ const Faq = () => {
 
                         <div className='card-body'>
                             {loading ? (
-                                <div>Loading...</div>
+                                <Loading />
                             ) : (
                                 <MaterialReactTable table={table} />
                             )}

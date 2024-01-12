@@ -106,7 +106,7 @@ const EditImg = () => {
                   <input type="text" name='heading' value={data.heading} onChange={handleChange} className="form-control" placeholder="Enter Heading" />
                 </div>
 
-                <img src={`http://172.232.189.142:8000/${data.image}`} alt="" className="img-fluid mb-3" />
+                <img src={process.env.BASE_URL + data.image} alt="" className="img-fluid mb-3" />
 
                 <div className="form-group">
                   <label className="form-label" >Upload Image</label>

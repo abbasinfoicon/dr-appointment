@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import DeleteModal from './DeleteModal';
 import FetchData from '@/app/components/FetchData';
+import Loading from '@/app/loading';
 
 const Gallery = () => {
   const [data, setData] = useState([]);
@@ -74,7 +75,7 @@ const Gallery = () => {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
@@ -119,7 +120,7 @@ const Gallery = () => {
                 <div className="col-md-3" key={index}>
                   <div className="card mb-3">
                     <div className="img-gallery">
-                      <img className="card-img-top img-fluid" src={`http://172.232.189.142:8000/${item.image}`} alt={item.heading} />
+                      <img className="card-img-top img-fluid" src={process.env.BASE_URL + item.image} alt={item.heading} />
                     </div>
                     <div className="card-header">
                       <h5 className="card-title">{item.heading}</h5>

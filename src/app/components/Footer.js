@@ -51,12 +51,12 @@ const Footer = () => {
                                 <h4 className="m-b15 text-uppercase">Our services</h4>
                                 <div className="dez-separator bg-primary"></div>
                                 <ul>
-                                    <li><Link href="/specialities/emegency-care">Emegency Care</Link></li>
-                                    <li><Link href="/specialities/operation-theater">Operation Theater</Link></li>
-                                    <li><Link href="/specialities/medical-checkup">Medical Checkup</Link></li>
-                                    <li><Link href="/specialities/ddiagnostic-center">Ddiagnostic Center</Link></li>
-                                    <li><Link href="/specialities/outdoor-checkup">Outdoor Checkup</Link></li>
-                                    <li><Link href="/specialities/pharmacy-servicea">Pharmacy Servicea</Link></li>
+                                    <li><Link href="/specialities">Emegency Care</Link></li>
+                                    <li><Link href="/specialities">Operation Theater</Link></li>
+                                    <li><Link href="/specialities">Medical Checkup</Link></li>
+                                    <li><Link href="/specialities">Ddiagnostic Center</Link></li>
+                                    <li><Link href="/specialities">Outdoor Checkup</Link></li>
+                                    <li><Link href="/specialities">Pharmacy Servicea</Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -81,10 +81,10 @@ const Footer = () => {
                                         posts && posts.length ?
                                             reversedArray.slice(0, 9).map((item) => {
                                                 return (
-                                                    <li className="img-effect2" key={item.blog_id}> <Link href={`/blog/${item.blog_id}`}><img src={`http://172.232.189.142:8000/${item.blog_image}`} alt={item.title} /></Link> </li>
+                                                    <li className="img-effect2" key={item.blog_id}> <Link href={`/blog/${item.blog_id}`}><img src={process.env.BASE_URL + item.blog_image} alt={item.title} /></Link> </li>
                                                 )
                                             })
-                                            : <p>Loading...</p>
+                                            : <p>No data available!!!</p>
                                     }
                                 </ul>
                             </div>

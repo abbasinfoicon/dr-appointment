@@ -1,38 +1,16 @@
 "use client"
 import Banner from '@/app/components/Banner'
-import FetchData from '@/app/components/FetchData';
+import Loading from '@/app/loading'
+import { useGetAllDoctorQuery } from '@/redux/slices/serviceApi'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 const Doctor = () => {
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const { data = [], isLoading, isFetching, isError } = useGetAllDoctorQuery();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await FetchData({ url: "user/doctors", method: "GET" });
-
-        if (!res.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const result = await res.json();
-
-        setData(result);
-        setLoading(false);
-      } catch (error) {
-        setLoading(true);
-        console.error('Error fetching data:', error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  if (isError) return <p>An error has occurred!</p>
+  if (isLoading) return <Loading />
+  if (isFetching) return <p>Fetching...</p>
 
   return (
     <>

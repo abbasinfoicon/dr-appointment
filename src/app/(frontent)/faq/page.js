@@ -52,7 +52,7 @@ const Faq = () => {
                                     <div className="accordion space faq-bx">
                                         {
                                             data.map((item, i) => (
-                                                <div className="panel" key={i}>
+                                                <div className={item.show_visibility ? 'panel' : 'd-none'} key={i}>
                                                     <div className="acod-head">
                                                         <h6 className="acod-title">
                                                             <p className={activePanel === i + 1 + i * 100 ? '' : 'collapsed'} onClick={() => togglePanel(i + 1 + i * 100)}>

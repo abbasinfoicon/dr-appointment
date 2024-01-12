@@ -10,7 +10,7 @@ const Sidebar = () => {
 
     const fetchData = async () => {
         try {
-            const res = await FetchData({ url: "app/blogs", method: "GET" }); 
+            const res = await FetchData({ url: "app/blogs", method: "GET" });
 
             if (!res.ok) {
                 throw new Error('Failed to fetch data');
@@ -28,7 +28,7 @@ const Sidebar = () => {
         fetchData();
     }, []);
 
-    
+
     return (
         <aside className="side-bar">
             <div className="widget d-none">
@@ -44,7 +44,7 @@ const Sidebar = () => {
                             reversedArray.slice(0, 4).map((item) => {
                                 return (
                                     <div className="widget-post clearfix" key={item.blog_id}>
-                                        <div className="dez-post-media"> <img src={`http://172.232.189.142:8000/${item.blog_image}`} width="200" height="143" alt="" /> </div>
+                                        <div className="dez-post-media"> <img src={process.env.BASE_URL + item.blog_image} width="200" height="143" alt="" /> </div>
                                         <div className="dez-post-info">
                                             <div className="dez-post-header">
                                                 <h6 className="post-title"><Link href={`/blog/${item.blog_id}`}>{item.title}</Link></h6>
@@ -59,7 +59,7 @@ const Sidebar = () => {
                                     </div>
                                 )
                             })
-                            : <p>Loading...</p>
+                            : <p>No data available!!!</p>
                     }
                 </div>
             </div>
@@ -84,7 +84,7 @@ const Sidebar = () => {
                             reversedArray.slice(0, 9).map((item) => {
                                 return (
                                     <li key={item.blog_id}><a href={`/blog/${item.blog_id}`}><div className="dez-post-thum dez-img-overlay1 dez-img-effect zoom-slow">
-                                        <img src={`http://172.232.189.142:8000/${item.blog_image}`} alt="" /></div></a>
+                                        <img src={process.env.BASE_URL + item.blog_image} alt="" /></div></a>
                                     </li>
                                 )
                             })

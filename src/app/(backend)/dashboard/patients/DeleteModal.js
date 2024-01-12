@@ -17,16 +17,16 @@ const DeleteModal = ({ did, dc, setdc }) => {
                 throw new Error('No ID to delete');
             }
 
-            const resDel = await FetchData({ url: `app/deleteBanner/${did}`, method: "DELETE", authorization: `Bearer ${token}` });
+            const resDel = await FetchData({ url: `user/discard_user/${did}`, method: "DELETE", authorization: `Bearer ${token}` });
 
             if (!resDel.ok) {
                 throw new Error('Failed to delete');
             }
 
-            toast.success("Slider Deleted");
+            toast.success("Patient Deleted");
             setdc(false);
 
-            router.push('/dashboard/slider');
+            router.push('/dashboard/patients');
         } catch (error) {
             console.error("Error deleting:", error);
             toast.error("Failed to delete");

@@ -1,8 +1,50 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Banner from '@/app/components/Banner';
 import Link from 'next/link';
+import FetchData from '@/app/components/FetchData';
+import Loading from '@/app/loading';
+
+const slugify = (string) => {
+  return string.toLowerCase().replace(/\s+/g, '-');
+};
 
 const Specialities = () => {
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await FetchData({ url: "app/get/Services", method: "GET" });
+
+        if (!res.ok) {
+          throw new Error(`Failed to fetch data. Status: ${res.status}`);
+        }
+
+        const result = await res.json();
+
+        // Update the state with result.data
+        setData(result.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+        setLoading(true);
+      }
+    };
+
+    fetchData();
+
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (!data || data.length === 0) {
+    return <p>Data not Found!!!</p>;
+  }
+
   return (
     <>
       <Banner title="Specialities" img="bnr1.jpg" />
@@ -15,72 +57,24 @@ const Specialities = () => {
           </div>
           <div className="section-content ">
             <div className="row">
-              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic1.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Dental Fillings</Link></h4>
-                    <div className="dez-separator bg-primary"></div>
-                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic2.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Orthodontics</Link></h4>
-                    <div className="dez-separator bg-primary"></div>
-                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic3.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Tooth Extraction</Link></h4>
-                    <div className="dez-separator bg-primary"></div>
-                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic4.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Root Canal Treatment</Link></h4>
-                    <div className="dez-separator bg-primary"></div>
-                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic5.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Teeth Whitening</Link></h4>
-                    <div className="dez-separator bg-primary"></div>
-                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 m-b30">
-                <div className="dez-box">
-                  <div className="dez-media"> <Link href="/specialities/slug"><img src="/assets/images/our-services/service/pic6.jpg" alt="" /></Link> </div>
-                  <div className="dez-info p-a30 border-1">
-                    <h4 className="dez-title m-t0"><Link href="/specialities/slug">Routine Dental Exam</Link></h4>
-                    <div className="dez-separator bg-primary"></div>
-                    <p className="m-b15">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p>
-                    <Link href="/specialities/slug" className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
-                  </div>
-                </div>
-              </div>
+              {
+                data && data.length ? data.slice(0, 6).map((item, i) => {
+                  const slug = slugify(item.title);
+                  return (
+                    <div className="col-lg-4 col-md-6 col-sm-6 m-b30" key={i}>
+                      <div className="dez-box">
+                        <div className="dez-media"> <Link href={`/specialities/${item.service_id}`}><img src={process.env.BASE_URL + item.image} alt="" /></Link> </div>
+                        <div className="dez-info p-a30 border-1">
+                          <h4 className="dez-title m-t0"><Link href={`/specialities/${item.service_id}`}>{item.title}</Link></h4>
+                          <div className="dez-separator bg-primary"></div>
+                          <p className="m-b15">{item.subtitle}</p>
+                          <Link href={`/specialities/${item.service_id}`} className="site-button-link black">Read More <i className="fa fa-long-arrow-right"></i></Link>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                }) : <p>Data not Found!!!</p>
+              }
             </div>
           </div>
         </div>

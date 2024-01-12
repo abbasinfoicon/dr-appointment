@@ -76,7 +76,7 @@ const SliderDetail = () => {
           <div className="profile">
             <div className="profile-head">
               <div className="photo-content">
-                <div className="cover-photo" style={{ backgroundImage: `url(http://172.232.189.142:8000/${data.image})` }}></div>
+                <div className="cover-photo" style={{ backgroundImage: `url(${process.env.BASE_URL + data.image})` }}></div>
               </div>
             </div>
           </div>
